@@ -1,0 +1,131 @@
+@import 'base/all';
+
+.container {
+  width: 100%;
+  max-width: 1340px;
+  padding: 0 res(15, 20);
+  margin: 0 auto;
+}
+
+.carousel__track {
+  align-items: flex-start;
+}
+
+.start{
+  &__step{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .container{
+    position: relative;
+  }
+  h2, .h2{
+    margin-bottom: 25px;
+    color: var(--dark-blue);
+  }
+  h6, .h6{
+    margin-bottom: 50px;
+    color: var(--dark-blue);
+  }
+  &__form{
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    button{
+      margin-top: 60px;
+    }
+  }
+  &__field{
+    position: relative;
+    &:not(:first-child){
+      margin-top: 16px;
+    }
+    input, select{
+      display: block;
+      width: 100%;
+      padding: 0 30px;
+      height: 56px;
+      border-radius: 8px;
+      background: var(--light-gray);
+      border: none;
+      color: var(--dark-blue);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 150%;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+      &[type="radio"]{
+        display: none;
+        & + label {
+          position: relative;
+          padding: 16px 30px 16px 50px;
+          border-radius: 8px;
+          background: var(--light-gray);
+          cursor: pointer;
+          &:before, &:after{
+            content:"";
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          &:before{
+            width: 22px;
+            height: 22px;
+            left: 16px;
+            border: 2px solid var(--dark-grey);
+          }
+          &:after{
+            width: 16px;
+            height: 16px;
+            left: 19px;
+            background: var(--dark-blue);
+            opacity: 0;
+            transition: .25s;
+          }
+        }
+        &:checked{
+          & + label:after{
+            opacity: 1;
+          }
+        }
+      }
+    }
+    label{
+      display: block;
+      text-align: left;
+      margin: 4px 0 0;
+      color: var(--dark-blue);
+    }
+  }
+  &__error{
+    font-size: 12px;
+    color: var(--red);
+    position: absolute;
+    text-align: right;
+    top: 100%;
+  }
+  &__sub{
+    position: absolute;
+    left: 2rem;
+    top: 0;
+    transform: translateY(-40px);
+    color: var(--dark);
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transition: opacity .5s ease;
+}

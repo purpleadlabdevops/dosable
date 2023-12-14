@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'Aeonik Pro TRIAL';
+  src: url('/fonts/aeonikprotrial-bold.woff2') format('woff2'),
+       url('/fonts/aeonikprotrial-bold.woff') format('woff'),
+       url('/fonts/aeonikprotrial-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Aeonik Pro TRIAL';
+  src: url('/fonts/aeonikprotrial-regular.woff2') format('woff2'),
+       url('/fonts/aeonikprotrial-regular.woff') format('woff'),
+       url('/fonts/aeonikprotrial-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Aeonik Pro TRIAL';
+  src: url('/fonts/aeonikprotrial-light.woff2') format('woff2'),
+       url('/fonts/aeonikprotrial-light.woff') format('woff'),
+       url('/fonts/aeonikprotrial-light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}

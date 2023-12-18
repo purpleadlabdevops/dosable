@@ -43,9 +43,14 @@ const model = ref<string>('FEMALE'),
       globalStore = useGlobalStore(),
       emit = defineEmits(['step'])
 
+if(globalStore.startData.sex){
+  emit('step', 'form')
+}
+
+globalStore.setIntake(5)
+
 const submit = () => {
   globalStore.setStartData('sex', model.value)
-  globalStore.setIntake(60)
   emit('step', 'form')
 }
 </script>

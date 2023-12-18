@@ -38,7 +38,7 @@ const model = ref<string>(''),
       emit = defineEmits(['step'])
 
 if(globalStore.startData.birthday){
-  alert('go to next step')
+  emit('step', 'sex')
 }
 
 const submit = () => {
@@ -63,7 +63,6 @@ const submit = () => {
   }
 
   globalStore.setStartData('birthday', model.value)
-  globalStore.setIntake(30)
   emit('step', 'sex')
 }
 </script>

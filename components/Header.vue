@@ -6,7 +6,7 @@
       </nuxt-link>
       <nuxt-link
         v-if="['start'].includes(route.name)"
-        @click="$router.back()"
+        to="/"
         class="header__close h6">
         Close
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11" stroke="#083952" stroke-width="2"/><path d="M1 11L11 1" stroke="#083952" stroke-width="2"/></svg>

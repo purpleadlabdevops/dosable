@@ -23,11 +23,13 @@ const globalStore = useGlobalStore()
 
 <style lang="scss" scoped>
 .status{
+  background: var(--white);
+  z-index: 100;
   position: absolute;
-  top: 94px;
   left: 0;
-  right: 0;
-  padding-top: 24px;
+  top: 97px;
+  padding: 1.5rem 0;
+  width: 100%;
   .container{
     display: flex;
     justify-content: space-between;

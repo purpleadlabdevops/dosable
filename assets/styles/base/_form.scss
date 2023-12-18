@@ -12,7 +12,7 @@
   }
   &__field{
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
     @media(min-width:768px){
       &-6{
         width: calc(100% / (12 / 6) - 10px);
@@ -35,17 +35,21 @@
     }
   }
   &__feedback{
-    color: var(--purple);
+    color: var(--red);
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: 1px;
     text-align: center;
   }
   label{
     display: block;
     width: 100%;
+    color: var(--dark-blue);
+    text-align: left;
     font-size: 12px;
-    color: #4f4f4f;
+    font-weight: 400;
+    line-height: 133.333%;
+    margin-bottom: 8px;
   }
   input, select{
     display: block;
@@ -53,14 +57,15 @@
     height: 56px;
     padding: 0;
     outline: none !important;
-    border: 1px solid var(--red);
-    background-color: transparent;
+    padding: 0 1.5rem;
+    border-radius: 0.5rem;
+    background: var(--light-gray);
+    border: none;
     color: var(--dark-blue);
-    border-radius: 12px;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 700;
+    line-height: 150%;
     letter-spacing: 2.4px;
-    text-transform: uppercase;
     &[type="checkbox"]{
       width: 24px;
       height: 24px;
@@ -71,12 +76,23 @@
   [type="submit"]{
     display: block;
     width: 100%;
+    max-width: 300px;
     height: 50px;
+    margin-left: auto;
+    margin-right: auto;
   }
   &__newsletter{
     max-width: 300px;
     input{
       text-align: center;
+      border: 1px solid var(--red);
+      background-color: transparent;
+      color: var(--dark-blue);
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
     }
     &__field{
       &:not(:first-child){

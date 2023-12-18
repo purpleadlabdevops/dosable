@@ -1,25 +1,25 @@
 <template>
-  <div class="page page__health">
-    <div class="health__list">
+  <div class="page page__quiz quiz">
+    <div class="quiz__list">
 
       <div
-        class="health__step health__step-0"
+        class="quiz__step quiz__step-0"
         v-if="step === 0">
-        <h1>Discover your best self, today.</h1>
-        <p>FIND OUT IF WINONA IS RIGHT FOR YOU</p>
+        <h2>Discover your best self, today.</h2>
+        <h6>FIND OUT IF Fungaid IS RIGHT FOR YOU</h6>
         <button
           type="button"
-          class="btn btn-plum"
+          class="btn btn-red"
           @click="nextStep(1)">
           Start quiz
         </button>
       </div>
 
       <div
-        class="health__step health__step-1"
+        class="quiz__step quiz__step-1"
         v-if="step === 1">
-        <h3>How old are you?</h3>
-        <p>This helps us understand where you are in your journey.</p>
+        <h2>{{ ageH2 }}</h2>
+        <h6>{{ ageH6 }}</h6>
         <input
           type="number"
           v-model="age"
@@ -32,7 +32,7 @@
         />
         <button
           type="button"
-          class="btn btn-plum"
+          class="btn btn-red"
           :disabled="!age || age < 18"
           @click.prevent="nextStep(2)">
           continue
@@ -40,201 +40,171 @@
       </div>
 
       <div
-        class="health__step health__step-2"
+        class="quiz__step quiz__step-2"
         v-if="step === 2">
-        <h3>How does your body feel on an average day?</h3>
-        <button
-          class="btn btn-gray"
-          type="button"
-          v-for="(item, index) in averageItems"
-          :key="`step_2_${index}`"
-          @click.prevent="chooseAverage(item, $event.target)">
-          {{ item }}
-        </button>
-        <button
-          type="button"
-          class="btn btn-cyan"
-          :disabled="!average"
-          @click.prevent="nextStep(3)">
-          NEXT
-        </button>
-        <button
-          type="button"
-          class="btn btn-cyan_txt"
-          @click.prevent="nextStep(1)">
-          BACK
-        </button>
+        <h2>{{ averageH2 }}</h2>
+        <div class="quiz__buttons">
+          <button
+            class="btn"
+            type="button"
+            v-for="(item, index) in averageItems"
+            :class="average.includes(item) ? 'btn-light' : 'btn-light_gray'"
+            :key="`step_2_${index}`"
+            @click.prevent="chooseAverage(item)">
+            {{ item }}
+          </button>
+        </div>
+        <div class="quiz__buttons">
+          <button
+            type="button"
+            class="btn btn-red"
+            :disabled="average.length === 0"
+            @click.prevent="nextStep(3)">
+            NEXT
+          </button>
+          <button
+            type="button"
+            class="btn btn-light btn-red_text"
+            @click.prevent="nextStep(1)">
+            BACK
+          </button>
+        </div>
       </div>
 
       <div
-        class="health__step health__step-3"
+        class="quiz__step quiz__step-3"
         v-if="step === 3">
-        <h3>Are you experiencing uncharacteristic mood changes? <br> (sadness, irritability, etc.)</h3>
-        <button
-          class="btn btn-gray"
-          type="button"
-          v-for="(item, index) in moodItems"
-          :key="`step_3_${index}`"
-          @click.prevent="chooseMood(item, $event.target)">
-          {{ item }}
-        </button>
-        <button
-          type="button"
-          class="btn btn-cyan"
-          :disabled="!mood"
-          @click.prevent="nextStep(4)">
-          NEXT
-        </button>
-        <button
-          type="button"
-          class="btn btn-cyan_txt"
-          @click.prevent="nextStep(2)">
-          BACK
-        </button>
-      </div>
-
-      <div class="health__step health__step-4" v-if="step === 4">
-        <h3>What are your top three symptoms?</h3>
-        <p>Don’t worry, you’ll be able to select more later.</p>
-        <div class="health__group">
+        <h2 v-html="moodH2"></h2>
+        <div class="quiz__buttons">
           <button
-            class="btn btn-gray"
+            class="btn btn-light_gray"
             type="button"
-            v-for="(item, index) in symptomsItems"
-            :key="`step_4_${index}`"
-            @click.prevent="chooseSymptoms(item, $event.target)">
+            v-for="(item, index) in moodItems"
+            :key="`step_3_${index}`"
+            @click.prevent="chooseMood(item)">
             {{ item }}
           </button>
-          <p v-if="symptoms.length !== 3">UP TO 3 SYMPTOMS</p>
         </div>
-        <button
-          type="button"
-          class="btn btn-cyan"
-          :disabled="symptoms.length !== 3"
-          @click.prevent="nextStep(5)">
-          NEXT
-        </button>
-        <button
-          type="button"
-          class="btn btn-cyan_txt"
-          @click.prevent="nextStep(3)">
-          BACK
-        </button>
-      </div>
-
-      <div class="health__step health__step-5" v-if="step === 5">
-        <div class="health__menopause">
-          <Image format="webp" name="about_menopause" alt="About menopause" />
-          <div class="health__menopause__text">
-            <h3>You’re not alone. Did you know there are actually 100+ menopause-related symptoms?</h3>
-            <p>Want to check all your possible symptoms? Enter your email address below and receive our free ebook to learn how changes in hormone levels during menopause can cause symptoms such as weight gain, fatigue, brain fog, painful sex, poor sleep, and more.</p>
-            <div class="health__menopause__buttons">
-              <input
-                type="email"
-                v-model="email"
-                v-on:input="emailInput(email)"
-                placeholder="yourname@email.com"
-                :style="emailError ? 'border-color: red' : ''"
-              />
-              <button
-                type="button"
-                class="btn btn-cyan"
-                :disabled="emailError"
-                @click.prevent="emailSubmit">
-                NEXT
-              </button>
-              <button
-                type="button"
-                class="btn btn-cyan_txt"
-                @click.prevent="nextStep(6)">
-                SKIP
-              </button>
-            </div>
-          </div>
+        <div class="quiz__buttons">
+          <button
+            type="button"
+            class="btn btn-light btn-red_text"
+            @click.prevent="nextStep(2)">
+            BACK
+          </button>
         </div>
       </div>
 
-      <div class="health__step health__step-6" v-if="step === 6">
-        <h3>Are you familiar with Bioidentical Hormone Replacement <br> Therapy (HRT) for women?</h3>
-        <button
-          class="btn btn-gray"
-          type="button"
-          v-for="(item, index) in therapyItems"
-          :key="`step_6_${index}`"
-          @click.prevent="chooseTherapy(item, $event.target)">
-          {{ item }}
-        </button>
-        <button
-          type="button"
-          class="btn btn-cyan"
-          :disabled="!therapy"
-          @click.prevent="nextStep(7)">
-          NEXT
-        </button>
-        <button
-          type="button"
-          class="btn btn-cyan_txt"
-          @click.prevent="nextStep(5)">
-          BACK
-        </button>
+      <div class="quiz__step quiz__step-4" v-if="step === 4">
+        <h2>{{ symptomsH2 }}</h2>
+        <div class="quiz__group">
+          <button
+            class="btn"
+            type="button"
+            v-for="(item, index) in symptomsItems"
+            :class="symptoms.includes(item) ? 'btn-light' : 'btn-light_gray'"
+            :key="`step_4_${index}`"
+            @click.prevent="chooseSymptoms(item)">
+            {{ item }}
+          </button>
+        </div>
+        <div class="quiz__buttons">
+          <button
+            type="button"
+            class="btn btn-red"
+            :disabled="symptoms.length === 0"
+            @click.prevent="nextStep(6)">
+            NEXT
+          </button>
+          <button
+            type="button"
+            class="btn btn-light btn-red_text"
+            @click.prevent="nextStep(3)">
+            BACK
+          </button>
+        </div>
       </div>
 
-      <div class="health__step health__step-7" v-if="step === 7">
-        <h3>Have you ever tried using Bioidentical Hormone <br> Replacement Therapy (HRT) for treating menopausal <br> symptoms?</h3>
-        <button
-          class="btn btn-gray"
-          type="button"
-          v-for="(item, index) in triedItems"
-          :key="`step_7_${index}`"
-          @click.prevent="chooseTried(item, $event.target)">
-          {{ item }}
-        </button>
-        <button
-          type="button"
-          class="btn btn-cyan"
-          :disabled="!tried"
-          @click.prevent="nextStep(8)">
-          NEXT
-        </button>
-        <button
-          type="button"
-          class="btn btn-cyan_txt"
-          @click.prevent="nextStep(6)">
-          BACK
-        </button>
+      <div class="quiz__step quiz__step-6" v-if="step === 6">
+        <h2>{{ therapyH2 }}</h2>
+        <div class="quiz__buttons">
+          <button
+            class="btn btn-light_gray"
+            type="button"
+            v-for="(item, index) in therapyItems"
+            :key="`step_6_${index}`"
+            @click.prevent="chooseTherapy(item)">
+            {{ item }}
+          </button>
+        </div>
+        <div class="quiz__buttons">
+          <button
+            type="button"
+            class="btn btn-light btn-red_text"
+            @click.prevent="nextStep(5)">
+            BACK
+          </button>
+        </div>
       </div>
 
-      <div class="health__step health__step-8" v-if="step === 8">
-        <h3>Are you currently taking any birth control?</h3>
-        <button
-          class="btn btn-gray"
-          type="button"
-          v-for="(item, index) in birthItems"
-          :key="`step_8_${index}`"
-          @click.prevent="chooseBirth(item, $event.target)">
-          {{ item }}
-        </button>
-        <button
-          type="button"
-          class="btn btn-cyan"
-          :disabled="!birth"
-          @click.prevent="nextStep(9)">
-          NEXT
-        </button>
-        <button
-          type="button"
-          class="btn btn-cyan_txt"
-          @click.prevent="nextStep(7)">
-          BACK
-        </button>
+      <div class="quiz__step quiz__step-7" v-if="step === 7">
+        <h2>{{ triedH2 }}</h2>
+        <div class="quiz__buttons">
+          <button
+            class="btn btn-light_gray"
+            type="button"
+            v-for="(item, index) in triedItems"
+            :key="`step_7_${index}`"
+            @click.prevent="chooseTried(item)">
+            {{ item }}
+          </button>
+        </div>
+        <div class="quiz__buttons">
+          <button
+            type="button"
+            class="btn btn-red"
+            :disabled="tried.length === 0"
+            @click.prevent="nextStep(8)">
+            NEXT
+          </button>
+          <button
+            type="button"
+            class="btn btn-light btn-red_text"
+            @click.prevent="nextStep(6)">
+            BACK
+          </button>
+        </div>
       </div>
 
-      <div class="health__step health__step-9" v-if="step === 9">
-        <h4>Based on your responses, we are unable to determine if you are a good candidate for HRT. <br class="hidden desktop-sm:block"> Please take our onboarding quiz, so we can collect more information and give you a definitive answer.</h4>
+      <div class="quiz__step quiz__step-8" v-if="step === 8">
+        <h2>{{ serumsH2 }}</h2>
+        <div class="quiz__buttons">
+          <button
+            class="btn btn-light_gray"
+            type="button"
+            v-for="(item, index) in serumsItems"
+            :key="`step_8_${index}`"
+            @click.prevent="chooseSerums(item)">
+            {{ item }}
+          </button>
+        </div>
+        <div class="quiz__buttons">
+          <button
+            type="button"
+            class="btn btn-light btn-red_text"
+            @click.prevent="nextStep(7)">
+            BACK
+          </button>
+        </div>
+      </div>
+
+      <div class="quiz__step quiz__step-9" v-if="step === 9">
+        <h2>Thank You !</h2>
+        <h6>Great News! We think FUNGAID can help treat your toenail fungus. Based on your answers, you're eligible for a consultation with a doctor who can walk you through the next steps. You’ve taken the first step to clear, healthy nails with our transformative prescription nail serum!</h6>
         <nuxt-link
-          class="btn btn-cyan"
-          to="/checkout">
-          Start my free visit
+          class="btn btn-red"
+          to="/start">
+          Start your free visit
         </nuxt-link>
       </div>
     </div>
@@ -246,12 +216,12 @@ definePageMeta({
   layout: 'quiz'
 })
 
-const step = ref(0)
+const step = ref(0),
+      emit = defineEmits(['onTesting']),
+      globalStore = useGlobalStore()
 
-const emit = defineEmits(['onTesting'])
-
-const layoutQuiz = document.querySelector('.layout__quiz'),
-      nextStep = (index: number): void => {
+const nextStep = (index: number): void => {
+        const layoutQuiz = document.querySelector('.layout__quiz')
         step.value = index
         if(layoutQuiz !== null){
           if(index > 0){
@@ -262,83 +232,119 @@ const layoutQuiz = document.querySelector('.layout__quiz'),
         }
       }
 
-const age = ref()
+const age = ref(),
+      ageH2 = 'How old are you?',
+      ageH6 = 'This helps us understand where you are in your journey.'
 
-const average = ref(false),
-      averageItems = ['Great', 'Pretty Good', 'Could be better', `...Don't Ask`],
-      chooseAverage = (val: string, e: EventTarget | null): void => {
-        document.querySelectorAll('.health__step-2 .btn-gray').forEach(el => el.classList.remove('active'))
-        average.value = val ? true : false;
-        (e as HTMLButtonElement).classList.add('active')
+const average: Ref<string[]> = ref([]),
+      averageH2 = 'How do your toes feel on a day-to-day basis?',
+      averageItems = ['Terrible','Okay','Good','Great'],
+      chooseAverage = (val: string): void => {
+        const index = average.value.indexOf(val)
+        if (index > -1) {
+          average.value.splice(index, 1)
+          return
+        }
+        average.value.push(val)
       }
 
-const mood = ref(false),
+const mood = ref(''),
+      moodH2 = 'Are you experiencing uncharacteristic mood changes?<br>(sadness, irritability, etc.)',
       moodItems = ['Yes', 'No'],
-      chooseMood = (val: string, e: EventTarget | null): void => {
-        document.querySelectorAll('.health__step-3 .btn-gray').forEach(el => el.classList.remove('active'))
-        mood.value = val ? true : false;
-        (e as HTMLButtonElement).classList.add('active')
+      chooseMood = (val: string): void => {
+        mood.value = val;
+        nextStep(4)
       }
 
 const symptoms = ref<Array<string>>([]),
-      symptomsItems = ['HOT FLASHES','SLEEP DISRUPTIONS','ANXIETY','LOW LIBIDO','NIGHT SWEATS','MOOD SWINGS','SKIN CHANGES','LOW ENERGY','WEIGHT GAIN','FATIGUE','BRAIN FOG','MUSCLE LOSS','VAGINAL DRYNESS','HAIR CHANGES','URINARY CONCERNS','OTHER'],
-      chooseSymptoms = (val: string, e: EventTarget | null) => {
-        if(symptoms.value.includes(val)){
-          const includedIndex = symptoms.value.indexOf(val)
-          symptoms.value.splice(includedIndex, 1);
-          document.querySelectorAll('.health__step-4 .btn-gray').forEach(el => {
-            el.setAttribute('disabled', '')
-          })
-        } else {
-          symptoms.value.push(val)
-          if(symptoms.value.length === 3){
-            document.querySelectorAll('.health__step-4 .btn-gray').forEach(el => {
-              if( !symptoms.value.includes(el.innerHTML) ){
-                el.removeAttribute('disabled')
-              }
-            })
-          }
-        }
-        (e as HTMLButtonElement).classList.toggle('active')
-      }
-
-const email = ref(''),
-      emailError = ref(false),
-      regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-      emailInput = (val: string | null) => {
-        emailError.value = !regex.test(email.value)
-      },
-      emailSubmit = () => {
-        if(regex.test(email.value)){
-          emailError.value = false
-          step.value = 6
+      symptomsH2 = 'What are your top three toe fungus symptoms?',
+      symptomsItems = ['Itchiness','Thickened Nails','Discolored Nails','Brittle, Crumbly Nails','Misshapen Nails','Smelly Toes','Nails Separated from Nail Bed'],
+      chooseSymptoms = (val: string): void => {
+        const index = symptoms.value.indexOf(val)
+        if (index > -1) {
+          symptoms.value.splice(index, 1)
           return
         }
-        emailError.value = true
+        symptoms.value.push(val)
       }
 
-const therapy = ref<string | boolean>(false),
+const therapy = ref(''),
+      therapyH2 = 'Have you used other toenail fungus remedies?',
       therapyItems = ['Yes', 'No'],
-      chooseTherapy = (val: string, e: EventTarget | null) => {
-        document.querySelectorAll('.health__step-6 .btn-gray').forEach(el => el.classList.remove('active'))
+      chooseTherapy = (val: string) => {
         therapy.value = val;
-        (e as HTMLButtonElement).classList.add('active')
+        nextStep(7)
       }
 
-const tried = ref<string | boolean>(false),
-      triedItems = ['Yes', 'No'],
-      chooseTried = (val: string, e: EventTarget | null) => {
-        document.querySelectorAll('.health__step-7 .btn-gray').forEach(el => el.classList.remove('active'))
+const tried = ref(''),
+      triedH2 = 'Did other toenail remedies work?',
+      triedItems = ['Never','A little','Yes'],
+      chooseTried = (val: string) => {
         tried.value = val;
-        (e as HTMLButtonElement).classList.add('active')
       }
 
-const birth = ref<string | boolean>(false),
-      birthItems = ['I am not taking any birth control.', 'Non-hormonal.', 'Hormonal birth control.'],
-      chooseBirth = (val: string, e: EventTarget | null) => {
-        document.querySelectorAll('.health__step-8 .btn-gray').forEach(el => el.classList.remove('active'))
-        birth.value = val;
-        (e as HTMLButtonElement).classList.add('active')
+const serums = ref(''),
+      serumsH2 = 'Are you currently using any toenail fungus serums?',
+      serumsItems = ['Yes', 'No'],
+      chooseSerums = (val: string) => {
+        serums.value = val;
+        nextStep(9)
+        const layoutQuiz = document.querySelector('.layout__quiz')
+        if(layoutQuiz !== null){
+          layoutQuiz.classList.add('layout__quiz-bg')
+        }
+        globalStore.setQuizData({
+          age: {
+            value: age.value,
+            question: ageH2
+          },
+          average: {
+            value: average.value,
+            question: averageH2
+          },
+          mood: {
+            value: mood.value,
+            question: moodH2
+          },
+          symptoms: {
+            value: symptoms.value,
+            question: symptomsH2
+          },
+          therapy: {
+            value: therapy.value,
+            question: therapyH2
+          },
+          serums: {
+            value: serums.value,
+            question: serumsH2
+          }
+        })
+        console.dir({
+          age: {
+            value: age.value,
+            question: ageH2
+          },
+          average: {
+            value: average.value,
+            question: averageH2
+          },
+          mood: {
+            value: mood.value,
+            question: moodH2
+          },
+          symptoms: {
+            value: symptoms.value,
+            question: symptomsH2
+          },
+          therapy: {
+            value: therapy.value,
+            question: therapyH2
+          },
+          serums: {
+            value: serums.value,
+            question: serumsH2
+          }
+        })
       }
 
 onMounted(() => {
@@ -353,7 +359,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.page__health{
+.quiz{
   position: relative;
   z-index: 2;
   overflow-y: auto;
@@ -362,87 +368,26 @@ onMounted(() => {
   justify-content: center;
   padding: 100px 0;
   width: 100%;
-  h1{
-    color: rgb(43, 38, 96);
-    font-size: res(30, 48);
-    margin-bottom: res(20, 30);
-    letter-spacing: -1px;
-    text-align: center;
-    font-weight: 500;
-  }
-  p{
-    letter-spacing: res(1, 2.24);
-    font-size: res(16, 20);
-    text-align: center;
-  }
-  h3{
-    font-size: res(26, 40);
-    margin-bottom: 8px;
-    color: #000;
-    text-align: center;
-    & + .btn-gray{
-      margin-top: res(30, 40);
-    }
-    @media(max-width:767px){
-      br{ display: none; }
-    }
-  }
-  h4{
-    font-size: res(20, 28);
-    margin-bottom: res(20, 30);
-    text-align: center;
-    letter-spacing: 0.28px;
-  }
-  input{
-    display: block;
-    width: 100%;
-    max-width: 410px;
-    height: 56px;
-    border-radius: 50px;
-    font-size: 20px;
-    border: 1px solid rgb(107, 114, 128);
-    text-align: center;
-    padding: 0 15px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
-  }
-  .btn{
-    width: 100%;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    @media(min-width:768px){
-      width: 400px;
-    }
-    &-plum{
-      margin-top: 50px;
-    }
-    &-gray + .btn-cyan{
-      margin-top: 100px;
-    }
-    &-cyan, &-cyan_txt{
-      width: 270px;
-    }
-  }
-}
-.health{
   &__step{
+    text-align: center;
     padding-left: 10px;
     padding-right: 10px;
-    &-0{
-      p{
-        font-size: 14px;
+    &-9{
+      h6{
+        max-width: 630px;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
-    &-5{
-      h3{
-        text-align: left;
-      }
-      p{
-        text-align: left;
-        letter-spacing: 0px;
+  }
+  &__buttons{
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3rem;
+    .btn{
+      &:not(:first-child){
+        margin-top: 1rem;
       }
     }
   }
@@ -450,55 +395,13 @@ onMounted(() => {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 1023px;
-    margin-top: 30px;
-    margin-bottom: 100px;
+    max-width: 1000px;
+    margin-top: 3rem;
     .btn{
-      width: auto;
-      font-size: res(13, 16);
-      padding: res(10, 18) res(20, 40);
-      margin: res(5, 8);
-      @media(max-width:767px){
-        height: auto;
-      }
-    }
-    p{
-      width: 100%;
-      font-size: 14px;
-      margin-top: 15px;
-    }
-  }
-  &__menopause{
-    max-width: 1340px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 res(10, 20);
-    @media(min-width:768px){
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    img{
-      display: block;
-      width: 37%;
-      @media(max-width:767px){
-        display: none;
-      }
-    }
-    &__text{
-      @media(min-width:768px){
-        width: 63%;
-      }
-      h3{
-        margin-bottom: 30px;
-      }
-    }
-    &__buttons{
-      @media(min-width:768px){
-        max-width: 450px;
-      }
-      input{
-        margin-bottom: 40px;
+      min-width: 100px;
+      margin-bottom: 1rem;
+      &:not(:first-child){
+        margin-left: 1rem;
       }
     }
   }

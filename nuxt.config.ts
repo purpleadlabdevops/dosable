@@ -34,8 +34,5 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: true,
     preset: "node-server",
-  },
-  typescript: {
-    typeCheck: true
   }
 })

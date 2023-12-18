@@ -1,8 +1,8 @@
 .btn{
-  display: inline-block;
+  display: inline-flex;
+  user-select: none;
   max-width: 100%;
   padding: 16px 30px;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -42,12 +42,36 @@
       border: 1px solid var(--dark-grey);
     }
   }
+  &-light_gray{
+    background: var(--light-gray);
+    color: var(--dark-blue);
+  }
+  &-light_blue{
+    background: var(--light-blue);
+    color: var(--dark-blue);
+  }
+  &-light{
+    background: var(--light);
+    color: var(--dark-blue);
+  }
   &-flex{
     min-width: 0px;
   }
+  &-red_text{
+    color: var(--red);
+  }
   &:hover{
     text-decoration: none;
-    box-shadow: 0 0.5em 0.5em -0.4em var(--dark-blue);
-    transform: translateY(-0.25em);
+    box-shadow: 0 0.25em 0.25em -0.2em var(--dark-blue);
+    transform: translateY(-0.1em);
+  }
+  &:disabled{
+    opacity: .5;
+    cursor: default;
+    box-shadow: none;
+    transform: translateY(-0);
+  }
+  svg{
+    margin-left: 1rem;
   }
 }

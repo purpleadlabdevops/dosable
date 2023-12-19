@@ -45,6 +45,7 @@ const router = <any>useRouter(),
     display: flex;
     text-decoration: none;
     cursor: pointer;
+    color: var(--dark-blue);
     svg{
       margin-left: 18px;
       pointer-events: none;

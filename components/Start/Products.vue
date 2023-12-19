@@ -1,22 +1,48 @@
-
 <template>
   <section class="start__step products">
     <div class="container">
       <h2>PRODUCT RECOMMENDATIONS</h2>
-      <div class="h7">Extra Strength FUNGAID</div>
-      <div class="h8">Whether your toenail fungus is annoyingly strong, or you just want your issue dealt with quickly, this is the strongest option available. You'll get quick results and enjoy open toed shoes and bare feet in no time.</div>
-      <div class="products__list"></div>
+      <div class="h7">Based on your symptoms and preference, Fungaid Physician suggests...</div>
+      <div class="h8">Choose a plan. Don't worry - you can tweak this later, and your doctor will review if this treatment is right for you.</div>
+      <div class="products__list">
+        <StartProduct v-for="(product, index) in globalStore.products" :data="product" :ID="index" />
+      </div>
+      <div class="start__group">
+        <button
+          type="button"
+          @click.prevent="nextIdentify"
+          class="btn btn-red">
+          NEXT
+        </button>
+        <button
+          type="button"
+          @click.prevent="back"
+          class="btn btn-light btn-red_text">
+          BACK
+        </button>
+      </div>
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
-</script>
+import { useGlobalStore } from '~/stores/global';
 
-<style lang="scss" scoped>
-.products{
-  .h7, .h8{
-    color: var(--dark-blue)
+const globalStore = useGlobalStore(),
+      emit = defineEmits(['step'])
+
+const nextIdentify = (): void => {
+  let valid: boolean = true
+  const products = Object.values(globalStore.products).find(item => item.model === true)
+  if(!products){
+    alert(' Please select at least one product. Because of your medical history, it would not be safe to take Estrogen without Progesterone.')
+    return
   }
+  emit('step', 'iinfo')
+  globalStore.setOnboarding(20)
 }
-</style>
+
+const back = (): void => {
+  emit('step', 'question')
+}
+</script>

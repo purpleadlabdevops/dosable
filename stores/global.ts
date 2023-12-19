@@ -2,11 +2,14 @@ import { defineStore } from 'pinia'
 
 interface IProduct { [key: string]: {
   name: string
+  title: string
+  list: string[]
   short: string
   long: string
-  one: number
-  three: number
+  price: number
   img: string
+  save: number
+  best: boolean
   model: boolean
 }}
 
@@ -36,22 +39,52 @@ export const useGlobalStore = defineStore({
   state: () => ({
     products: <IProduct>{
       product_1: {
-        name: 'Estrogen Patch',
-        short: `This natural, FDA approved patch is safe, proven, and effective. It'll have you feeling and looking your best by returning your hormones to normal, youthful levels.`,
-        long: `It’s not magic, but it might feel like it. With one clear, tiny, and powerful patch you can start fighting the symptoms associated with aging. Prescribed online, dosed for your exact body, and shipped to your door. As easy as that.`,
-        one: 149,
-        three: 399,
-        img: 'estrogen-patch',
-        model: true,
+        name: 'Antifungal Power Pack (Extra Strength)',
+        title: `For complete protection for your toes, the Antifungal Power Pack comes with`,
+        list: ['Extra strength FUNGAID,','Disposable nail files ','Anti-fungal supplement.'],
+        short: `This 30-day supply of Extra Strength FUNGAID is formulated to start killing your toenail fungus the moment it's applied. It's made of Itraconazole (1%), Fluconazole (5%), Ibuprofen (2%), Terbinafine (5%), and Tea Tree Oil (10%), and comes in a pen or dropper.`,
+        long: `This 30-day supply of Extra Strength FUNGAID is formulated to start killing your toenail fungus the moment it's applied. It's made of Itraconazole (1%), Fluconazole (5%), Ibuprofen (2%), Terbinafine (5%), and Tea Tree Oil (10%), and comes in a pen or dropper.<br><br>The disposable nail files keep your nails fresh without fear of re-infection. While the anti-fungal supplement is designed to support the growth of the nail matrix to produce stronger, and faster growing toenails.`,
+        price: 149,
+        img: 'product_1',
+        save: 25,
+        best: true,
+        model: true
       },
       product_2: {
-        name: 'Progesterone Capsule',
-        short: `This natural, FDA approved treatment is often taken with estrogen, but can also be taken alone to help restore healthy hormone levels.`,
-        long: `A natural ‘feel good’ treatment, progesterone anti-aging capsule is not magic, but it can feel like it. Start fighting many of the symptoms associated with aging, and prevent future symptoms today. Prescribed online, at the dosage you need, and shipped to your door. As easy as that.`,
-        one: 39,
-        three: 99,
-        img: 'capsule-scaled',
-        model: true,
+        name: 'Extra Strength FUNGAID',
+        title: `Whether your toenail fungus is annoyingly stubborn, or you just want your issue dealt with quickly, this is the strongest formula available.`,
+        list: [],
+        short: `Far more effective than any OTC option, it uses 5 powerful ingredients to kill toenail fungus. It's made of Itraconazole (1%), Fluconazole (5%), Ibuprofen (2%), Terbinafine (5%), and Tea Tree Oil (10%), and comes in a pen or dropper.`,
+        long: ``,
+        price: 129,
+        img: 'product_2',
+        save: 0,
+        best: false,
+        model: true
+      },
+      product_3: {
+        name: 'Standard FUNGAID',
+        title: `If you have a more mild form of toenail fungus, or if you want to try a lower dosage before you bring out the “big guns'' then the Standard FUNGAID may be the solution for you.`,
+        list: [],
+        short: `Designed with a mixture of Itraconazole (1%) and TeaTree Oil (10%), this formula will fight your toenail fungus to keep your toes looking their best.`,
+        long: ``,
+        price: 99,
+        img: 'product_3',
+        save: 0,
+        best: false,
+        model: true
+      },
+      product_4: {
+        name: 'Anti-Fungal Supplement',
+        title: `The Anti-Fungal supplement supports nail health from the inside out, giving the nail matrix the needed help when fighting toenail fungus.`,
+        list: ['Extra strength FUNGAID,','Disposable nail files ','Anti-fungal supplement.'],
+        short: `This mix of Vitamin B12, Biotin and MSM/Collagen not only helps strengthen your nails but also helps promote new growth.`,
+        long: ``,
+        price: 39,
+        img: 'product_4',
+        save: 0,
+        best: false,
+        model: true
       }
     },
     productsShip: <string>'one',

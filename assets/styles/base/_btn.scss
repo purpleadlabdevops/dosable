@@ -60,6 +60,13 @@
   &-red_text{
     color: var(--red);
   }
+  &-link{
+    background: none;
+    padding: 0;
+    border: none;
+    color: var(--dark-blue);
+    text-decoration: underline;
+  }
   &:hover{
     text-decoration: none;
     box-shadow: 0 0.25em 0.25em -0.2em var(--dark-blue);

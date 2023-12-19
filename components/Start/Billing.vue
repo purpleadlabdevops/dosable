@@ -4,7 +4,7 @@
       <button
         class="billing__close"
         type="button"
-        @click.prevent="emit('step', 'billing')">
+        @click.prevent="emit('step', 'payment')">
         <svg data-v-25c87022="" viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="x circle fill" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-x-circle-fill close-icon b-icon bi text-info"><g data-v-25c87022="" transform="translate(8 8) scale(1.3 1.3) translate(-8 -8)"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"></path></g></svg>
       </button>
       <div class="billing__card">
@@ -14,18 +14,18 @@
           256-BIT TLS SECURITY
         </div>
       </div>
-      <h3>BILLING INFORMATION </h3>
-      <h2>Why do you need my credit card information? </h2>
+      <h4>BILLING INFORMATION </h4>
+      <h3>Why do you need my credit card information? </h3>
       <p>Winona’s physicians are on hand to review your medical information quickly in order to provide you with safe, accessible care so you can feel better right away. </p>
       <p>We ask that you share your credit card information so that if the medication is approved by one of our doctors we can get it to you right away and to ensure that our patients are serious about the desire to receive treatment. </p>
       <p>Your card will never be charged until treatment is prescribed. </p>
-      <h2> Shouldn’t I talk to a Winona doctor before purchasing treatment? </h2>
+      <h3> Shouldn’t I talk to a Winona doctor before purchasing treatment? </h3>
       <p>Your Winona physician will never prescribe a treatment without first reviewing your medical history, and addressing any questions or concerns either of you may have. </p>
       <p>Once you enter your credit card information you will be directed to your secure patient portal where you can directly message your doctor. If you have any additional questions, you can ask them at this step. </p>
       <button
         type="button"
         class="btn"
-        @click.prevent="emit('step', 'billing')">
+        @click.prevent="emit('step', 'payment')">
         I understand
       </button>
     </div>
@@ -100,22 +100,15 @@ onBeforeUnmount(() => {
       fill: var(--purple);
     }
   }
-  h2{
+  h3{
     margin-top: res(20, 26);
     margin-bottom: 6px;
-    font-size: res(20, 26);
-  }
-  h3{
-    font-size: res(15, 17);
-    letter-spacing: res(1, 2.8);
-    color: var(--cyan);
   }
   p{
     font-size: res(15, 17);
     margin-bottom: 16px;
   }
   .btn{
-    color: var(--green);
     display: block;
     width: 100%;
   }

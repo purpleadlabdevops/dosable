@@ -7,7 +7,7 @@
         @click.prevent="emit('step', 'summary')">
         <svg data-v-25c87022="" viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="x circle fill" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-x-circle-fill close-icon b-icon bi text-info"><g data-v-25c87022="" transform="translate(8 8) scale(1.3 1.3) translate(-8 -8)"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"></path></g></svg>
       </button>
-      <h1>Safety Information</h1>
+      <h2>Safety Information</h2>
       <h3>Estrogen pills, patches and body creams:</h3>
       <p>Primarily used for the relief of menopause and perimenopause symptoms. Estrogen replacement can reduce hot flashes and night sweats, treat vulvar and vaginal atrophy (thinning and drying of the vaginal tissues), prevent and treat osteoporosis and osteopenia (weakening of the bones), treat hypoestrogenism (low estrogen) due to menopause, surgical removal of the ovaries, and primary ovarian failure. <br><br> The most common side effects for women who take estrogen are headaches, breast tenderness, nausea, vaginal spotting, and bloating. For most women these side effects will go away after a few weeks of use. <br><br> Serious side effects are rare, much less than 1%, they include cancer of the uterus, breast, and ovaries, stroke, and blood clots, and gallbladder disease. <br><br> Women with a uterus should use progesterone while using estrogen. <br><br> Women that should not use estrogen include women that are pregnant, breast feeding, have cancer of the breast, uterus, ovaries, or cervix, had a stroke or heart attack in the last year, have or have had blood clots, have active liver disease, or are allergic to estrogen. </p>
       <h3>Progesterone pills:</h3>
@@ -54,7 +54,7 @@ onBeforeUnmount(() => {
     margin-left: 100%;
     height: 100vh;
     background: #fff;
-    padding: 32px res(15, 32);
+    padding: 32px res(30, 50) 32px res(15, 32);
     transition: .5s ease;
     overflow-y: auto;
     @media(min-width:768px){
@@ -72,8 +72,8 @@ onBeforeUnmount(() => {
     padding: 0;
     border: none;
     position: absolute;
-    right: 24px;
-    top: 12px;
+    right: 1rem;
+    top: 1rem;
     * {
       pointer-events: none;
     }
@@ -86,22 +86,17 @@ onBeforeUnmount(() => {
       fill: var(--purple);
     }
   }
-  h1{
-    color: var(--cyan);
-    font-weight: 500;
-    font-size: 20px;
-    text-align: center;
-    font-family: 'Hatton', serif;
-    margin-bottom: 24px;
+  &{
+    color: var(--dark-blue);
+  }
+  h2{
+    margin-bottom: 1.5rem;
   }
   h3{
-    font-weight: 700;
-    margin-bottom: 15px;
-    font-size: 17px;
+    margin-bottom: 1rem;
   }
   p{
-    font-size: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
   }
 }
 </style>

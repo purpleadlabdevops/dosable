@@ -10,10 +10,10 @@
       <div class="identity__card">
         <Image format="webp" name="identity" alt="default identify id" />
       </div>
-      <h3>IDENTITY VERIFICATION</h3>
-      <h2>Why do you need a photo of my ID?</h2>
+      <h4>IDENTITY VERIFICATION</h4>
+      <h3>Why do you need a photo of my ID?</h3>
       <p>We use your ID photo to verify your identity, for example your name and date of birth. Telemedicine laws require us to verify this information before prescribing medication.</p>
-      <h2>Who sees this?</h2>
+      <h3>Who sees this?</h3>
       <p>The photo of your ID will be stored securely and will only be shared with the patient support team and our identity verification platform.</p>
       <button
         type="button"
@@ -93,24 +93,12 @@ onBeforeUnmount(() => {
       fill: var(--purple);
     }
   }
-  h2{
+  h3{
     margin-top: res(20, 26);
     margin-bottom: 6px;
-    font-size: res(20, 26);
-  }
-  h3{
-    font-size: res(15, 17);
-    letter-spacing: res(1, 2.8);
-    color: var(--cyan);
   }
   p{
-    font-size: res(15, 17);
     margin-bottom: 16px;
-  }
-  .btn{
-    color: var(--green);
-    display: block;
-    width: 100%;
   }
   &__card{
     background: #f6f6f6;

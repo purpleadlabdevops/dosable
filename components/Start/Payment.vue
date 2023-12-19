@@ -1,18 +1,20 @@
 <template>
   <section class="payment">
     <div class="container">
-      <h2>Your doctor is waiting</h2>
-      <p>Add a payment method to be used if treatment is prescribed (you will not be charged now).</p>
-      <p><button class="payment__link" @click.prevent="openBilling" type="button">Why do you need my credit card information?</button></p>
+      <div class="payment__head">
+        <h2>Your doctor is waiting</h2>
+        <div class="h7">Add a payment method to be used if treatment is prescribed (you will not be charged now).</div>
+        <div class="h9"><button class="payment__link" @click.prevent="openBilling" type="button">Why do you need my credit card information?</button></div>
+      </div>
       <div class="payment__cart">
-        <h3>Your Treatment if Prescribed</h3>
+        <div class="h8">Your Treatment if Prescribed</div>
         <div class="payment__cart__item" v-for="product in globalStore.products">
           <div class="payment__cart__info">
-            <h4>{{ product.name }}</h4>
-            <span>Ship every {{ productsShip === 'one' ? 'month':'3 months' }}</span>
+            <div class="h7">{{ product.name }}</div>
+            <div class="h9">Ship every {{ productsShip === 'one' ? 'month':'3 months' }}</div>
           </div>
           <div class="payment__cart__price">
-            <h3>${{ getProductShip(product) }}.00/month</h3>
+            <div class="h7">${{ getProductShip(product) }}.00/month</div>
           </div>
         </div>
         <div class="payment__cart__item payment__cart__item-last">
@@ -30,11 +32,7 @@
             <div class="payment__card__head">
               <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path fill="rgb(205 252 177)" d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"></path></svg>
               Credit or Debit Card
-              <div class="payment__banks">
-                <Image format="svg" src="jcb" alt="jcb icon" />
-                <Image format="svg" src="visa" alt="visa icon" />
-                <Image format="svg" src="mastercard" alt="mastercard icon" />
-              </div>
+              <Image format="webp" name="cc" class="payment__banks" />
             </div>
             <div class="payment__card__body">
               <input
@@ -167,7 +165,7 @@ const globalStore = useGlobalStore(),
       productsShip = globalStore.productsShip
 
 const getProductShip = (obj: any): void => {
-  console.dir(obj)
+  return obj.price
 }
 
 /* -----START MODELS----- */
@@ -267,6 +265,8 @@ const submitForm = async () => {
     })
   }
 
+  globalStore.setOnboarding(100)
+
   globalStore.changePayment({
     cardNumber: cardNumber.value.trim().replace(/[\s]/g, ''),
     cardMonth: cardDate.value.slice(0,2),
@@ -312,13 +312,7 @@ const submitForm = async () => {
   })
 }
 
-onMounted(function(){
-  setTimeout(()=>{
-    globalStore.changeProgress(80)
-  }, 500)
-})
-
-const openBilling = () => emit('billing', true)
+const openBilling = () => emit('step', 'billing')
 
 const changeBillingSame = () => globalStore.changeBillingSame(billingSame.value)
 
@@ -354,23 +348,22 @@ const inputCardNumber = (e: any): void => {
 
 <style lang="scss" scoped>
 .payment{
-  padding-top: 170px;
-  padding-bottom: 50px;
-  .container{
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  h2{
-    font-weight: 500;
-    font-size: 25px;
-    letter-spacing: -0.768px;
-    margin-bottom: 12px;
-    font-family: "Atten New";
+  &__head{
+    text-align: center;
+    .h7{
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
   }
   .form{
     margin-top: 40px;
     margin-bottom: 30px;
+    max-width: 726px;
+    margin-left: auto;
+    margin-right: auto;
+    input{
+      padding: 0;
+    }
   }
   &__link{
     color: rgb(130, 130, 130);
@@ -384,6 +377,9 @@ const inputCardNumber = (e: any): void => {
     padding: 24px;
     margin-top: 38px;
     margin-bottom: 24px;
+    max-width: 726px;
+    margin-left: auto;
+    margin-right: auto;
     background: rgba(242, 242, 242, 0.5);
     h3{
       font-size: 17px;
@@ -398,10 +394,12 @@ const inputCardNumber = (e: any): void => {
     &__item{
       display: flex;
       justify-content: space-between;
+      margin-bottom: 2rem;
       &-last{
         border-top: 1px solid rgb(25, 25, 28);
         margin-top: 15px;
         padding-top: 15px;
+        margin-bottom: 0;
       }
       span{
         font-size: 13px;
@@ -415,12 +413,8 @@ const inputCardNumber = (e: any): void => {
     }
   }
   &__banks{
-    display: flex;
+    width: 162px;
     margin-left: auto;
-    img{
-      width: 35px;
-      margin-left: 5px;
-    }
   }
   &__card{
     background: #f9f9f9;
@@ -459,10 +453,10 @@ const inputCardNumber = (e: any): void => {
       }
     }
     &__date{
-      max-width: 60px;
+      width: 80px;
     }
     &__code{
-      max-width: 40px;
+      width: 50px;
     }
   }
   &__checkout{
@@ -505,7 +499,10 @@ const inputCardNumber = (e: any): void => {
     margin-top: 45px;
   }
   .form__small{
-    margin-top: -10px;
+    max-width: 726px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--dark-grey);
   }
 }
 

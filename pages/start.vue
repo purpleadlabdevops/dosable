@@ -32,7 +32,7 @@ useHead({
   title: 'Start Free Visit'
 })
 
-const step = ref<string>('birthday'),
+const step = ref<string>('summary'),
       globalStore = useGlobalStore()
 
 const setStep = (val: string): void => {

@@ -93,7 +93,7 @@ const submitForm = async () => {
           <div class="form__field form__feedback" v-if="formFeedback">
             {{ textFeedback[formFeedback] }}
           </div>
-          <div class="form__field form__field-6 form__submit">
+          <div class="form__field form__submit">
             <button class="btn btn-red" type="submit" @click.prevent="submitForm">
               {{ isLoading ? 'Loading...' : 'Subscribe' }}
             </button>

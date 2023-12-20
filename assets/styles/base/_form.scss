@@ -94,6 +94,10 @@
       letter-spacing: 2.4px;
       text-transform: uppercase;
     }
+    [type="submit"]{
+      width: auto;
+      margin-left: 0;
+    }
     &__field{
       &:not(:first-child){
         margin-top: 20px;

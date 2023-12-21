@@ -6,12 +6,12 @@
         class="quiz__step quiz__step-0"
         v-if="step === 0">
         <h2>Discover your best self, today.</h2>
-        <h6>FIND OUT IF Fungaid IS RIGHT FOR YOU</h6>
+        <h6>FIND OUT IF Dosable IS RIGHT FOR YOU</h6>
         <button
           type="button"
           class="btn btn-red"
           @click="nextStep(1)">
-          Start quiz
+          Start quizа
         </button>
       </div>
 
@@ -200,7 +200,7 @@
 
       <div class="quiz__step quiz__step-9" v-if="step === 9">
         <h2>Thank You !</h2>
-        <h6>Great News! We think FUNGAID can help treat your toenail fungus. Based on your answers, you're eligible for a consultation with a doctor who can walk you through the next steps. You’ve taken the first step to clear, healthy nails with our transformative prescription nail serum!</h6>
+        <h6>Great News! We think DOSABLE can help treat your toenail fungus. Based on your answers, you're eligible for a consultation with a doctor who can walk you through the next steps. You’ve taken the first step to clear, healthy nails with our transformative prescription nail serum!</h6>
         <nuxt-link
           class="btn btn-red"
           to="/start">

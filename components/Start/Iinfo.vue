@@ -1,7 +1,7 @@
 <template>
   <section class="start__step identity">
     <div class="container">
-      <h2>Ok great! The Fungaid physician is ready to review your information.</h2>
+      <h2>Ok great! The Dosable physician is ready to review your information.</h2>
       <div class="h7">You're almost done. In the next step, we'll verify your identity so your doctor can legally write you a prescription.</div>
       <div class="h8">2 minute task</div>
       <div class="identity__info">

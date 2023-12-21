@@ -8,7 +8,7 @@
 <script lang="ts" setup>
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} | Fungaid` : 'Fungaid';
+    return titleChunk ? `${titleChunk} | Dosable` : 'Dosable';
   }
 })
 </script>

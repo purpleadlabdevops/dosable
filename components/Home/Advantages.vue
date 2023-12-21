@@ -52,7 +52,7 @@ const items: Array<ItemType> = [
   {
     title: 'Free Delivery, Continued Care',
     subtitle: 'Real relief to your door.',
-    text: `Forget humiliating conversations with your pharmacist. After speaking with our doctors, you'll get FUNGAID shipped directly to your door in discreet packaging. We understand how embarrassing toenail fungus can be. Our safe, secure, private process lets you treat and eliminate your infection from the comfort of your home.`,
+    text: `Forget humiliating conversations with your pharmacist. After speaking with our doctors, you'll get DOSABLE shipped directly to your door in discreet packaging. We understand how embarrassing toenail fungus can be. Our safe, secure, private process lets you treat and eliminate your infection from the comfort of your home.`,
     img: 'adv-03'
   }
 ]

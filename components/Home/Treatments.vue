@@ -2,7 +2,7 @@
   <section class="treatments">
     <div class="container">
       <ClientOnly>
-        <div class="treatments__head" :class="$width() < 768 ? 'h3':'h2'">FUNGAID - The Toenail Fungus <br>Serum That Actually Works</div>
+        <div class="treatments__head" :class="$width() < 768 ? 'h3':'h2'">DOSABLE - The Toenail Fungus <br>Serum That Actually Works</div>
       </ClientOnly>
       <div class="treatments__item" v-for="item in items">
         <Image class="treatments__img" format="webp" :name="item.img" :alt="item.title" />
@@ -30,7 +30,7 @@ const items: Array<ItemType> = [
   {
     title: 'Kill Toenail Fungus For Good',
     img: 'estrogen-therapy',
-    text: `FUNGAID combines the 5 most effective ingredients against nail fungus in one affordable, easy-to-use solution. It's clinically proven to work in as little as three months, and it begins working as soon as it's applied to the infected toenails. With prescription-grade ingredients, FUNGAID's formula gets results faster than the competition.`
+    text: `DOSABLE combines the 5 most effective ingredients against nail fungus in one affordable, easy-to-use solution. It's clinically proven to work in as little as three months, and it begins working as soon as it's applied to the infected toenails. With prescription-grade ingredients, DOSABLE's formula gets results faster than the competition.`
   }
 ]
 </script>

@@ -41,9 +41,9 @@ export const useGlobalStore = defineStore({
       product_1: {
         name: 'Antifungal Power Pack (Extra Strength)',
         title: `For complete protection for your toes, the Antifungal Power Pack comes with`,
-        list: ['Extra strength FUNGAID,','Disposable nail files ','Anti-fungal supplement.'],
-        short: `This 30-day supply of Extra Strength FUNGAID is formulated to start killing your toenail fungus the moment it's applied. It's made of Itraconazole (1%), Fluconazole (5%), Ibuprofen (2%), Terbinafine (5%), and Tea Tree Oil (10%), and comes in a pen or dropper.`,
-        long: `This 30-day supply of Extra Strength FUNGAID is formulated to start killing your toenail fungus the moment it's applied. It's made of Itraconazole (1%), Fluconazole (5%), Ibuprofen (2%), Terbinafine (5%), and Tea Tree Oil (10%), and comes in a pen or dropper.<br><br>The disposable nail files keep your nails fresh without fear of re-infection. While the anti-fungal supplement is designed to support the growth of the nail matrix to produce stronger, and faster growing toenails.`,
+        list: ['Extra strength DOSABLE,','Disposable nail files ','Anti-fungal supplement.'],
+        short: `This 30-day supply of Extra Strength DOSABLE is formulated to start killing your toenail fungus the moment it's applied. It's made of Itraconazole (1%), Fluconazole (5%), Ibuprofen (2%), Terbinafine (5%), and Tea Tree Oil (10%), and comes in a pen or dropper.`,
+        long: `This 30-day supply of Extra Strength DOSABLE is formulated to start killing your toenail fungus the moment it's applied. It's made of Itraconazole (1%), Fluconazole (5%), Ibuprofen (2%), Terbinafine (5%), and Tea Tree Oil (10%), and comes in a pen or dropper.<br><br>The disposable nail files keep your nails fresh without fear of re-infection. While the anti-fungal supplement is designed to support the growth of the nail matrix to produce stronger, and faster growing toenails.`,
         price: 149,
         img: 'product_1',
         save: 25,
@@ -51,7 +51,7 @@ export const useGlobalStore = defineStore({
         model: true
       },
       product_2: {
-        name: 'Extra Strength FUNGAID',
+        name: 'Extra Strength DOSABLE',
         title: `Whether your toenail fungus is annoyingly stubborn, or you just want your issue dealt with quickly, this is the strongest formula available.`,
         list: [],
         short: `Far more effective than any OTC option, it uses 5 powerful ingredients to kill toenail fungus. It's made of Itraconazole (1%), Fluconazole (5%), Ibuprofen (2%), Terbinafine (5%), and Tea Tree Oil (10%), and comes in a pen or dropper.`,
@@ -63,8 +63,8 @@ export const useGlobalStore = defineStore({
         model: true
       },
       product_3: {
-        name: 'Standard FUNGAID',
-        title: `If you have a more mild form of toenail fungus, or if you want to try a lower dosage before you bring out the “big guns'' then the Standard FUNGAID may be the solution for you.`,
+        name: 'Standard DOSABLE',
+        title: `If you have a more mild form of toenail fungus, or if you want to try a lower dosage before you bring out the “big guns'' then the Standard DOSABLE may be the solution for you.`,
         list: [],
         short: `Designed with a mixture of Itraconazole (1%) and TeaTree Oil (10%), this formula will fight your toenail fungus to keep your toes looking their best.`,
         long: ``,
@@ -77,7 +77,7 @@ export const useGlobalStore = defineStore({
       product_4: {
         name: 'Anti-Fungal Supplement',
         title: `The Anti-Fungal supplement supports nail health from the inside out, giving the nail matrix the needed help when fighting toenail fungus.`,
-        list: ['Extra strength FUNGAID,','Disposable nail files ','Anti-fungal supplement.'],
+        list: ['Extra strength DOSABLE,','Disposable nail files ','Anti-fungal supplement.'],
         short: `This mix of Vitamin B12, Biotin and MSM/Collagen not only helps strengthen your nails but also helps promote new growth.`,
         long: ``,
         price: 39,

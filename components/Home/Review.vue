@@ -6,7 +6,7 @@
         <ClientOnly>
           <div class="review__title" :class="$width() < 768 ? 'h3':'h2'">Real Results, Real Fast</div>
         </ClientOnly>
-        <p class="p-lg">FUNGAID gives you the confidence to enjoy your feet again by eliminating stubborn & unsightly fungus.</p>
+        <p class="p-lg">DOSABLE gives you the confidence to enjoy your feet again by eliminating stubborn & unsightly fungus.</p>
         <ul>
           <li>Clinically proven ingredients to reduce nail fungus in as little as 3 months.</li>
           <li>Dermatologist Approved for the treatment of toenail fungus.</li>

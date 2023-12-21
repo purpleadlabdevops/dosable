@@ -4,7 +4,7 @@
       <h1>
         Enjoy Healthy, <br>
         <span>Fungus-Free</span> Toenails <br>
-        With FUNGAID
+        With DOSABLE
       </h1>
       <h4>
         This clinically proven, doctor-prescribed serum will have <br>

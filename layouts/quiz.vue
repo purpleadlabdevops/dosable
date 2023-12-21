@@ -10,7 +10,7 @@
 const route = useRoute()
 
 useHead({
-  meta: [{ property: 'og:title', content: `${route.meta.title} | Fungaid` }]
+  meta: [{ property: 'og:title', content: `${route.meta.title} | Dosable` }]
 })
 </script>
 

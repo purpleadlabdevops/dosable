@@ -1,12 +1,8 @@
 <template>
   <section class="start__step sex">
     <div class="container">
-      <div class="start__sub h8">Account Creation</div>
       <h2>Ok great! You are eligible for treatment.</h2>
-      <h6>
-        Please get started with your doctor visit by creating an account below. All the information you provide is legally required to provide medical care.
-        <Image class="start__legacy" format="webp" name="start-form" alt="start form" />
-      </h6>
+      <h6>Please get started with your doctor visit by creating an account below. All the information you provide is legally required to provide medical care.</h6>
       <div class="start__form">
         <form @submit.prevent="submitForm" class="form">
           <FieldText
@@ -16,6 +12,7 @@
             autocomplete="given-name"
             class="form__field-6"
             :required="true" />
+
           <FieldText
             v-model="lastName"
             label="Last name*"
@@ -23,19 +20,33 @@
             autocomplete="family-name"
             class="form__field-6"
             :required="true" />
+
+          <FieldGender
+            v-model="gender"
+            label="Gender*"
+            :required="true" />
+
           <FieldStates
             v-model="state"
             label="State*"
             autocomplete="address-level1"
             class="form__field-6"
             :required="true" />
-          <FieldPhone
+
+          <FieldBirthday
+            v-model="birthday"
+            label="Birthday*"
+            class="form__field-6"
+            :required="true" />
+
+<!--           <FieldPhone
             v-model="phone"
             label="Phone*"
             placeholder="Phone Number"
             autocomplete="phone"
             class="form__field-6"
-            :required="true" />
+            :required="true" /> -->
+
           <div class="form__field">
             <button class="btn" type="submit" @click.prevent="submitForm">
               {{ isLoading ? 'Loading...' : 'CONTINUE' }}
@@ -52,7 +63,7 @@
           Any information you submit is encrypted within our secure platform.
         </div>
         <div class="h9 start__desclaimer">
-          By checking the above box, you agree to receive automated promotional messages. This agreement is not a condition of purchase. Message frequency varies. Reply STOP to opt-out or HELP for help. Message & data rates apply. For questions, please <nuxt-link to="/privacy-policy">contact us. Privacy Policy</nuxt-link>.
+          By checking the above box, you agree to receive automated promotional messages. This agreement is not a condition of purchase. Message frequency varies. Reply STOP to opt-out or HELP for help. Message & data rates apply. For questions, please <nuxt-link to="/privacy">contact us. Privacy Policy</nuxt-link>.
         </div>
       </div>
     </div>
@@ -65,22 +76,24 @@ import { useGlobalStore } from '~/stores/global'
 const globalStore = useGlobalStore(),
       emit = defineEmits(['step'])
 
-globalStore.setIntake(10)
-
 /* -----START MODELS----- */
 const isLoading = ref<boolean>(false),
       success   = ref<string | boolean>(true),
       firstName = ref<string>(''),
       lastName  = ref<string>(''),
-      state     = ref<string>('AZ'),
-      phone     = ref<string>('')
+      birthday  = ref<string>(''),
+      gender    = ref<string>('FEMALE'),
+      state     = ref<string>('AZ')
+      // phone     = ref<string>('')
 
 const formFeedback = ref<string | null>(''),
       textFeedback: { [key: string]: string; } = {
         error: 'There was an error processing your request.',
         success: 'Shipping information was saved.',
         incomplete: 'Please complete all required fields.',
-        phone: 'Please enter a valid phone number.',
+        over: 'You must be over 21 years old.',
+        older: `You mustn't be older than 80 years old.`,
+        // phone: 'Please enter a valid phone number.',
       }
 
 const setFeedback = (type: string, status: any) => {
@@ -96,24 +109,40 @@ const submitForm = () => {
   isLoading.value = true
   formFeedback.value = null
 
-  if(firstName.value.length < 2 || lastName.value.length < 2){
+  if(firstName.value.length < 2 || lastName.value.length < 2 || birthday.value.length < 10){
     setFeedback('incomplete', null)
     return
   }
 
-  if (phone.value && phone.value.length < 15) {
-    setFeedback('phone', false)
-    return
+  if(birthday.value.length > 9){
+    const modelDate: Date  = new Date(birthday.value),
+          currentDate: Date  = new Date()
+
+    if(modelDate.getFullYear() > currentDate.getFullYear() - 21){
+      setFeedback('over', false)
+      return
+    }
+
+    if(modelDate.getFullYear() < currentDate.getFullYear() - 80){
+      setFeedback('older', false)
+      return
+    }
   }
+
+  // if (phone.value && phone.value.length < 15) {
+  //   setFeedback('phone', false)
+  //   return
+  // }
 
   setFeedback('success', true)
 
   globalStore.setStartData('firstName', firstName.value)
   globalStore.setStartData('lastName', lastName.value)
   globalStore.setStartData('state', state.value)
-  globalStore.setStartData('phone', phone.value)
+  globalStore.setStartData('birthday', birthday.value)
+  // globalStore.setStartData('phone', phone.value)
 
-  globalStore.setIntake(15)
+  globalStore.setIntake(10)
 
   emit('step', 'question')
 }
@@ -123,11 +152,6 @@ const submitForm = () => {
 .start{
   &__form{
     max-width: 630px;
-  }
-  &__legacy{
-    position: absolute;
-    right: 0;
-    top: 100%;
   }
   h6{
     position: relative;

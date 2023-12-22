@@ -4,12 +4,10 @@
       <div class="advantages__item" v-for="(item, index) in items">
         <div class="advantages__head">
           <div class="advantages__index">{{ index + 1 }}</div>
-          <ClientOnly>
-            <div>
-              <div class="advantages__title h3">{{ item.title }}</div>
-              <div class="advantages__subtitle h2"><span>{{ item.subtitle }}</span></div>
-            </div>
-          </ClientOnly>
+          <div>
+            <div class="advantages__title h3">{{ item.title }}</div>
+            <div class="advantages__subtitle h2"><span>{{ item.subtitle }}</span></div>
+          </div>
         </div>
         <Image format="webp" :name="item.img" :alt="item.title" />
         <div class="advantages__content">

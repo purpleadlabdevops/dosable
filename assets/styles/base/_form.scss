@@ -8,11 +8,11 @@
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: res(8, 16);
   }
   &__field{
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: res(8, 16);
     @media(min-width:768px){
       &-6{
         width: calc(100% / (12 / 6) - 10px);
@@ -37,7 +37,7 @@
   &__feedback{
     color: var(--red);
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1rem;
     letter-spacing: 1px;
     text-align: center;
   }
@@ -46,18 +46,18 @@
     width: 100%;
     color: var(--dark-blue);
     text-align: left;
-    font-size: 12px;
+    font-size: res(10, 12);
     font-weight: 400;
     line-height: 133.333%;
-    margin-bottom: 8px;
+    margin-bottom: res(4, 8);
   }
   input, select{
     display: block;
     width: 100%;
-    height: 56px;
+    height: res(50, 56);
     padding: 0;
     outline: none !important;
-    padding: 0 1.5rem;
+    padding: 0 res(12, 24);
     border-radius: 0.5rem;
     background: var(--light-gray);
     border: none;
@@ -80,6 +80,7 @@
     height: 56px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: res(32, 64);
   }
   &__newsletter{
     max-width: 300px;
@@ -112,7 +113,5 @@
     position: absolute;
     left: 0; right: 0;
     top: calc(100% + 10px);
-  }
-  &__submit{
   }
 }

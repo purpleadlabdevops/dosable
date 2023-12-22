@@ -70,18 +70,22 @@ onMounted(() => {
     margin-bottom: 50px;
   }
   p{
-    margin-bottom: 2rem;
+    margin-bottom: res(8, 32);
   }
   ul{
     max-width: 460px;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
-    flex-wrap: wrap;
+    @media(min-width:768px){
+      display: flex;
+      flex-wrap: wrap;
+    }
     li{
       list-style: outside disc;
-      width: 50%;
       text-align: left;
+      @media(min-width:768px){
+        width: 50%;
+      }
     }
   }
   &__security{
@@ -104,17 +108,31 @@ onMounted(() => {
     }
   }
   &__buttons{
-    display: flex;
-    justify-content: space-between;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    @media(min-width:768px){
+      display: flex;
+      justify-content: space-between;
+    }
   }
   &__reupload, &__take{
-    width: calc(50% - 10px);
+    width: 100%;
+    @media(max-width:767px){
+      margin-top: 1rem;
+    }
+    @media(min-width:768px){
+      width: calc(50% - 10px);
+    }
   }
   &__submit, &__upload{
-    width: calc(50% - .5rem);
+    width: 100%;
+    @media(max-width:767px){
+      margin-top: 1rem;
+    }
+    @media(min-width:768px){
+      width: calc(50% - .5rem);
+    }
   }
   input[type="file"]{
     display: none;

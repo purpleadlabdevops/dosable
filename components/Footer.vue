@@ -2,8 +2,8 @@
   <footer class="footer">
     <div class="container">
       <nav class="footer__menu">
-        <nuxt-link to="/terms-and-conditions">Terms and Conditions</nuxt-link>
-        <nuxt-link to="/privacy-policy">Privacy Policy</nuxt-link>
+        <nuxt-link to="/terms">Terms and Conditions</nuxt-link>
+        <nuxt-link to="/privacy">Privacy Policy</nuxt-link>
       </nav>
     </div>
   </footer>

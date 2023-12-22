@@ -1,8 +1,6 @@
 <template>
   <section class="customers" id="customers">
-    <ClientOnly>
-      <div class="customers__title h2">Customer Reviews</div>
-    </ClientOnly>
+    <div class="customers__title h2">Customer Reviews</div>
     <div class="customers__list">
       <div class="container">
         <carousel class="customers__slider" v-bind="slider.settings" :breakpoints="slider.breakpoints">
@@ -119,7 +117,7 @@ const items: Array<CustomersItems> = [
   padding-top: res(50, 100);
   &__title{
     text-align: center;
-    margin-bottom: res(45, 190);
+    margin-bottom: res(50, 150);
     padding-left: 1rem;
     padding-right: 1rem;
   }

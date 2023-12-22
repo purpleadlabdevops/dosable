@@ -1,9 +1,7 @@
 <template>
   <section class="treatments">
     <div class="container">
-      <ClientOnly>
-        <div class="treatments__head h2">DOSABLE - The Toenail Fungus Serum <br>That Actually Works</div>
-      </ClientOnly>
+      <div class="treatments__head h2">DOSABLE - The Toenail Fungus Serum <br>That Actually Works</div>
       <div class="treatments__item" v-for="item in items">
         <Image class="treatments__img" format="webp" :name="item.img" :alt="item.title" />
         <div class="treatments__info">

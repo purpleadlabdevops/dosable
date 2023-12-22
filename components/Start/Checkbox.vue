@@ -78,7 +78,9 @@ const back = (): void => {
       margin-bottom: 1rem;
       min-width: 250px;
       &:not(:first-child){
-        margin-left: 1rem;
+        @media(min-width:768px){
+          margin-left: 1rem;
+        }
       }
     }
   }

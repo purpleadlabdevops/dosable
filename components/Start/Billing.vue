@@ -60,7 +60,7 @@ onBeforeUnmount(() => {
   top: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(26, 106, 114, 0.5);
+  background: rgba(var(--light-blue-rgb), 0.5);
   z-index: 102;
   overflow: hidden;
   &__inner{

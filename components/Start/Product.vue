@@ -55,14 +55,18 @@ const changeCheckbox = (id: string): void => {
   max-width: 776px;
   margin-left: auto;
   margin-right: auto;
-  display: flex;
   text-align: left;
+  @media(min-width:768px){
+    display: flex;
+  }
   &:not(:first-child){
     margin-top: 4rem;
   }
   &__left, &__right{
-    width: 50%;
     position: relative;
+    @media(min-width:768px){
+      width: 50%;
+    }
   }
   &__right{
     background: rgba(var(--light-blue2-rgb), .5);
@@ -70,6 +74,12 @@ const changeCheckbox = (id: string): void => {
   }
   * {
     color: var(--dark-blue);
+  }
+  .h7{
+    @media(max-width:767px){
+      max-width: calc(100% - 5rem);
+      margin-left: auto;
+    }
   }
   .h8{
     margin-bottom: 20px;
@@ -110,9 +120,13 @@ const changeCheckbox = (id: string): void => {
   }
   &__checkbox{
     position: absolute;
-    left: -18px;
-    top: 3px;
+    left: 16px;
+    top: -30px;
     transform: translateX(-100%);
+    @media(min-width:768px){
+      left: -18px;
+      top: 3px;
+    }
     input{
       display: none;
       &:checked + label{

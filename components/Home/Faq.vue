@@ -1,9 +1,7 @@
 <template>
   <section class="faq">
     <div class="container">
-      <ClientOnly>
-        <div class="faq__title h2">Frequently Asked Questions</div>
-      </ClientOnly>
+      <div class="faq__title h2">Frequently Asked Questions</div>
       <div class="faq__item" v-for="(item, index) in items" :class="itemIndex === index ? 'faq__item-in':''" >
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none"><g clip-path="url(#clip0_362_7)"><path d="M12.003 8.88006L14.391 0.0600586L13.221 9.12006L18.8 1.88906L14.25 9.81106L22.179 5.26206L14.94 10.8451L24 9.67406L15.185 12.0641L24 14.4501L14.94 13.2801L22.178 18.8581L14.25 14.3081L18.799 22.2371L13.222 14.9981L14.392 24.0601L12.003 15.2451L9.615 24.0601L10.785 15.0001L5.2 22.2371L9.75 14.3091L1.827 18.8581L9.06 13.2811L0 14.4521L8.82 12.0631L0 9.67506L9.06 10.8451L1.829 5.26006L9.751 9.81006L5.202 1.88706L10.785 9.12006L9.614 0.0600586L12.003 8.88006Z" fill="#083952"/></g><defs><clipPath id="clip0_362_7"><rect width="24" height="24" fill="white" transform="translate(0 0.0600586)"/></clipPath></defs></svg>
         <button class="faq__question p" @click.prevent="openQuestion(index)" :key="`faq_${index}`">

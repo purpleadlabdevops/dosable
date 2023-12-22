@@ -118,5 +118,11 @@ const back = (): void => {
       line-height: 133.333%;
     }
   }
+  &__summary{
+    h6{
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+  }
 }
 </style>

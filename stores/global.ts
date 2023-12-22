@@ -106,15 +106,15 @@ export const useGlobalStore = defineStore({
         question: 'What nail concerns are you experiencing?',
         description: 'FIND WHAT’S RIGHT FOR YOU',
         answers: ['Thickening of the nail','Discoloration','Change in nail shape','Loosening/lifting of nail','Brittleness','Crumbling of nail edges','Other nail symptom','None of these'],
-        type: 'radio',
+        type: 'checkbox',
         next: 2,
         value: ''
       },
       2: {
-        question: 'What nail concerns are you experiencing?',
+        question: 'What nail(s) are affected?',
         description: 'FIND WHAT’S RIGHT FOR YOU',
         answers: ['One toenail','More than one toenail','All toenails','One fingernail','More than one fingernail','Fingernails and toenails are affected'],
-        type: 'radio',
+        type: 'checkbox',
         next: 3,
         value: ''
       },
@@ -122,7 +122,7 @@ export const useGlobalStore = defineStore({
         question: 'How long have you been experiencing these symptoms?',
         description: 'FIND WHAT’S RIGHT FOR YOU',
         answers: ['<3 months','3-6 months','6-12 months','>12 months'],
-        type: 'radio',
+        type: 'checkbox',
         next: 4,
         value: ''
       },
@@ -211,8 +211,8 @@ export const useGlobalStore = defineStore({
       14: {
         question: 'How long ago was your most recent check up with a physician?',
         description: 'Note: We do recommend that our patients have a primary healthcare provider that they see in person on regular basis. If you do not have a primary healthcare provider, you can visit Zocdoc or search federally qualified health centers to find one in your area.',
-        answers: ['Yes', 'No'],
-        type: 'radio',
+        answers: ['Within past year','Within 2 years','Within 3-5 years','Over 5 years ago'],
+        type: 'checkbox',
         next: 15,
         value: ''
       },
@@ -272,6 +272,7 @@ export const useGlobalStore = defineStore({
     },
     setIntake(val: number){
       this.intake = val
+      console.log('intake - '+val)
     },
     setOnboarding(val: number){
       this.onboarding = val
@@ -283,7 +284,7 @@ export const useGlobalStore = defineStore({
       this.startQuestions[key].value = value
 
       const questionsCount = Object.keys(this.startQuestions).length
-      this.setIntake(85 / questionsCount * this.startQuestion)
+      this.setIntake((90 / questionsCount * this.startQuestion) + 10)
 
       if(key === 12 && value === 'Yes'){
         this.setStartQuestion(this.startQuestions[key].condition)

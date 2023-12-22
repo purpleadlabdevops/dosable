@@ -1,9 +1,8 @@
 <template>
   <div class="page page__start start">
-    <div class="start__info">{{ step }}</div>
     <StartStatus />
-    <StartBirthday @step="setStep" v-if="step === 'birthday'" />
-    <StartSex      @step="setStep" v-if="step === 'sex'" />
+    <!-- <StartBirthday @step="setStep" v-if="step === 'birthday'" /> -->
+    <!-- <StartSex      @step="setStep" v-if="step === 'sex'" /> -->
     <StartForm     @step="setStep" v-if="step === 'form'" />
     <StartRadio    @step="setStep" v-if="step === 'question' && globalStore.startQuestions[globalStore.startQuestion].type === 'radio'" />
     <StartCheckbox @step="setStep" v-if="step === 'question' && globalStore.startQuestions[globalStore.startQuestion].type === 'checkbox'" />
@@ -32,7 +31,7 @@ useHead({
   title: 'Start Free Visit'
 })
 
-const step = ref<string>('birthday'),
+const step = ref<string>('form'),
       globalStore = useGlobalStore()
 
 const setStep = (val: string): void => {
@@ -56,19 +55,19 @@ const setStep = (val: string): void => {
 <style lang="scss">
 .products{
   h2{
-    margin-bottom: 25px;
+    margin-bottom: res(16, 24);
   }
   .h7, .h8{
     color: var(--dark-blue)
   }
-  .h7{
-    margin-bottom: 20px;
-    max-width: 570px;
+  h2 + .h7{
+    margin-bottom: res(16, 24);
     margin-left: auto;
+    max-width: 570px;
     margin-right: auto;
   }
   .h8{
-    margin-bottom: 87px;
+    margin-bottom: res(70, 87);
     max-width: 520px;
     margin-left: auto;
     margin-right: auto;

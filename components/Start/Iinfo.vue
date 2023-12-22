@@ -61,8 +61,8 @@ const emit = defineEmits(['step'])
       align-items: center;
       margin-bottom: 28px;
       span{
-        width: 34px;
-        height: 34px;
+        width: 2rem;
+        height: 2rem;
         background: var(--dark-blue);
         color: var(--white);
         display: flex;
@@ -70,6 +70,9 @@ const emit = defineEmits(['step'])
         align-items: center;
         border-radius: 50%;
         margin-right: 1rem;
+        & + p{
+          max-width: calc(100% - 3rem);
+        }
       }
     }
   }

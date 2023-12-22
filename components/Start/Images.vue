@@ -100,7 +100,6 @@ const back = (): void => {
     .img{
       margin-top: 0;
       margin-bottom: 1rem;
-      min-width: 278px;
       border: none;
       background: none;
       transition: .25s;
@@ -109,8 +108,18 @@ const back = (): void => {
       box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
       overflow: hidden;
       transition: .3s;
+      @media(max-width:767px){
+        width: calc(50% - 1rem);
+      }
+      @media(min-width:768px){
+        min-width: 278px;
+      }
       &:not(:first-child){
         margin-left: 1rem;
+        @media(max-width:767px){
+          margin-left: .5rem;
+          margin-right: .5rem;
+        }
       }
       img{
         display: block;
@@ -118,7 +127,7 @@ const back = (): void => {
         height: auto;
       }
       &-active{
-        outline: 4px solid var(--light-blue) !important;
+        outline: res(2, 4) solid var(--light-blue) !important;
       }
       &:hover{
         img{
@@ -128,15 +137,20 @@ const back = (): void => {
     }
   }
   &__upload{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: var(--light-blue);
     margin-top: 3rem;
+    @media(min-width:768px){
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .btn{
       min-width: 250px;
-      margin-top: 0;
-      margin-left: 1rem;
+      margin-top: 1rem;
+      @media(min-width:768px){
+        margin-top: 0;
+        margin-left: 1rem;
+      }
     }
     input[type="file"]{
       display: none;

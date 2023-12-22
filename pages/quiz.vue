@@ -10,12 +10,12 @@
         <button
           type="button"
           class="btn btn-red"
-          @click="nextStep(1)">
-          Start quizа
+          @click="nextStep(2)">
+          Start quiz
         </button>
       </div>
 
-      <div
+<!--       <div
         class="quiz__step quiz__step-1"
         v-if="step === 1">
         <h2>{{ ageH2 }}</h2>
@@ -37,7 +37,7 @@
           @click.prevent="nextStep(2)">
           continue
         </button>
-      </div>
+      </div> -->
 
       <div
         class="quiz__step quiz__step-2"
@@ -232,9 +232,9 @@ const nextStep = (index: number): void => {
         }
       }
 
-const age = ref(),
-      ageH2 = 'How old are you?',
-      ageH6 = 'This helps us understand where you are in your journey.'
+// const age = ref(),
+//       ageH2 = 'How old are you?',
+//       ageH6 = 'This helps us understand where you are in your journey.'
 
 const average: Ref<string[]> = ref([]),
       averageH2 = 'How do your toes feel on a day-to-day basis?',
@@ -249,7 +249,7 @@ const average: Ref<string[]> = ref([]),
       }
 
 const mood = ref(''),
-      moodH2 = 'Are you experiencing uncharacteristic mood changes?<br>(sadness, irritability, etc.)',
+      moodH2 = 'Are you experiencing toe fungus symptoms like itchiness and discharge regularly?',
       moodItems = ['Yes', 'No'],
       chooseMood = (val: string): void => {
         mood.value = val;
@@ -293,11 +293,12 @@ const serums = ref(''),
         if(layoutQuiz !== null){
           layoutQuiz.classList.add('layout__quiz-bg')
         }
-        globalStore.setQuizData({
-          age: {
-            value: age.value,
-            question: ageH2
-          },
+
+        const quizData = {
+          // age: {
+          //   value: age.value,
+          //   question: ageH2
+          // },
           average: {
             value: average.value,
             question: averageH2
@@ -318,33 +319,9 @@ const serums = ref(''),
             value: serums.value,
             question: serumsH2
           }
-        })
-        console.dir({
-          age: {
-            value: age.value,
-            question: ageH2
-          },
-          average: {
-            value: average.value,
-            question: averageH2
-          },
-          mood: {
-            value: mood.value,
-            question: moodH2
-          },
-          symptoms: {
-            value: symptoms.value,
-            question: symptomsH2
-          },
-          therapy: {
-            value: therapy.value,
-            question: therapyH2
-          },
-          serums: {
-            value: serums.value,
-            question: serumsH2
-          }
-        })
+        }
+        globalStore.setQuizData(quizData)
+        console.dir(quizData)
       }
 
 onMounted(() => {
@@ -384,10 +361,10 @@ onMounted(() => {
     max-width: 300px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 3rem;
+    margin-top: res(16, 24);
     .btn{
       &:not(:first-child){
-        margin-top: 1rem;
+        margin-top: res(8, 16);
       }
     }
   }
@@ -397,11 +374,13 @@ onMounted(() => {
     justify-content: center;
     max-width: 1000px;
     margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
     .btn{
       min-width: 100px;
-      margin-bottom: 1rem;
+      margin-bottom: res(8, 16);
       &:not(:first-child){
-        margin-left: 1rem;
+        margin-left: res(8, 16);
       }
     }
   }

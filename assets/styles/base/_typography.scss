@@ -18,7 +18,7 @@ h6, .h6{
   font-weight: 400;
 }
 h1, .h1{
-  font-size: res(56, 72);
+  font-size: res(52, 72);
   letter-spacing: -1.44px;
 }
 h2, .h2{
@@ -80,6 +80,7 @@ p, .p{
 }
 
 ul{
+  padding-left: 1rem;
   li{
     list-style: disc;
     font-size: res(16, 20);

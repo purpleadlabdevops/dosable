@@ -392,9 +392,11 @@ const inputCardNumber = (e: any): void => {
       margin-bottom: 3px;
     }
     &__item{
-      display: flex;
-      justify-content: space-between;
       margin-bottom: 2rem;
+      @media(min-width:768px){
+        display: flex;
+        justify-content: space-between;
+      }
       &-last{
         border-top: 1px solid rgb(25, 25, 28);
         margin-top: 15px;
@@ -413,7 +415,7 @@ const inputCardNumber = (e: any): void => {
     }
   }
   &__banks{
-    width: 162px;
+    width: res(80, 162);
     margin-left: auto;
   }
   &__card{
@@ -423,25 +425,32 @@ const inputCardNumber = (e: any): void => {
       background: #fff;
       display: flex;
       justify-content: space-between;
-      padding: 8px 12px;
+      padding: res(4, 8) res(6, 12);
       & > svg{
         background: var(--purple);
         border-radius: 50%;
-        width: 22px;
-        height: 22px;
-        margin-right: 10px;
+        width: res(16, 22);
+        height: res(16, 22);
+        margin-right: res(6, 10);
       }
     }
     &__body{
       display: flex;
-      padding: 24px;
+      padding: res(12, 24);
+      @media(max-width:767px){
+        flex-wrap: wrap;
+      }
     }
     &__number{
-      padding-left: 45px !important;
-      background-size: 30px;
+      padding-left: res(30, 45) !important;
+      background-size: res(20, 30);
       background-repeat: no-repeat;
-      background-position: left center;
+      background-position: res(4, 8) center;
       background-image: url('@/assets/card.svg');
+      @media(max-width:767px){
+        width: 100%;
+        margin-bottom: 4px;
+      }
       &-mastercard{
         background-image: url('@/assets/mastercard.svg');
       }
@@ -454,9 +463,20 @@ const inputCardNumber = (e: any): void => {
     }
     &__date{
       width: 80px;
+      @media(max-width:767px){
+        margin-right: 4px;
+        width: 100px;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+      }
     }
     &__code{
       width: 50px;
+      @media(max-width:767px){
+        width: 70px;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+      }
     }
   }
   &__checkout{
@@ -468,7 +488,7 @@ const inputCardNumber = (e: any): void => {
       &:before{
         content: "";
         position: absolute;
-        background: var(--purple);
+        background: var(--dark-blue);
         width: 16px;
         height: 16px;
         border-radius: 2px;
@@ -478,7 +498,7 @@ const inputCardNumber = (e: any): void => {
         content:"\2713";
         position: absolute;
         color: var(--white);
-        left: 3px; top: 2px;
+        left: 2px; top: 0px;
         display: none;
         font-size: 12px;
         font-weight: 700;

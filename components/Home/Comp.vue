@@ -1,9 +1,7 @@
 <template>
   <section class="comparison">
     <div class="container">
-      <ClientOnly>
-        <div class="comparison__title h2">Before & Afters</div>
-      </ClientOnly>
+      <div class="comparison__title h2">Before & Afters</div>
       <div class="comparison__images">
         <Image format="webp" name="comparison-left" alt="comparison 1" />
         <Image format="webp" name="comparison-right" alt="comparison 2" />

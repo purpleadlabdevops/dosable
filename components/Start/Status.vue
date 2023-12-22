@@ -27,7 +27,7 @@ const globalStore = useGlobalStore()
   z-index: 100;
   position: absolute;
   left: 0;
-  top: 97px;
+  top: res(62, 97);
   padding: 1.5rem 0;
   width: 100%;
   .container{
@@ -42,13 +42,10 @@ const globalStore = useGlobalStore()
     justify-content: space-between;
     width: 100%;
     li{
-      width: 100%;
+      width: calc(100% / 2 - res(8, 24));
       position: relative;
       padding-top: 15px;
       list-style: none;
-      @media(min-width:768px){
-        width: calc(100% / 2 - 24px);
-      }
       &:before{
         content: "";
         position: absolute;

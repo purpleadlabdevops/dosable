@@ -23,11 +23,11 @@ const backedItems: Array<string> = [
 .backed{
   text-align: center;
   background: var(--milk);
-  padding-top: 15px;
-  padding-bottom: 22px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   overflow: hidden;
   .h7{
-    margin-bottom: 17px;
+    margin-bottom: 1.5rem;
   }
   &__images{
     display: inline-flex;
@@ -37,7 +37,7 @@ const backedItems: Array<string> = [
     & > div{
       display: inline-block;
       &:not(:first-child){
-        margin-left: 30px;
+        margin-left: 2rem;
       }
     }
     @media(max-width:991px){

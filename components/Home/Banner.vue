@@ -1,28 +1,22 @@
 <template>
   <section class="banner">
     <div class="container">
-      <h1>
-        Enjoy Healthy, <br>
-        <span>Fungus-Free</span> Toenails <br>
-        With DOSABLE
-      </h1>
-      <h4>
-        This clinically proven, doctor-prescribed serum will have <br>
-        your nails looking clear and healthy without painful <br>
-        surgery.
-      </h4>
-      <div class="banner__btn">
-        <nuxt-link class="btn btn-red" to="/start">START FREE TELE-VISIT</nuxt-link>
-        <nuxt-link class="btn btn-red-border btn-white" to="/quiz">TAKE THE QUIZ</nuxt-link>
+      <div class="banner__wrap">
+        <h1>Enjoy Clear, Healthy, <span>Fungus-Free</span> Toenails With DOSABLE</h1>
+        <h4>Doctor-formulated topicals, with clinically proven ingredients, will have your nails growing clear again without painful surgery.</h4>
+        <div class="banner__btn">
+          <nuxt-link class="btn btn-red" to="/start">START FREE TELE-VISIT</nuxt-link>
+          <nuxt-link class="btn btn-red-border btn-white" to="/quiz">TAKE THE QUIZ</nuxt-link>
+        </div>
+        <ClientOnly>
+          <ul class="banner__list" v-if="$width() > 767">
+            <li
+              v-for="item in bannerItems"
+              v-html="item.icon + item.text">
+            </li>
+          </ul>
+        </ClientOnly>
       </div>
-      <ClientOnly>
-        <ul class="banner__list" v-if="$width() > 767">
-          <li
-            v-for="item in bannerItems"
-            v-html="item.icon + item.text">
-          </li>
-        </ul>
-      </ClientOnly>
     </div>
     <Image class="banner__img" format="webp" name="banner" alt="banner image" />
   </section>
@@ -53,25 +47,30 @@ const bannerItems: Array<bannerItemType> = [
 <style lang="scss" scoped>
 .banner{
   padding-top: res(100, 150);
-  padding-bottom: res(50, 180);
+  padding-bottom: res(50, 150);
   position: relative;
   overflow: hidden;
   .container{
     position: relative;
     z-index: 2;
-    @media(min-width:1340px){
-      max-width: 1600px;
+  }
+  &__wrap{
+    @media(min-width:992px){
+      max-width: 70%;
+    }
+    @media(min-width:1200px){
+      max-width: 52%;
     }
   }
   h1{
-    margin-bottom: res(35, 45);
+    margin-bottom: 2rem;
     span{
       color: var(--red);
     }
   }
   h4{
     color: var(--dark-blue);
-    margin-bottom: res(50, 80);
+    margin-bottom: 2rem;
   }
   &__img{
     position: absolute;
@@ -85,28 +84,27 @@ const bannerItems: Array<bannerItemType> = [
       display: none;
     }
     @media(min-width:1600px){
-      left: 40%;
+      left: 44%;
     }
   }
   &__btn{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    max-width: 620px;
     .btn{
       width: 100%;
       @media(max-width:767px){
         &:not(:first-child){
-          margin-top: 16px;
+          margin-top: 1rem;
         }
       }
       @media(min-width:768px){
-        width: calc(50% - 16px);
+        width: calc(50% - 1rem);
       }
     }
   }
   &__list{
-    margin-top: 50px;
+    margin-top: 3rem;
     padding-top: res(30, 40);
     padding-left: res(16, 40);
     padding-right: res(16, 40);

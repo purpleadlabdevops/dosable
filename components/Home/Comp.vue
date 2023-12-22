@@ -2,7 +2,7 @@
   <section class="comparison">
     <div class="container">
       <ClientOnly>
-        <div class="comparison__title" :class="$width() < 768 ? 'h3':'h2'">Before & Afters</div>
+        <div class="comparison__title h2">Before & Afters</div>
       </ClientOnly>
       <div class="comparison__images">
         <Image format="webp" name="comparison-left" alt="comparison 1" />
@@ -48,7 +48,7 @@ const bannerItems: Array<bannerItemType> = [
   padding-bottom: res(50, 100);
   &__title{
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 3rem;
   }
   &__images{
     @media(min-width:768px){

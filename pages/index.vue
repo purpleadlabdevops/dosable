@@ -2,13 +2,13 @@
   <div class="page page__home">
     <HomeBanner />
     <HomeBacked />
-    <HomeReview />
-    <HomeComp />
     <HomeCustomers />
+    <HomeComp />
+    <HomeReview />
     <HomeAdvantages />
     <HomeFaq />
     <HomeTreatments />
-    <PartialNewsletter />
+    <HomeDeal />
   </div>
 </template>
 

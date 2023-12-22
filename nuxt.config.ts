@@ -6,6 +6,9 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en'
       },
+      link: [
+        { rel: 'icon', type: 'image/png', href: "/favicon.png" }
+      ],
       charset: 'utf-8',
       viewport: 'width=device-width, user-scalable=no, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0 user-scalable=0',
       meta: [

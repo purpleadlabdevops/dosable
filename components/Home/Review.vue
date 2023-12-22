@@ -1,10 +1,13 @@
 <template>
   <section class="review">
     <div class="container">
+      <ClientOnly>
+        <div class="review__title h2" v-if="$width() < 768">Real Results, Real Fast</div>
+      </ClientOnly>
       <div class="review__img"><Image format="webp" name="review" alt="review picture" /></div>
       <div class="review__info">
         <ClientOnly>
-          <div class="review__title" :class="$width() < 768 ? 'h3':'h2'">Real Results, Real Fast</div>
+          <div class="review__title h2" v-if="$width() > 768">Real Results, Real Fast</div>
         </ClientOnly>
         <p class="p-lg">DOSABLE gives you the confidence to enjoy your feet again by eliminating stubborn & unsightly fungus.</p>
         <ul>
@@ -12,7 +15,6 @@
           <li>Dermatologist Approved for the treatment of toenail fungus.</li>
           <li>Doctor formulated to penetrate the thick nail bed for effective treatment of fungal infections.</li>
         </ul>
-        <a href="#customers" class="btn btn-red">READ MORE REVIEWS</a>
       </div>
     </div>
   </section>
@@ -21,8 +23,8 @@
 <style lang="scss" scoped>
 .review{
   background: rgba(var(--light-blue-rgb), 30%);
-  padding-top: 150px;
-  padding-bottom: res(60, 150);
+  padding-top: res(50, 100);
+  padding-bottom: res(50, 100);
   text-align: center;
   position: relative;
   .container{
@@ -38,15 +40,20 @@
     }
   }
   &__img{
-    width: calc(35% - 60px);
+    width: 70%;
     position: relative;
     margin-left: 5%;
     display: block;
     @media(max-width:767px){
-      width: 70%;
       margin-left: auto;
       margin-right: auto;
       margin-bottom: 30px;
+    }
+    @media(min-width:768px){
+      width: calc(45% - 60px);
+    }
+    @media(min-width:992px){
+      width: calc(35% - 60px);
     }
     &:before{
       content: "";
@@ -67,12 +74,6 @@
   }
   &__title{
     margin-bottom: 40px;
-    @media(max-width:767px){
-      position: absolute;
-      left: 16px;
-      right: 16px;
-      top: 50px;
-    }
   }
   ul{
     max-width: 600px;

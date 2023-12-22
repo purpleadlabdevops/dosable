@@ -6,8 +6,8 @@
           <div class="advantages__index">{{ index + 1 }}</div>
           <ClientOnly>
             <div>
-              <div class="advantages__title" :data-width="$width()" :class="$width() < 768 ? 'h5':'h3'">{{ item.title }} {{ $width() }}</div>
-              <div class="advantages__subtitle" :data-width="$width()" :class="$width() < 768 ? 'h7':'h2'"><span>{{ item.subtitle }} {{ $width() }}</span></div>
+              <div class="advantages__title h3">{{ item.title }}</div>
+              <div class="advantages__subtitle h2"><span>{{ item.subtitle }}</span></div>
             </div>
           </ClientOnly>
         </div>
@@ -142,7 +142,7 @@ const items: Array<ItemType> = [
     }
     @media(max-width:767px){
       & + div{
-        padding-left: 30px;
+        padding-left: res(10, 30);
         width: calc(100% - 60px);
       }
     }

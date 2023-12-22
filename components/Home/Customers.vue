@@ -1,7 +1,7 @@
 <template>
   <section class="customers" id="customers">
     <ClientOnly>
-      <div class="customers__title" :class="$width() < 768 ? 'h3':'h2'">Customer Reviews</div>
+      <div class="customers__title h2">Customer Reviews</div>
     </ClientOnly>
     <div class="customers__list">
       <div class="container">
@@ -58,7 +58,7 @@ const items: Array<CustomersItems> = [
   {
     image: `cus2`,
     title: `William Young`,
-    text: `I used this daily & it cleared up my mild toenail fungus. The success comes with consistency. Highly recommend it.`
+    text: `I used this daily & it cleared up my mild toenail fungus. I dont feel embarrassed going to the pool anymore-the success comes with consistency. Highly recommend it.`
   },
   {
     image: `cus3`,
@@ -77,13 +77,15 @@ const items: Array<CustomersItems> = [
       padding-left: 2rem;
       padding-right: 2rem;
     }
-    &__viewport{
-      // overflow: visible;
-    }
     &__slide{
       padding-top: 70px;
       @media(min-width:768px){
         padding-top: 130px;
+      }
+    }
+    &__next, &__prev{
+      @media(min-width:992px){
+        display: none;
       }
     }
     &__next, &__prev{
@@ -114,11 +116,7 @@ const items: Array<CustomersItems> = [
 
 <style lang="scss" scoped>
 .customers{
-  .container{
-    @media(min-width:1340px){
-      max-width: 1600px;
-    }
-  }
+  padding-top: res(50, 100);
   &__title{
     text-align: center;
     margin-bottom: res(45, 190);
@@ -144,6 +142,7 @@ const items: Array<CustomersItems> = [
     img{
       margin-top: -70px;
       max-width: 70%;
+      border-radius: 50%;
       @media(min-width:768px){
         margin-top: -130px;
       }

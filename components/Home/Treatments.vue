@@ -2,7 +2,7 @@
   <section class="treatments">
     <div class="container">
       <ClientOnly>
-        <div class="treatments__head" :class="$width() < 768 ? 'h3':'h2'">DOSABLE - The Toenail Fungus <br>Serum That Actually Works</div>
+        <div class="treatments__head h2">DOSABLE - The Toenail Fungus Serum <br>That Actually Works</div>
       </ClientOnly>
       <div class="treatments__item" v-for="item in items">
         <Image class="treatments__img" format="webp" :name="item.img" :alt="item.title" />
@@ -37,8 +37,8 @@ const items: Array<ItemType> = [
 
 <style lang="scss" scoped>
 .treatments{
-  padding-top: res(70, 100);
-  padding-bottom: res(70, 100);
+  padding-top: res(50, 100);
+  padding-bottom: res(50, 100);
   &__head{
     text-align: center;
     color: var(--dark-blue);

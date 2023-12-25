@@ -22,4 +22,4 @@ jobs:
             cd /var/www/www-root/data/www/dosable.com
             git pull
             npm run build
-            pm2 restart fungaid.com
+            pm2 restart dosable.com

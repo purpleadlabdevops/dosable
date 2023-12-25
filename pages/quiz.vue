@@ -1,7 +1,6 @@
 <template>
   <div class="page page__quiz quiz">
     <div class="quiz__list">
-
       <div
         class="quiz__step quiz__step-0"
         v-if="step === 0">
@@ -223,6 +222,17 @@ const step = ref(0),
 const nextStep = (index: number): void => {
         const layoutQuiz = document.querySelector('.layout__quiz')
         step.value = index
+
+        if(step.value === 2){
+          console.log('GTM QuizStart - '+ dataLayer.push({'event': 'QuizStart'}) )
+        }
+
+        if(step.value > 0){
+          document.querySelector('.header__description').style.display = 'block'
+        } else {
+          document.querySelector('.header__description').style.display = 'none'
+        }
+
         if(layoutQuiz !== null){
           if(index > 0){
             layoutQuiz.classList.remove('layout__quiz-bg')

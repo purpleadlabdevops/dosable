@@ -4,9 +4,11 @@
       <h2>Your visit summary</h2>
       <div class="h7">Almost done! Here’s your personalized treatment plan for the doctor to review. Our board certified doctors are here to determine the right treatment plan for you. In the next step, you’ll add billing information to your account and then a Dosable doctor will review your medical history and address any questions.</div>
       <h6>Prescription Treatment</h6>
-      <div class="products__list">
-        <StartProduct v-for="(product, index) in globalStore.products" :data="product" :ID="index" />
-      </div>
+      <Client-Only>
+        <div class="products__list">
+          <StartProduct v-for="(product, index) in globalStore.products" :data="product" :ID="index" :key="index" />
+        </div>
+      </Client-Only>
       <div class="h8">You won't be charged for or shipped this prescription product unless a doctor prescribes it to you.</div>
       <div class="products__benefits">
         <div class="h7">Added Benefits</div>

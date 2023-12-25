@@ -14,10 +14,20 @@ export default defineNuxtConfig({
       meta: [
         { name: 'description', content: 'My amazing Dosable site.' }
       ],
+      script: [
+        { src: '/js/gtm.js', async: true }
+      ],
     },
   },
-  plugins: ['~/plugins/maska', '~/plugins/windowWidth'],
-  modules: ['@pinia/nuxt'],
+  plugins: ['~/plugins/maska', '~/plugins/windowWidth', ],
+  modules: ['@pinia/nuxt', 'nuxt3-meta-pixel'],
+  facebook: {
+    track: 'PageView',
+    pixelId: '877878587355320',
+    autoPageView: true,
+    disabled: false,
+    debug: true
+  },
   css: ["~/assets/styles/global.scss"],
   vite: {
     css: {

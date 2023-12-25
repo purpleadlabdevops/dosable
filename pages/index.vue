@@ -16,4 +16,12 @@
 useHead({
   title: 'Home page'
 })
+
+onMounted(() => {
+  setTimeout(() => {
+    console.log('dataLayer PageView')
+    console.dir(dataLayer)
+    dataLayer.push({'event': 'PageView'});
+  }, 2000)
+})
 </script>

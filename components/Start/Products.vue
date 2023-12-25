@@ -4,9 +4,11 @@
       <h2>PRODUCT RECOMMENDATIONS</h2>
       <div class="h7">Based on your symptoms and preference, Dosable Physician suggests...</div>
       <div class="h8">Choose a plan. Don't worry - you can tweak this later, and your doctor will review if this treatment is right for you.</div>
-      <div class="products__list">
-        <StartProduct v-for="(product, index) in globalStore.products" :data="product" :ID="index" />
-      </div>
+      <Client-Only>
+        <div class="products__list">
+          <StartProduct v-for="(product, index) in globalStore.products" :data="product" :ID="index" :key="index" />
+        </div>
+      </Client-Only>
       <div class="start__group">
         <button
           type="button"
@@ -38,6 +40,7 @@ const nextIdentify = (): void => {
     alert(' Please select at least one product. Because of your medical history, it would not be safe to take Estrogen without Progesterone.')
     return
   }
+  console.log('GTM ProductSelection - '+ dataLayer.push({'event': 'ProductSelection'}) )
   emit('step', 'iinfo')
   globalStore.setOnboarding(20)
 }
@@ -45,4 +48,8 @@ const nextIdentify = (): void => {
 const back = (): void => {
   emit('step', 'question')
 }
+
+onMounted(() => {
+  console.log('GTM IntakeComplete - '+ dataLayer.push({'event': 'IntakeComplete'}) )
+})
 </script>

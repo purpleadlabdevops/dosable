@@ -129,7 +129,7 @@ export const useGlobalStore = defineStore({
       4: {
         question: 'Some signs/symptoms can indicate that something other than fungus may be causing your nail symptoms. Have you experienced any of the following?',
         description: 'select all that apply',
-        answers: ['Redness/swelling ','around the nail(s)','Pain of the affected ','nail/toe(s)','Bleeding of the ','affected nail','Pus or drainage ','from the nail(s)','Dark black color of ','the nail bed or surrounding skin','Rash on the skin ','surrounding the affected nail','New bump/nodule/growth ','under the nail or on toe','None of the above'],
+        answers: ['Redness/swelling <br>around the nail(s)', 'Pain of the affected <br>nail/toe(s)', 'Bleeding of the <br>affected nail', 'Pus or drainage <br>from the nail(s)', 'Dark black color of <br>the nail bed or surrounding skin', 'Rash on the skin <br>surrounding the affected nail', 'New bump/nodule/growth <br>under the nail or on toe', 'None of the above'],
         type: 'checkbox',
         next: 5,
         value: ''
@@ -263,6 +263,7 @@ export const useGlobalStore = defineStore({
     },
     changeModel(key: any, value: boolean){
       this.products[key].model = value
+      console.log('changeModel model - '+this.products[key].model)
     },
     setQuizData(obj: IQuiz){
       this.quizData = obj

@@ -10,9 +10,8 @@
             v-for="item in globalStore.startQuestions[globalStore.startQuestion].answers"
             class="btn"
             :class="model === item ? 'btn-light' : 'btn-light_gray'"
-            @click="setModel(item)">
-              {{ item }}
-          </button>
+            @click="setModel(item)"
+            v-html="item"></button>
         </div>
         <div class="start__group">
           <button

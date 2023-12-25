@@ -26,16 +26,16 @@
             label="Gender*"
             :required="true" />
 
+          <FieldBirthday
+            v-model="birthday"
+            label="Birthday*"
+            class="form__field-6"
+            :required="true" />
+
           <FieldStates
             v-model="state"
             label="State*"
             autocomplete="address-level1"
-            class="form__field-6"
-            :required="true" />
-
-          <FieldBirthday
-            v-model="birthday"
-            label="Birthday*"
             class="form__field-6"
             :required="true" />
 
@@ -143,6 +143,8 @@ const submitForm = () => {
   // globalStore.setStartData('phone', phone.value)
 
   globalStore.setIntake(10)
+
+  console.log('GTM IntakeStart - '+ dataLayer.push({'event': 'IntakeStart'}) )
 
   emit('step', 'question')
 }

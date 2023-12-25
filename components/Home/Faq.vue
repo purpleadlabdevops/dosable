@@ -27,7 +27,7 @@ const items: Array<ItemType> = [
   {
     q: `What type of ingredients are in DOSABLE?`,
     a: `
-      FUNGAID's unique formula consists of:<br>
+      DOSABLE's unique formula consists of:<br>
       Itraconazole - a well-known antifungal drug from the triazole group with distinct activity against dermatophytes, yeasts, and some molds.
       <br><br>
       Terbinafine - A phase 3 study investigated the efficacy and safety of topical terbinafine solution for the treatment of distal and lateral toenail onychomycosis.
@@ -40,7 +40,7 @@ const items: Array<ItemType> = [
   },
   {
     q: `What makes DOSABLE different from other toenail fungus remedies I can find online?`,
-    a: `FUNGAID Is a prescription grade which actually kills nail fungus at its root by penetrating the nail bed whereas over the counter products just sit on top of the nail bed with ingredients that dont work.`
+    a: `DOSABLE Is a prescription grade which actually kills nail fungus at its root by penetrating the nail bed whereas over the counter products just sit on top of the nail bed with ingredients that dont work.`
   },
   {
     q: `Can you use it on top of nail polish?`,

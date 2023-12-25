@@ -142,6 +142,7 @@ const submitForm = () => {
     zip: zip.value,
     phone: phone.value
   })
+  console.log('GTM Shipping - '+ dataLayer.push({'event': 'Shipping'}) )
   emit('step', 'payment')
   globalStore.setOnboarding(80)
 }

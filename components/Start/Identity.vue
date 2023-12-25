@@ -50,6 +50,7 @@ const changeFile = (event: Event): void => {
 }
 
 const next = (): void => {
+  console.log('GTM ID Upload - '+ dataLayer.push({'event': 'ID Upload'}) )
   emit('step', 'summary')
   globalStore.setOnboarding(40)
 }
@@ -81,7 +82,7 @@ onMounted(() => {
       flex-wrap: wrap;
     }
     li{
-      list-style: outside disc;
+      list-style: none;
       text-align: left;
       @media(min-width:768px){
         width: 50%;

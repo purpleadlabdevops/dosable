@@ -11,7 +11,7 @@
         <div class="payment__cart__item" v-for="product in globalStore.products">
           <div class="payment__cart__info">
             <div class="h7">{{ product.name }}</div>
-            <div class="h9">Ship every {{ productsShip === 'one' ? 'month':'3 months' }}</div>
+            <div class="h9">Ship every 3 months</div>
           </div>
           <div class="payment__cart__price">
             <div class="h7">${{ getProductShip(product) }}.00/month</div>
@@ -137,7 +137,7 @@
           :required="true" />
         <div class="form__field payment__submit">
           <button class="btn" type="submit" @click.prevent="submitForm">
-            {{ billingLoading ? 'Loading...' : 'CONTINUE' }}
+            {{ billingLoading ? 'Loading...' : 'SUBMIT' }}
           </button>
         </div>
         <Transition name="slide">
@@ -158,8 +158,10 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useGlobalStore } from '~/stores/global'
+import { useNuxtApp } from '#app';
 
-const globalStore = useGlobalStore(),
+const nuxtApp = useNuxtApp(),
+      globalStore = useGlobalStore(),
       emit = defineEmits(['billing']),
       router = useRouter(),
       productsShip = globalStore.productsShip
@@ -281,9 +283,9 @@ const submitForm = async () => {
     if(product.model){
       productsArr.push({
         name: product.name,
-        amount: globalStore.productsShip === 'one' ? product.one : product.three
+        amount: product.price
       })
-      amount = globalStore.productsShip === 'one' ? amount + product.one : amount + product.three
+      amount = amount + product.price
     }
   })
 
@@ -301,6 +303,8 @@ const submitForm = async () => {
       console.dir(response);
       setFeedback('success', true)
       globalStore.changeProgress(100)
+      nuxtApp.$fb.track('Purchase', {value: amount, currency: 'USD'})
+      console.log('GTM Purchase - '+ dataLayer.push({'event': 'Purchase'}) )
       setTimeout(() => {
         router.push({ path: "/thanks" })
       }, 3000);
@@ -343,6 +347,7 @@ const detectedCard = ref<any>(false)
 const inputCardNumber = (e: any): void => {
   const cleanNumber = cardNumber.value.trim().replace(/[\s]/g, '')
   detectedCard.value = detectCardType(cleanNumber)
+  console.dir(e)
 }
 </script>
 

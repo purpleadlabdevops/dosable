@@ -1,8 +1,8 @@
 <template>
-  <div class="product" :id="`product_${ID}`">
+  <div class="product" :id="`product_${ID}`" :class="`product__${data.model}`">
     <div class="product__left">
       <div class="product__checkbox">
-        <input type="checkbox" v-model="model" @change="changeCheckbox(ID)" :id="`model_${ID}`">
+        <input type="checkbox" v-model="model" @change="changeCheckbox(ID)" :id="`model_${ID}`" :checked="data.model" :data-checked="data.model">
         <label :for="`model_${ID}`"></label>
       </div>
       <div class="h7 product__name">{{ data.name }}</div>
@@ -48,6 +48,12 @@ const changeContent = (): void => {
 const changeCheckbox = (id: string): void => {
   globalStore.changeModel(id, model)
 }
+
+// onMounted(() => {
+  // console.log(data)
+  // console.log(ID)
+  // model.value = globalStore.products[ID].model
+// })
 </script>
 
 <style lang="scss" scoped>
@@ -56,6 +62,7 @@ const changeCheckbox = (id: string): void => {
   margin-left: auto;
   margin-right: auto;
   text-align: left;
+  transition: .3s;
   @media(min-width:768px){
     display: flex;
   }
@@ -134,6 +141,11 @@ const changeCheckbox = (id: string): void => {
           opacity: 1;
         }
       }
+      &[data-checked="false"] + label{
+        &:before{
+          opacity: 0;
+        }
+      }
     }
     label{
       display: block;
@@ -181,6 +193,9 @@ const changeCheckbox = (id: string): void => {
     border: none;
     padding: 0;
     margin-top: 1rem;
+  }
+  &__false{
+    opacity: .3;
   }
 }
 </style>

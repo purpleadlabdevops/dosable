@@ -19,7 +19,7 @@ jobs:
           username: root
           password: 1oko*g4aYD8O6jyR
           script: |
-            cd /var/www/www-root/data/www/fungaid.com
+            cd /var/www/www-root/data/www/dosable.com
             git pull
             npm run build
             pm2 restart fungaid.com

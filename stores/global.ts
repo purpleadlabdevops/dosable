@@ -263,7 +263,6 @@ export const useGlobalStore = defineStore({
     },
     changeModel(key: any, value: boolean){
       this.products[key].model = value
-      console.log('changeModel model - '+this.products[key].model)
     },
     setQuizData(obj: IQuiz){
       this.quizData = obj
@@ -273,7 +272,6 @@ export const useGlobalStore = defineStore({
     },
     setIntake(val: number){
       this.intake = val
-      console.log('intake - '+val)
     },
     setOnboarding(val: number){
       this.onboarding = val

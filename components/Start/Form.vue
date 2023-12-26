@@ -63,7 +63,7 @@
           Any information you submit is encrypted within our secure platform.
         </div>
         <div class="h9 start__desclaimer">
-          By checking the above box, you agree to receive automated promotional messages. This agreement is not a condition of purchase. Message frequency varies. Reply STOP to opt-out or HELP for help. Message & data rates apply. For questions, please <nuxt-link to="/privacy">contact us. Privacy Policy</nuxt-link>.
+          By checking the above box, you agree to receive automated promotional messages. This agreement is not a condition of purchase. Message frequency varies. Reply STOP to opt-out or HELP for help. Message & data rates apply. For questions, please <nuxt-link target="_blank" to="/privacy">contact us. Privacy Policy</nuxt-link>.
         </div>
       </div>
     </div>

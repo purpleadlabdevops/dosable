@@ -8,7 +8,7 @@
       </div>
       <div class="payment__cart">
         <div class="h8">Your Treatment if Prescribed</div>
-        <div class="payment__cart__item" v-for="product in globalStore.products">
+        <div class="payment__cart__item" v-for="product in globalStore.products" :class="`payment__cart__item-`+product.model">
           <div class="payment__cart__info">
             <div class="h7">{{ product.name }}</div>
             <div class="h9">Ship every 3 months</div>
@@ -17,6 +17,17 @@
             <div class="h7">${{ getProductShip(product) }}.00/month</div>
           </div>
         </div>
+
+        <div class="payment__cart__item" v-for="product in globalStore.supplements" :class="`payment__cart__item-`+product.model">
+          <div class="payment__cart__info">
+            <div class="h7">{{ product.name }}</div>
+            <div class="h9">Ship every 3 months</div>
+          </div>
+          <div class="payment__cart__price">
+            <div class="h7">${{ getProductShip(product) }}.00/month</div>
+          </div>
+        </div>
+
         <div class="payment__cart__item payment__cart__item-last">
           <div class="payment__cart__info">
             <span>Online doctor visit & shipping</span>
@@ -30,11 +41,13 @@
         <div class="form__field">
           <div class="payment__card">
             <div class="payment__card__head">
-              <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path fill="rgb(205 252 177)" d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"></path></svg>
+              <button class="payment__choose" @click.prevent="choosePayment('cc')">
+                <svg v-if="paymentType === 'cc'" xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.24323L7.03917 12L0 6.36759L1.32815 4.83746L6.74034 9.16686L14.3813 0L16 1.24323Z" fill="white"/></svg>
+              </button>
               Credit or Debit Card
               <Image format="webp" name="cc" class="payment__banks" />
             </div>
-            <div class="payment__card__body">
+            <div class="payment__card__body" v-if="paymentType === 'cc'">
               <input
                 class="payment__card__number"
                 :class="detectedCard ? `payment__card__number-${detectedCard}` : false"
@@ -50,6 +63,7 @@
                 class="payment__card__date"
                 id="payment__card__date"
                 v-model="cardDate"
+                @input="inputCardDate"
                 type="text"
                 v-maska
                 data-maska="##/##"
@@ -73,7 +87,10 @@
             id="billingSame"
             v-model="billingSame"
             @change="changeBillingSame">
-          <label for="billingSame">My billing information is the same as my shipping information</label>
+          <label for="billingSame">
+            <svg v-if="billingSame" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.24323L7.03917 12L0 6.36759L1.32815 4.83746L6.74034 9.16686L14.3813 0L16 1.24323Z" fill="white"/></svg>
+            My billing information is the same as my shipping information
+          </label>
         </div>
         <FieldText
           v-if="!billingSame"
@@ -136,12 +153,12 @@
           class="form__field-4"
           :required="true" />
         <div class="form__field payment__submit">
-          <button class="btn" type="submit" @click.prevent="submitForm">
+          <button class="btn btn-red" type="submit" @click.prevent="submitForm">
             {{ billingLoading ? 'Loading...' : 'SUBMIT' }}
           </button>
         </div>
         <Transition name="slide">
-          <div class="form__field form__feedback" v-if="billingFormFeedback">
+          <div class="form__field form__feedback" :class="'form__feedback-'+billingFormFeedback" v-if="billingFormFeedback">
             {{ billingTextFeedback[billingFormFeedback] }}
           </div>
         </Transition>
@@ -150,6 +167,10 @@
       <div class="payment__security">
         <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg" ><g><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path></g></svg>
         256-BIT TLS SECURITY
+      </div>
+      <div class="payment__menu">
+        <nuxt-link target="_blank" to="/terms">Terms and Conditions</nuxt-link>
+        <nuxt-link target="_blank" to="/privacy">Privacy Policy</nuxt-link>
       </div>
     </div>
   </section>
@@ -307,7 +328,7 @@ const submitForm = async () => {
       console.log('GTM Purchase - '+ dataLayer.push({'event': 'Purchase'}) )
       setTimeout(() => {
         router.push({ path: "/thanks" })
-      }, 3000);
+      }, 1000);
     },
     onResponseError({ request, response, options }) {
       console.dir(response);
@@ -347,7 +368,21 @@ const detectedCard = ref<any>(false)
 const inputCardNumber = (e: any): void => {
   const cleanNumber = cardNumber.value.trim().replace(/[\s]/g, '')
   detectedCard.value = detectCardType(cleanNumber)
-  console.dir(e)
+  if(cardNumber.value.length === 19){
+    document.querySelector('.payment__card__date').focus()
+  }
+}
+
+const inputCardDate = (e: any): void => {
+  if(cardDate.value.length === 5){
+    document.querySelector('.payment__card__code').focus()
+  }
+}
+
+const paymentType = ref('cc')
+
+const choosePayment = type => {
+  paymentType.value = type
 }
 </script>
 
@@ -360,6 +395,18 @@ const inputCardNumber = (e: any): void => {
       margin-bottom: 1rem;
     }
   }
+  &__choose{
+    width: 24px;
+    height: 24px;
+    background: var(--dark-blue);
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: .75rem;
+  }
   .form{
     margin-top: 40px;
     margin-bottom: 30px;
@@ -368,6 +415,10 @@ const inputCardNumber = (e: any): void => {
     margin-right: auto;
     input{
       padding: 0;
+      border-bottom: 1px solid #000;
+    }
+    [type=submit]{
+      margin-top: 0;
     }
   }
   &__link{
@@ -411,12 +462,12 @@ const inputCardNumber = (e: any): void => {
       span{
         font-size: 13px;
       }
+      &-false{
+        display: none;
+      }
     }
     &__price{
       font-size: 13px;
-      span{
-        text-decoration: line-through;
-      }
     }
   }
   &__banks{
@@ -424,13 +475,14 @@ const inputCardNumber = (e: any): void => {
     margin-left: auto;
   }
   &__card{
-    background: #f9f9f9;
+    background: #fff;
     border: 1px solid #edf2f9;
     &__head{
       background: #fff;
       display: flex;
       justify-content: space-between;
-      padding: res(4, 8) res(6, 12);
+      align-items: center;
+      padding: res(4, 8) res(8, 14) res(8, 14);
       & > svg{
         background: var(--purple);
         border-radius: 50%;
@@ -442,6 +494,8 @@ const inputCardNumber = (e: any): void => {
     &__body{
       display: flex;
       padding: res(12, 24);
+      border-radius: 40px 40px 0px 0px;
+      background: var(--light-gray, #F2F2F2);
       @media(max-width:767px){
         flex-wrap: wrap;
       }
@@ -468,6 +522,7 @@ const inputCardNumber = (e: any): void => {
     }
     &__date{
       width: 80px;
+      text-align: center;
       @media(max-width:767px){
         margin-right: 4px;
         width: 100px;
@@ -477,6 +532,7 @@ const inputCardNumber = (e: any): void => {
     }
     &__code{
       width: 50px;
+      text-align: center;
       @media(max-width:767px){
         width: 70px;
         padding-left: 10px !important;
@@ -486,38 +542,33 @@ const inputCardNumber = (e: any): void => {
   }
   &__checkout{
     label{
-      font-size: 15px;
+      font-size: 16px;
+      line-height: 24px;
       position: relative;
-      padding-left: 24px;
+      padding-left: 31px;
       display: block;
+      margin: 0;
       &:before{
         content: "";
         position: absolute;
         background: var(--dark-blue);
-        width: 16px;
-        height: 16px;
-        border-radius: 2px;
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
         left: 0; top: 0;
       }
-      &:after{
-        content:"\2713";
+      svg{
+        display: block;
         position: absolute;
-        color: var(--white);
-        left: 2px; top: 0px;
-        display: none;
-        font-size: 12px;
-        font-weight: 700;
+        left: 3px; top: 6px;
       }
     }
     input{
       display: none !important;
-      &:checked + label:after{
-        display: block;
-      }
     }
   }
   &__submit{
-    margin-top: 30px;
+    margin-top: res(32, 64);
   }
   &__security{
     text-align: center;
@@ -528,6 +579,29 @@ const inputCardNumber = (e: any): void => {
     margin-left: auto;
     margin-right: auto;
     color: var(--dark-grey);
+  }
+  &__checkout{
+    margin-top: res(32, 64);
+  }
+  &__menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: res(16, 32);
+    a{
+      position: relative;
+      font-size: 12px;
+      color: var(--dark-blue);
+      &:not(:first-child){
+        margin-left: 16px;
+        padding-left: 16px;
+        &:before{
+          content: "·";
+          position: absolute;
+          left: 0;
+        }
+      }
+    }
   }
 }
 

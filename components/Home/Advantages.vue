@@ -179,11 +179,17 @@ const items: Array<ItemType> = [
   }
   &__subtext{
     position: relative;
+    @media(max-width:767px){
+      padding-left: 2rem;
+    }
     svg{
       position: absolute;
-      left: -10px;
+      left: 0;
       bottom: 5px;
-      transform: translateX(-100%);
+      @media(min-width:768px){
+        left: -10px;
+        transform: translateX(-100%);
+      }
     }
   }
   &__btn{

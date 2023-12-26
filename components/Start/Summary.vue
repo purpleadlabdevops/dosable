@@ -3,10 +3,14 @@
     <div class="container">
       <h2>Your visit summary</h2>
       <div class="h7">Almost done! Here’s your personalized treatment plan for the doctor to review. Our board certified doctors are here to determine the right treatment plan for you. In the next step, you’ll add billing information to your account and then a Dosable doctor will review your medical history and address any questions.</div>
-      <h6>Prescription Treatment</h6>
+      <div class="products__summary-head">
+        <h6>Prescription Treatment</h6>
+        <button class="h6" @click="emit('step', 'cart')">EDIT</button>
+      </div>
       <Client-Only>
         <div class="products__list">
-          <StartProduct v-for="(product, index) in globalStore.products" :data="product" :ID="index" :key="index" />
+          <ProductRadio v-for="(product, index) in globalStore.products" :data="product" :ID="index" :key="index" />
+          <ProductCheckbox :data="globalStore.supplements.product_4" ID="product_4" />
         </div>
       </Client-Only>
       <div class="h8">You won't be charged for or shipped this prescription product unless a doctor prescribes it to you.</div>
@@ -124,6 +128,22 @@ const back = (): void => {
     h6{
       margin-top: 3rem;
       margin-bottom: 3rem;
+    }
+    &-head{
+      display: flex;
+      justify-content: space-between;
+      max-width: 776px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: res(32, 64);
+      margin-bottom: res(16, 32);
+      h6{
+        margin: 0;
+      }
+      button{
+        background: none;
+        border: none;
+      }
     }
   }
 }

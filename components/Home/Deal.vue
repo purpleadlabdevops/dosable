@@ -45,18 +45,25 @@
   &__list{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    @media(min-width:768px){
+      justify-content: center;
+    }
   }
   &__item{
     padding-left: calc(res(25, 30) + 1rem);
     position: relative;
     font-size: 12px;
     text-align: left;
+    @media(max-width:767px){
+      margin-right: 1.5rem;
+    }
     &:not(:first-child){
-      margin-left: res(16, 32);
+      @media(min-width:768px){
+        margin-left: res(16, 32);
+      }
     }
     @media(max-width:992px){
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
     br{
       display: block;

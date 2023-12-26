@@ -41,6 +41,7 @@ const globalStore = useGlobalStore()
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding-left: 0;
     li{
       width: calc(100% / 2 - res(8, 24));
       position: relative;

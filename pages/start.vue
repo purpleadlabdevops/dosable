@@ -12,7 +12,8 @@
     <StartIinfo    @step="setStep" v-if="step === 'iinfo'" />
     <StartIdentity @step="setStep" v-if="['identity', 'ideModal'].includes(step)" />
     <StartIdeModal @step="setStep" v-if="step === 'ideModal'" />
-    <StartSummary  @step="setStep" v-if="['summary', 'safety'].includes(step)" />
+    <StartSummary  @step="setStep" v-if="['summary', 'safety', 'cart'].includes(step)" />
+    <StartCart     @step="setStep" v-if="step === 'cart'" />
     <StartSafety   @step="setStep" v-if="step === 'safety'" />
     <StartShipping @step="setStep" v-if="step === 'shipping'" />
     <StartPayment  @step="setStep" v-if="['payment', 'billing'].includes(step)" />

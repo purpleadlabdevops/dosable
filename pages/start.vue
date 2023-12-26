@@ -31,7 +31,7 @@ useHead({
   title: 'Start Free Visit'
 })
 
-const step = ref<string>('form'),
+const step = ref<string>('products'),
       globalStore = useGlobalStore()
 
 const setStep = (val: string): void => {
@@ -48,40 +48,5 @@ const setStep = (val: string): void => {
   left: 0;
   top: 0;
   z-index: 999;
-}
-</style>
-
-
-<style lang="scss">
-.products{
-  h2{
-    margin-bottom: res(16, 24);
-  }
-  .h7, .h8{
-    color: var(--dark-blue)
-  }
-  h2 + .h7{
-    margin-bottom: res(16, 24);
-    margin-left: auto;
-    max-width: 570px;
-    margin-right: auto;
-  }
-  .h8{
-    margin-bottom: res(70, 87);
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  &__summary{
-    h6, .h8{
-      text-align: left;
-      max-width: 776px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .h8{
-      margin-top: 2rem;
-    }
-  }
 }
 </style>

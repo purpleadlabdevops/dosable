@@ -60,7 +60,7 @@ export const useGlobalStore = defineStore({
         img: 'product_2',
         save: 0,
         best: false,
-        model: true
+        model: false
       },
       product_3: {
         name: 'Standard DOSABLE',
@@ -72,8 +72,10 @@ export const useGlobalStore = defineStore({
         img: 'product_3',
         save: 0,
         best: false,
-        model: true
-      },
+        model: false
+      }
+    },
+    supplements: <IProduct>{
       product_4: {
         name: 'Anti-Fungal Supplement',
         title: `The Anti-Fungal supplement supports nail health from the inside out, giving the nail matrix the needed help when fighting toenail fungus.`,
@@ -84,7 +86,7 @@ export const useGlobalStore = defineStore({
         img: 'product_4',
         save: 0,
         best: false,
-        model: true
+        model: false
       }
     },
     productsShip: <string>'one',
@@ -261,8 +263,15 @@ export const useGlobalStore = defineStore({
     changeProgress(val: number){
       this.progress = val
     },
-    changeModel(key: any, value: boolean){
-      this.products[key].model = value
+    changeProductModel(key: any, value: boolean){
+      Object.keys(this.products).forEach(item => {
+        this.products[item].model = false
+      })
+      this.supplements['product_4'].model = ['product_2', 'product_3'].includes(key)
+      this.products[key].model = true
+    },
+    changeSupplementsModel(key: any){
+      this.supplements[key].model = this.supplements[key].model ? false : true
     },
     setQuizData(obj: IQuiz){
       this.quizData = obj

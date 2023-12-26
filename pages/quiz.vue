@@ -64,7 +64,7 @@
           <button
             type="button"
             class="btn btn-light btn-red_text"
-            @click.prevent="nextStep(1)">
+            @click.prevent="nextStep(0)">
             BACK
           </button>
         </div>
@@ -140,7 +140,7 @@
           <button
             type="button"
             class="btn btn-light btn-red_text"
-            @click.prevent="nextStep(5)">
+            @click.prevent="nextStep(4)">
             BACK
           </button>
         </div>
@@ -399,4 +399,5 @@ onMounted(() => {
     }
   }
 }
+
 </style>

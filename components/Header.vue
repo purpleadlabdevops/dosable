@@ -41,7 +41,11 @@ const route = <any>useRoute()
   &__description{
     margin: 0;
     @media(max-width:767px){
-      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 60px;
+      text-align: center;
     }
   }
   &__start{

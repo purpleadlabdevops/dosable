@@ -31,7 +31,7 @@ useHead({
   title: 'Start Free Visit'
 })
 
-const step = ref<string>('products'),
+const step = ref<string>('form'),
       globalStore = useGlobalStore()
 
 const setStep = (val: string): void => {

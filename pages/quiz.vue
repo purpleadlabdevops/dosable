@@ -335,7 +335,6 @@ const serums = ref(''),
           }
         }
         globalStore.setQuizData(quizData)
-        console.dir(quizData)
       }
 
 onMounted(() => {

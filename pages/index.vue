@@ -19,8 +19,6 @@ useHead({
 
 onMounted(() => {
   setTimeout(() => {
-    console.log('dataLayer PageView')
-    console.dir(dataLayer)
     dataLayer.push({'event': 'PageView'});
   }, 2000)
 })

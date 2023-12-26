@@ -52,6 +52,13 @@ const setModel = (val: string): void => {
 const submit = () => {
   globalStore.setStartQuestionAnswer(globalStore.startQuestion, model.value)
   model.value = []
+
+  setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  }, 0)
 }
 
 const back = (): void => {

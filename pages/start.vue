@@ -36,6 +36,12 @@ const step = ref<string>('form'),
 
 const setStep = (val: string): void => {
   step.value = val
+  setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  }, 0)
 }
 </script>
 

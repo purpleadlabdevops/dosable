@@ -240,6 +240,10 @@ const nextStep = (index: number): void => {
           }
           layoutQuiz.classList.add('layout__quiz-bg')
         }
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        })
       }
 
 // const age = ref(),

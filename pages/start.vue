@@ -1,8 +1,6 @@
 <template>
   <div class="page page__start start">
     <StartStatus />
-    <!-- <StartBirthday @step="setStep" v-if="step === 'birthday'" /> -->
-    <!-- <StartSex      @step="setStep" v-if="step === 'sex'" /> -->
     <StartForm     @step="setStep" v-if="step === 'form'" />
     <StartRadio    @step="setStep" v-if="step === 'question' && globalStore.startQuestions[globalStore.startQuestion].type === 'radio'" />
     <StartCheckbox @step="setStep" v-if="step === 'question' && globalStore.startQuestions[globalStore.startQuestion].type === 'checkbox'" />

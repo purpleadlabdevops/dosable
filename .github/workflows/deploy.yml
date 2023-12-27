@@ -8,27 +8,28 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: CI
 
     steps:
       - test: Testing
         env:
           deploy: ${{ secrets.deploy }}
-        run:
-          script: |
-            ${{ env }}
-      - uses: actions/checkout@v3
+        run: |
+          ${ deploy }
+          ${ deploy.HOST }
+      # - uses: actions/checkout@v3
 
-      - name: Deploying
-        env:
-          deploy: ${{ secrets.deploy }}
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ deploy.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          script: |
-            cd ${{ secrets.PATH }}
-            git pull
-            npm run build
-            pm2 restart dosable.com
-            chown -R ${{ secrets.USERNAME_MODE }}:${{ secrets.USERNAME_MODE }} ${{ secrets.PATH }}
+      # - name: Deploying
+      #   env:
+      #     deploy: ${{ secrets.deploy }}
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ deploy.HOST }}
+      #     username: ${{ secrets.USERNAME }}
+      #     password: ${{ secrets.PASSWORD }}
+      #     script: |
+      #       cd ${{ secrets.PATH }}
+      #       git pull
+      #       npm run build
+      #       pm2 restart dosable.com
+      #       chown -R ${{ secrets.USERNAME_MODE }}:${{ secrets.USERNAME_MODE }} ${{ secrets.PATH }}

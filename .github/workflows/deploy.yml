@@ -14,19 +14,15 @@ jobs:
 
       - name: Deploying
         env:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          path: ${{ secrets.PATH }}
-          username_mode: ${{ secrets.USERNAME_MODE }}
+          deploy: ${{ secrets.deploy }}
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ github.event.inputs }} ${{ env.host }}
-          username: ${{ env.username }}
-          password: ${{ env.password }}
+          host: ${{ env.deploy.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
           script: |
-            cd ${{ env.path }}
+            cd ${{ secrets.PATH }}
             git pull
             npm run build
             pm2 restart dosable.com
-            chown -R ${{ env.username_mode }}:${{ env.username_mode }} ${{ env.path }}
+            chown -R ${{ secrets.USERNAME_MODE }}:${{ secrets.USERNAME_MODE }} ${{ secrets.PATH }}

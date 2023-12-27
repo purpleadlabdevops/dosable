@@ -15,12 +15,12 @@ jobs:
       - name: Deploying
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ env.HOST }}
-          username: ${{ env.USERNAME }}
-          password: ${{ env.PASSWORD }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
           script: |
-            cd ${{ env.PATH }}
+            cd ${{ secrets.PATH }}
             git pull
             npm run build
             pm2 restart dosable.com
-            chown -R ${{ env.USERNAME_MODE }}:${{ env.USERNAME_MODE }} ${{ env.PATH }}
+            chown -R ${{ secrets.USERNAME_MODE }}:${{ secrets.USERNAME_MODE }} ${{ secrets.PATH }}

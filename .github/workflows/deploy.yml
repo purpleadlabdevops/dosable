@@ -21,7 +21,7 @@ jobs:
           username_mode: ${{ secrets.USERNAME_MODE }}
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ env.host }}
+          host: ${{ github.event.inputs }} ${{ env.host }}
           username: ${{ env.username }}
           password: ${{ env.password }}
           script: |

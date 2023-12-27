@@ -180,6 +180,7 @@
 </template>
 
 <script lang="ts" setup>
+
 import { ref } from 'vue'
 import { useGlobalStore } from '~/stores/global'
 import { useNuxtApp } from '#app';

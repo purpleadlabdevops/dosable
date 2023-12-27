@@ -14,9 +14,11 @@ jobs:
     # Some more steps here ...
     - name: Publish to Test PyPI
       env:
-        deploy: ${{ secrets.deploy }}
+        host: ${{ secrets.HOST }}
       run: |
-        echo KEY: '${ deploy.HOST }'
+        ${ host }
+        ${{ env.host }}
+        echo KEY: '${ host }'
 
   # deploy:
   #   runs-on: ubuntu-latest

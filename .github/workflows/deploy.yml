@@ -6,30 +6,34 @@ on:
       - main
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  publish:
     environment: CI
-
+    needs: build
+    runs-on: ubuntu-latest
     steps:
-      - test: Testing
-        env:
-          deploy: ${{ secrets.deploy }}
-        run: |
-          ${ deploy }
-          ${ deploy.HOST }
-      # - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
+    # Some more steps here ...
+    - name: Publish to Test PyPI
+      env:
+        deploy: ${{ secrets.deploy }}
+      run: |
+        echo KEY: '${ deploy }'
 
-      # - name: Deploying
-      #   env:
-      #     deploy: ${{ secrets.deploy }}
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ deploy.HOST }}
-      #     username: ${{ secrets.USERNAME }}
-      #     password: ${{ secrets.PASSWORD }}
-      #     script: |
-      #       cd ${{ secrets.PATH }}
-      #       git pull
-      #       npm run build
-      #       pm2 restart dosable.com
-      #       chown -R ${{ secrets.USERNAME_MODE }}:${{ secrets.USERNAME_MODE }} ${{ secrets.PATH }}
+  # deploy:
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - uses: actions/checkout@v3
+
+  #     - name: Deploying
+  #       uses: appleboy/ssh-action@master
+  #       with:
+  #         host: ${{ secrets.HOST }}
+  #         username: ${{ secrets.USERNAME }}
+  #         password: ${{ secrets.PASSWORD }}
+  #         script: |
+  #           cd ${{ secrets.PATH }}
+  #           git pull
+  #           npm run build
+  #           pm2 restart dosable.com
+  #           chown -R ${{ secrets.USERNAME_MODE }}:${{ secrets.USERNAME_MODE }} ${{ secrets.PATH }}

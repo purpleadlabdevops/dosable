@@ -74,5 +74,10 @@
       margin-right: .5rem;
     }
   }
+  p{
+    @media(max-width:767px){
+      br{ display: none; }
+    }
+  }
 }
 </style>

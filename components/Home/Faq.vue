@@ -118,7 +118,7 @@ const openQuestion = (index: number): any => {
       left: auto;
       top: 0;
       transition: .5s ease;
-      width: 24px;
+      width: res(18, 24);
     }
   }
   &__answer{

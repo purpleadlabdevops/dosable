@@ -16,6 +16,9 @@ h6, .h6{
   line-height: 1.2;
   font-style: normal;
   font-weight: 400;
+  @media(max-width:767px){
+    br{ display: none; }
+  }
 }
 h1, .h1{
   font-size: res(52, 72);
@@ -98,9 +101,4 @@ a{
   &:hover{
     text-decoration: underline;
   }
-}
-
-
-@media(max-width:767px){
-  br{ display: none; }
 }

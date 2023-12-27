@@ -44,15 +44,13 @@ const getCampaign = async () => {
     onResponseError({ request, response, options }) {
       console.log('onResponseError')
       console.dir(response)
+      return
     }
   })
-  console.dir(data.value)
+  console.dir(data)
   if(data.value && data.value.result === 'SUCCESS'){
     console.dir(data.value.message.data[21])
     globalStore.setCampaign(data.value.message.data[21])
-  } else {
-    console.log('onResponseError')
-    console.dir(response)
   }
 }
 getCampaign()

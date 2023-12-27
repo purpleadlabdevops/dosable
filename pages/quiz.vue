@@ -1,7 +1,7 @@
 <template>
   <div class="page page__quiz quiz">
     <div class="quiz__list">
-      <div
+<!--       <div
         class="quiz__step quiz__step-0"
         v-if="step === 0">
         <h2>Discover your best self, today.</h2>
@@ -12,7 +12,7 @@
           @click="nextStep(2)">
           Start quiz
         </button>
-      </div>
+      </div> -->
 
 <!--       <div
         class="quiz__step quiz__step-1"
@@ -44,28 +44,12 @@
         <h2>{{ averageH2 }}</h2>
         <div class="quiz__buttons">
           <button
-            class="btn"
+            class="btn btn-light_gray"
             type="button"
             v-for="(item, index) in averageItems"
-            :class="average.includes(item) ? 'btn-light' : 'btn-light_gray'"
             :key="`step_2_${index}`"
             @click.prevent="chooseAverage(item)">
             {{ item }}
-          </button>
-        </div>
-        <div class="quiz__buttons">
-          <button
-            type="button"
-            class="btn btn-red"
-            :disabled="average.length === 0"
-            @click.prevent="nextStep(3)">
-            NEXT
-          </button>
-          <button
-            type="button"
-            class="btn btn-light btn-red_text"
-            @click.prevent="nextStep(0)">
-            BACK
           </button>
         </div>
       </div>
@@ -216,7 +200,7 @@ definePageMeta({
   layout: 'quiz'
 })
 
-const step = ref(0),
+const step = ref(2),
       emit = defineEmits(['onTesting']),
       globalStore = useGlobalStore()
 
@@ -269,6 +253,7 @@ const average: Ref<string[]> = ref([]),
           return
         }
         average.value.push(val)
+        nextStep(3)
       }
 
 const mood = ref(''),

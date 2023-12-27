@@ -18,7 +18,8 @@ export default defineNuxtConfig({
         { name: 'description', content: 'My amazing Dosable site.' }
       ],
       script: [
-        { src: '/js/gtm.js', async: true }
+        { src: '/js/gtm.js', async: true },
+        { src: '/js/height.js', defer: true }
       ],
     },
   },

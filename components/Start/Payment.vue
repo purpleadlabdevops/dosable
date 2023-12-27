@@ -171,10 +171,6 @@
         <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg" ><g><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path></g></svg>
         256-BIT TLS SECURITY
       </div>
-      <div class="payment__menu">
-        <nuxt-link target="_blank" to="/terms">Terms and Conditions</nuxt-link>
-        <nuxt-link target="_blank" to="/privacy">Privacy Policy</nuxt-link>
-      </div>
     </div>
   </section>
 </template>
@@ -722,26 +718,6 @@ const inputCardDate = (e: any): void => {
   }
   &__checkout{
     margin-top: res(32, 64);
-  }
-  &__menu{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: res(16, 32);
-    a{
-      position: relative;
-      font-size: 12px;
-      color: var(--dark-blue);
-      &:not(:first-child){
-        margin-left: 16px;
-        padding-left: 16px;
-        &:before{
-          content: "·";
-          position: absolute;
-          left: 0;
-        }
-      }
-    }
   }
 }
 

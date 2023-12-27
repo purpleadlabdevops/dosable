@@ -33,7 +33,6 @@ const getCampaign = async () => {
     onResponseError({ request, response, options }) {
       console.log('onResponseError')
       console.dir(response)
-      return
     }
   })
   console.dir(data)

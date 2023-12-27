@@ -21,12 +21,12 @@ jobs:
           username_mode: ${{ secrets.USERNAME_MODE }}
         uses: appleboy/ssh-action@master
         with:
-          host: ${host}
-          username: ${username}
-          password: ${password}
+          host: ${{ env.host }}
+          username: ${{ env.username }}
+          password: ${{ env.password }}
           script: |
-            cd ${path}
+            cd ${{ env.path }}
             git pull
             npm run build
             pm2 restart dosable.com
-            chown -R ${username_mode}:${username_mode} ${path}
+            chown -R ${{ env.username_mode }}:${{ env.username_mode }} ${{ env.path }}

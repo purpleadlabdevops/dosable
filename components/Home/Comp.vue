@@ -6,19 +6,20 @@
         <Image format="webp" name="comparison-left" alt="comparison 1" />
         <Image format="webp" name="comparison-right" alt="comparison 2" />
       </div>
-      <ClientOnly>
-        <ul class="comparison__list" v-if="$width() < 768">
-          <li
-            v-for="item in bannerItems"
-            v-html="item.icon + item.text">
-          </li>
-        </ul>
-      </ClientOnly>
+      <ul class="comparison__list" v-if="globalStore.width < 768">
+        <li
+          v-for="item in bannerItems"
+          v-html="item.icon + item.text">
+        </li>
+      </ul>
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
+import { useGlobalStore } from '~/stores/global';
+const globalStore = useGlobalStore()
+
 interface bannerItemType {
   icon: string
   text: string
@@ -26,7 +27,7 @@ interface bannerItemType {
 
 const bannerItems: Array<bannerItemType> = [
   {
-    icon: `<svg style="margin-right: 8px;" width="36" height="39" viewBox="0 0 36 39" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="20" r="16" stroke="#083952" stroke-width="2"/><ellipse cx="13.5" cy="14.5" rx="2.5" ry="3.5" fill="#083952"/><ellipse cx="22.5" cy="14.5" rx="2.5" ry="3.5" fill="#083952"/><mask id="path-4-inside-1_6_82" fill="white"><path d="M29 20C29 22.9174 27.8411 25.7153 25.7782 27.7782C23.7153 29.8411 20.9174 31 18 31C15.0826 31 12.2847 29.8411 10.2218 27.7782C8.15893 25.7153 7 22.9174 7 20L9.46574 20C9.46574 22.2634 10.3649 24.4342 11.9654 26.0346C13.5659 27.6351 15.7366 28.5343 18 28.5343C20.2634 28.5343 22.4341 27.6351 24.0346 26.0346C25.6351 24.4341 26.5343 22.2634 26.5343 20H29Z"/></mask><path d="M29 20C29 22.9174 27.8411 25.7153 25.7782 27.7782C23.7153 29.8411 20.9174 31 18 31C15.0826 31 12.2847 29.8411 10.2218 27.7782C8.15893 25.7153 7 22.9174 7 20L9.46574 20C9.46574 22.2634 10.3649 24.4342 11.9654 26.0346C13.5659 27.6351 15.7366 28.5343 18 28.5343C20.2634 28.5343 22.4341 27.6351 24.0346 26.0346C25.6351 24.4341 26.5343 22.2634 26.5343 20H29Z" stroke="#083952" stroke-width="4" mask="url(#path-4-inside-1_6_82)"/></svg>`,
+    icon: `<svg style="margin-right: 8px;" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34 17C34 26.3888 26.3888 34 17 34C7.61116 34 0 26.3888 0 17C0 7.61116 7.61116 0 17 0C26.3888 0 34 7.61116 34 17Z" fill="#083952"/><path d="M32 17C32 25.2843 25.2843 32 17 32C8.71573 32 2 25.2843 2 17C2 8.71573 8.71573 2 17 2C25.2843 2 32 8.71573 32 17Z" fill="white"/><path d="M15 11.5C15 13.433 13.8807 15 12.5 15C11.1193 15 10 13.433 10 11.5C10 9.567 11.1193 8 12.5 8C13.8807 8 15 9.567 15 11.5Z" fill="#083952"/><path d="M24 11.5C24 13.433 22.8807 15 21.5 15C20.1193 15 19 13.433 19 11.5C19 9.567 20.1193 8 21.5 8C22.8807 8 24 9.567 24 11.5Z" fill="#083952"/><path d="M28 17C28 19.9174 26.8411 22.7153 24.7782 24.7782C22.7153 26.8411 19.9174 28 17 28C14.0826 28 11.2847 26.8411 9.22183 24.7782C7.15893 22.7153 6 19.9174 6 17H8.46574C8.46574 19.2634 9.36488 21.4342 10.9654 23.0346C12.5659 24.6351 14.7366 25.5343 17 25.5343C19.2634 25.5343 21.4341 24.6351 23.0346 23.0346C24.6351 21.4341 25.5343 19.2634 25.5343 17H28Z" fill="#083952"/></svg>`,
     text: 'Easy to Use'
   },
   {
@@ -34,7 +35,7 @@ const bannerItems: Array<bannerItemType> = [
     text: 'Targeted Treatment'
   },
   {
-    icon: `<svg style="margin-right: 8px;" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_6_97)"><circle cx="17" cy="17" r="16" stroke="#083952" stroke-width="2"/><path d="M17 8.5V17L22.5 22.5" stroke="#083952" stroke-width="2"/></g><defs><clipPath id="clip0_6_97"><rect width="34" height="34" fill="white"/></clipPath></defs></svg>`,
+    icon: `<svg style="margin-right: 8px;" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_6_971)"><circle cx="17" cy="17" r="16" stroke="#083952" stroke-width="2"/><path d="M17 8.5V17L22.5 22.5" stroke="#083952" stroke-width="2"/></g><defs><clipPath id="clip0_6_971"><rect width="34" height="34" fill="white"/></clipPath></defs></svg>`,
     text: 'Proven Results'
   }
 ]
@@ -69,6 +70,9 @@ const bannerItems: Array<bannerItemType> = [
     max-width: 650px;
     display: flex;
     flex-wrap: wrap;
+    @media(min-width:768px){
+      display: none;
+    }
     li{
       width: 100%;
       display: flex;

@@ -1,6 +1,5 @@
 <template>
   <div class="page page__start start">
-    <!-- <button @click="testKonnektive">testKonnektive</button> -->
     <StartStatus />
     <StartForm     @step="setStep" v-if="step === 'form'" />
     <StartRadio    @step="setStep" v-if="step === 'question' && globalStore.startQuestions[globalStore.startQuestion].type === 'radio'" />
@@ -45,25 +44,6 @@ const setStep = (val: string): void => {
     }, 0)
   }
 }
-
-// const testKonnektive = () => {
-//   useFetch('/api/konnektive', {
-//     method: 'post',
-//     body: JSON.stringify({
-//       campaignId: 21
-//     }),
-//     onResponse({ request, response, options }) {
-//       console.log('onResponse')
-//       console.dir(response)
-//       console.dir(options)
-//     },
-//     onResponseError({ request, response, options }) {
-//       console.log('onResponseError')
-//       console.dir(response)
-//       console.dir(options)
-//     }
-//   })
-// }
 </script>
 
 <style lang="scss" scoped>

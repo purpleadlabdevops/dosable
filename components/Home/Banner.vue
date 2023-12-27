@@ -2,20 +2,18 @@
   <section class="banner">
     <div class="container">
       <div class="banner__wrap">
-        <h1>Enjoy Clear, Healthy, <span>Fungus-Free</span> Toenails With DOSABLE</h1>
+        <h1>Enjoy Clear, Healthy, <span>Fungus-Free</span> Toenails</h1>
         <h4>Doctor-formulated topicals, with clinically proven ingredients, will have your nails growing clear again without painful surgery.</h4>
         <div class="banner__btn">
-          <nuxt-link class="btn btn-red" to="/start">START FREE TELE-VISIT</nuxt-link>
-          <nuxt-link class="btn btn-red-border btn-white" to="/quiz">TAKE THE QUIZ</nuxt-link>
+          <nuxt-link class="btn btn-red" to="/start">Check Eligibility</nuxt-link>
+          <!-- <nuxt-link class="btn btn-red-border btn-white" to="/quiz">TAKE THE QUIZ</nuxt-link> -->
         </div>
-        <ClientOnly>
-          <ul class="banner__list" v-if="$width() > 767">
-            <li
-              v-for="item in bannerItems"
-              v-html="item.icon + item.text">
-            </li>
-          </ul>
-        </ClientOnly>
+        <ul class="banner__list" v-if="globalStore.width > 767">
+          <li
+            v-for="item in bannerItems"
+            v-html="item.icon + item.text">
+          </li>
+        </ul>
       </div>
     </div>
     <Image class="banner__img" format="webp" name="banner" alt="banner image" />
@@ -23,6 +21,9 @@
 </template>
 
 <script lang="ts" setup>
+import { useGlobalStore } from '~/stores/global';
+const globalStore = useGlobalStore()
+
 interface bannerItemType {
   icon: string
   text: string
@@ -113,6 +114,9 @@ const bannerItems: Array<bannerItemType> = [
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    @media(max-width:767px){
+      display: none;
+    }
     li{
       width: 50%;
       display: flex;

@@ -6,9 +6,7 @@
       </ClientOnly>
       <div class="review__img"><Image format="webp" name="review" alt="review picture" /></div>
       <div class="review__info">
-        <ClientOnly>
-          <div class="review__title h2" v-if="$width() > 768">Real Results, Real Fast</div>
-        </ClientOnly>
+        <div class="review__title h2" v-if="globalStore.width > 768">Real Results, Real Fast</div>
         <p class="p-lg">DOSABLE gives you the confidence to enjoy your feet again by eliminating stubborn & unsightly fungus.</p>
         <ul>
           <li>Clinically proven ingredients to reduce nail fungus in as little as 3 months.</li>
@@ -19,6 +17,11 @@
     </div>
   </section>
 </template>
+
+<script setup>
+import { useGlobalStore } from '~/stores/global';
+const globalStore = useGlobalStore()
+</script>
 
 <style lang="scss" scoped>
 .review{
@@ -80,6 +83,19 @@
     text-align: left;
     margin-top: res(30, 50);
     padding-left: 1rem;
+    li{
+      position: relative;
+      &:not(:first-child){
+        margin-top: 0.5rem;
+      }
+      &:before {
+        content: "\2022";
+        color: var(--red);
+        font-size: 120%;
+        position: absolute;
+        left: -12px; top: -2px;
+      }
+    }
   }
   .btn{
     margin-top: res(50, 100);

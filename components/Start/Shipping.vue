@@ -140,7 +140,7 @@ const submitForm = () => {
     city: city.value,
     state: state.value,
     zip: zip.value,
-    phone: phone.value
+    phone: Number(phone.value.replace(/[^\dA-Z]/g, ''))
   })
   console.log('GTM Shipping - '+ dataLayer.push({'event': 'Shipping'}) )
   emit('step', 'payment')

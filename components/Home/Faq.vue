@@ -3,12 +3,13 @@
     <div class="container">
       <div class="faq__title h2">Frequently Asked Questions</div>
       <div class="faq__item" v-for="(item, index) in items" :class="itemIndex === index ? 'faq__item-in':''" >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none"><g clip-path="url(#clip0_362_7)"><path d="M12.003 8.88006L14.391 0.0600586L13.221 9.12006L18.8 1.88906L14.25 9.81106L22.179 5.26206L14.94 10.8451L24 9.67406L15.185 12.0641L24 14.4501L14.94 13.2801L22.178 18.8581L14.25 14.3081L18.799 22.2371L13.222 14.9981L14.392 24.0601L12.003 15.2451L9.615 24.0601L10.785 15.0001L5.2 22.2371L9.75 14.3091L1.827 18.8581L9.06 13.2811L0 14.4521L8.82 12.0631L0 9.67506L9.06 10.8451L1.829 5.26006L9.751 9.81006L5.202 1.88706L10.785 9.12006L9.614 0.0600586L12.003 8.88006Z" fill="#083952"/></g><defs><clipPath id="clip0_362_7"><rect width="24" height="24" fill="white" transform="translate(0 0.0600586)"/></clipPath></defs></svg>
         <button type="button" class="faq__question p" @click.prevent="openQuestion(index)" :key="`faq_${index}`">
           {{ item.q }}
-          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="11" viewBox="0 0 17 11" fill="none"><path d="M1.22269 1.81937e-05L8.47155 7.60153L15.7204 1.69254e-05L16.9431 1.2822L8.47155 10.1659L-1.31187e-05 1.2822L1.22269 1.81937e-05Z" fill="#2B2660"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12Z" fill="#E31837"/><path d="M6.86598 8L12 13.982L17.134 8L18 9.00901L12 16L6 9.00901L6.86598 8Z" fill="#F8FDFF"/></svg>
         </button>
-        <div class="faq__answer p" v-html="item.a"></div>
+        <Transition name="slide-fade">
+          <div class="faq__answer p" v-html="item.a" v-if="itemIndex === index"></div>
+        </Transition>
       </div>
       <div class="faq__btn"><nuxt-link class="btn btn-red" to="/start">START MY FREE TELE-VISIT</nuxt-link></div>
     </div>
@@ -80,7 +81,7 @@ const openQuestion = (index: number): any => {
   }
   &__item{
     position: relative;
-    padding: 5px 0 5px 40px;
+    padding: 5px 0;
     max-width: 823px;
     margin-left: auto;
     margin-right: auto;
@@ -88,22 +89,16 @@ const openQuestion = (index: number): any => {
     &:not(:first-child){
       margin-top: 2rem;
     }
-    & > svg{
-      position: absolute;
-      left: 0; top: 0;
-      background: var(--white);
-      border-radius: 50%;
-    }
     &-in{
       .faq__question{
         svg{
           transform: rotate(180deg);
         }
       }
-      .faq__answer{
-        max-height: 2000px;
-        transition: 1s ease-in .5s;
-      }
+      // .faq__answer{
+      //   max-height: 2000px;
+      //   transition: 1s;
+      // }
     }
   }
   &__question{
@@ -116,19 +111,18 @@ const openQuestion = (index: number): any => {
     text-align: left;
     position: relative;
     color: var(--dark-blue);
-    padding-right: 2rem;
     svg{
+      display: block;
       position: absolute;
       right: 0;
       left: auto;
-      top: 10px;
+      top: 0;
       transition: .5s ease;
+      width: 24px;
     }
   }
   &__answer{
     overflow: hidden;
-    transition: .5s ease-out;
-    max-height: 0px;
     &:before{
       content:"";
       height: 20px;

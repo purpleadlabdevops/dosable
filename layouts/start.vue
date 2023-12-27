@@ -2,6 +2,7 @@
   <div class="layout layout__start">
     <Header class="header__start" />
     <slot />
+    <Footer />
   </div>
 </template>
 

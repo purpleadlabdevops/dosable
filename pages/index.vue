@@ -21,6 +21,30 @@ useHead({
 
 const globalStore = useGlobalStore()
 
+const getCampaign = async () => {
+  const { data } = await useFetch('/api/konnektive', {
+    method: 'post',
+    body: JSON.stringify({
+      endpoint: '/campaign/query',
+      params: {
+        campaignId: 21
+      }
+    }),
+    onResponseError({ request, response, options }) {
+      console.log('onResponseError')
+      console.dir(response)
+    }
+  })
+  console.dir(data.value)
+  if(data.value && data.value.result === 'SUCCESS'){
+    console.dir(data.value.message.data[21])
+    globalStore.setCampaign(data.value.message.data[21])
+  } else {
+    console.log('onResponseError')
+    console.dir(response)
+  }
+}
+
 if(process.client){
   globalStore.setWidth(window.innerWidth)
   window.addEventListener('resize', () => {
@@ -33,5 +57,6 @@ onMounted(() => {
     dataLayer.push({'event': 'PageView'});
   }, 2000)
   globalStore.setUrl(window.location.href)
+  getCampaign()
 })
 </script>

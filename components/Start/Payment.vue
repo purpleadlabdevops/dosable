@@ -415,7 +415,6 @@ const leadsImportKonnektive = async () => {
         billShipSame: globalStore.billingSame || true,
         firstName: globalStore.billing.firstName,
         lastName: globalStore.billing.lastName,
-        phoneNumber: globalStore.billing.phone,
         address1: globalStore.billing.address,
         address2: globalStore.billing.apartment,
         city: globalStore.billing.city,

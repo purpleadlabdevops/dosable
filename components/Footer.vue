@@ -1,8 +1,8 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <nuxt-link to="/terms">Terms and Conditions</nuxt-link>
-      <nuxt-link to="/privacy">Privacy Policy</nuxt-link>
+      <nuxt-link target="_blank" to="/terms">Terms and Conditions</nuxt-link>
+      <nuxt-link target="_blank" to="/privacy">Privacy Policy</nuxt-link>
     </div>
   </footer>
 </template>

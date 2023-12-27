@@ -48,7 +48,7 @@ const route = <any>useRoute()
       text-align: center;
     }
   }
-  &__start{
+  &__start, &__quiz{
     background: var(--light-blue2);
   }
   &__close{

@@ -221,31 +221,39 @@ const step = ref(0),
       globalStore = useGlobalStore()
 
 const nextStep = (index: number): void => {
-        const layoutQuiz = document.querySelector('.layout__quiz')
-        step.value = index
+  const layoutQuiz = document.querySelector<HTMLElement>('.layout__quiz'),
+        headerDescription = document.querySelector<HTMLElement>('.header__description'),
+        headerQuiz = document.querySelector<HTMLElement>('.header__quiz')
 
-        if(step.value === 2){
-          console.log('GTM QuizStart - '+ dataLayer.push({'event': 'QuizStart'}) )
-        }
+  step.value = index
 
-        if(step.value > 0){
-          document.querySelector('.header__description').style.display = 'block'
-        } else {
-          document.querySelector('.header__description').style.display = 'none'
-        }
+  if(step.value === 2){
+    console.log('GTM QuizStart - '+ dataLayer.push({'event': 'QuizStart'}) )
+  }
 
-        if(layoutQuiz !== null){
-          if(index > 0){
-            layoutQuiz.classList.remove('layout__quiz-bg')
-            return
-          }
-          layoutQuiz.classList.add('layout__quiz-bg')
-        }
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        })
-      }
+  if([0, 9].includes(step.value)){
+    headerDescription.style.display = 'none'
+    headerQuiz.style.background = 'var(--light-blue2)'
+    console.log('includes - '+step.value)
+  } else {
+    headerDescription.style.display = 'block'
+    headerQuiz.style.background = 'var(--white)'
+    console.log('includes - '+step.value)
+  }
+
+  if(layoutQuiz !== null){
+    if(index > 0){
+      layoutQuiz.classList.remove('layout__quiz-bg')
+      return
+    }
+    layoutQuiz.classList.add('layout__quiz-bg')
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  })
+}
 
 // const age = ref(),
 //       ageH2 = 'How old are you?',
@@ -337,16 +345,6 @@ const serums = ref(''),
         }
         globalStore.setQuizData(quizData)
       }
-
-onMounted(() => {
-  setTimeout(()=>{
-    const headerQuiz = document.querySelector<HTMLElement>('.header__quiz'),
-          pageHealth = document.querySelector<HTMLElement>('.page__health')
-    if(pageHealth !== null && headerQuiz !== null){
-      pageHealth.style.height = `calc(100vh - ${headerQuiz.clientHeight}px`
-    }
-  }, 0)
-})
 </script>
 
 <style lang="scss" scoped>
@@ -357,8 +355,9 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 100px 0;
+  padding: calc(res(62.2, 78.2) + 100px) 0 100px;
   width: 100%;
+  min-height: 100vh;
   &__step{
     text-align: center;
     padding-left: 10px;

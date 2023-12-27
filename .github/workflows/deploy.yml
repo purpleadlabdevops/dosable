@@ -16,7 +16,7 @@ jobs:
       env:
         deploy: ${{ secrets.deploy }}
       run: |
-        echo KEY: '${ deploy }'
+        echo KEY: '${ deploy.HOST }'
 
   # deploy:
   #   runs-on: ubuntu-latest

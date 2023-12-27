@@ -35,8 +35,10 @@ const route = <any>useRoute()
     align-items: center;
   }
   &__logo{
-    width: auto;
-    height: 42px;
+    svg{
+      width: auto;
+      height: res(30, 42);
+    }
   }
   a{
     display: block;
@@ -52,8 +54,9 @@ const route = <any>useRoute()
     text-decoration: none;
     cursor: pointer;
     color: var(--dark-blue);
+    font-size: res(14, 16);
     svg{
-      margin-left: 1rem;
+      margin-left: res(8, 16);
       pointer-events: none;
     }
     &:hover{

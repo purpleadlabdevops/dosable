@@ -2,14 +2,14 @@
   <section class="start__step buttons">
     <div class="container">
       <h2>{{ globalStore.startQuestions[globalStore.startQuestion].question }}</h2>
-      <h6 v-if="globalStore.startQuestions[globalStore.startQuestion].description.length > 0">{{ globalStore.startQuestions[globalStore.startQuestion].description }}</h6>
+      <h6 v-if="globalStore.startQuestions[globalStore.startQuestion].description & globalStore.startQuestion !== 14">{{ globalStore.startQuestions[globalStore.startQuestion].description }}</h6>
       <div class="start__form">
         <div class="start__buttons">
           <button
             type="button"
             v-for="item in globalStore.startQuestions[globalStore.startQuestion].answers"
             class="btn"
-            :class="model === item ? 'btn-light' : 'btn-light_gray'"
+            :class="model === item ? 'btn-red' : 'btn-light_gray'"
             @click="setModel(item)"
             v-html="item"></button>
         </div>
@@ -21,6 +21,7 @@
             BACK
           </button>
         </div>
+        <div class="h9" v-if="globalStore.startQuestion === 14">{{ globalStore.startQuestions[globalStore.startQuestion].description }}</div>
       </div>
     </div>
   </section>
@@ -35,7 +36,9 @@ const model = ref<string>(''),
 
 const setModel = (val: string): void => {
   model.value = val
-  submit()
+  setTimeout(() => {
+    submit()
+  }, 500)
 }
 
 const submit = () => {

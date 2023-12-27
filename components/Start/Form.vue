@@ -1,8 +1,7 @@
 <template>
   <section class="start__step sex">
     <div class="container">
-      <h2>Ok great! You are eligible for treatment.</h2>
-      <h6>Please get started with your doctor visit by creating an account below. All the information you provide is legally required to provide medical care.</h6>
+      <h6><b>Please get started with your doctor visit by creating an account below. All the information you provide is legally required to provide medical care.</b></h6>
       <div class="start__form">
         <form @submit.prevent="submitForm" class="form">
           <FieldText
@@ -24,6 +23,7 @@
           <FieldGender
             v-model="gender"
             label="Gender*"
+            class="form__field-6"
             :required="true" />
 
           <FieldBirthday
@@ -32,12 +32,12 @@
             class="form__field-6"
             :required="true" />
 
-          <FieldStates
+<!--           <FieldStates
             v-model="state"
             label="State*"
             autocomplete="address-level1"
             class="form__field-6"
-            :required="true" />
+            :required="true" /> -->
 
 <!--           <FieldPhone
             v-model="phone"
@@ -82,8 +82,8 @@ const isLoading = ref<boolean>(false),
       firstName = ref<string>(''),
       lastName  = ref<string>(''),
       birthday  = ref<string>(''),
-      gender    = ref<string>('FEMALE'),
-      state     = ref<string>('AZ')
+      gender    = ref<string>('FEMALE')
+      // state     = ref<string>('AZ')
       // phone     = ref<string>('')
 
 const formFeedback = ref<string | null>(''),
@@ -138,7 +138,7 @@ const submitForm = () => {
 
   globalStore.setStartData('firstName', firstName.value)
   globalStore.setStartData('lastName', lastName.value)
-  globalStore.setStartData('state', state.value)
+  // globalStore.setStartData('state', state.value)
   globalStore.setStartData('birthday', birthday.value)
   // globalStore.setStartData('phone', phone.value)
 
@@ -157,20 +157,23 @@ const submitForm = () => {
   }
   h6{
     position: relative;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
   }
   &__secure{
     color: var(--dark-blue);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 4rem;
+    margin-top: res(16, 32);
     svg{
       margin-right: 1rem;
     }
   }
   &__desclaimer{
     color: var(--dark-grey);
-    margin-top: 16px;
+    margin-top: 10px;
     a{
       text-decoration: underline;
       color: var(--light-blue);

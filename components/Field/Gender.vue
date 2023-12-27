@@ -1,35 +1,12 @@
 <template>
   <div class="form__row">
-    <label v-if="label" for="field_birthday">{{ label }}</label>
+    <label v-if="label" for="field_gender">{{ label }}</label>
     <div class="form__field">
-      <div class="start__field">
-        <input
-          type="radio"
-          name="radioList"
-          value="FEMALE"
-          checked
-          @change="emit('update:modelValue', 'FEMALE')"
-          id="field_sex1" />
-        <label for="field_sex1" class="h7">FEMALE</label>
-      </div>
-      <div class="start__field">
-        <input
-          type="radio"
-          name="radioList"
-          value="MALE"
-          @change="emit('update:modelValue', 'MALE')"
-          id="field_sex2" />
-        <label for="field_sex2" class="h7">MALE</label>
-      </div>
-      <div class="start__field">
-        <input
-          type="radio"
-          name="radioList"
-          value="MALE"
-          @change="emit('update:modelValue', 'Not Specified')"
-          id="field_sex3" />
-        <label for="field_sex3" class="h7">Not Specified</label>
-      </div>
+      <select :value="props.modelValue" @change="emit('update:modelValue', $event.target.value)" id="field_gender">
+        <option value="MALE">MALE</option>
+        <option value="FEMALE">FEMALE</option>
+        <option value="Not Specified">Not Specified</option>
+      </select>
     </div>
   </div>
 </template>

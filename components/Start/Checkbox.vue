@@ -2,14 +2,14 @@
   <section class="start__step buttons">
     <div class="container">
       <h2>{{ globalStore.startQuestions[globalStore.startQuestion].question }}</h2>
-      <h6 v-if="globalStore.startQuestions[globalStore.startQuestion].description.length > 0">{{ globalStore.startQuestions[globalStore.startQuestion].description }}</h6>
+      <h6 v-if="globalStore.startQuestions[globalStore.startQuestion].description">{{ globalStore.startQuestions[globalStore.startQuestion].description }}</h6>
       <div class="start__form">
         <div class="start__buttons">
           <button
             type="button"
             v-for="item in globalStore.startQuestions[globalStore.startQuestion].answers"
             class="btn"
-            :class="model.includes(item) ? 'btn-light' : 'btn-light_gray'"
+            :class="model.includes(item) ? 'btn-red' : 'btn-light_gray'"
             @click="setModel(item)"
             v-html="item"></button>
         </div>
@@ -81,11 +81,17 @@ const back = (): void => {
     justify-content: center;
     button{
       margin-top: 0;
-      margin-bottom: 1rem;
-      min-width: 250px;
+      margin-bottom: res(8, 16);
+      @media(max-width:767px){
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+      @media(min-width:768px){
+        min-width: 250px;
+      }
       &:not(:first-child){
         @media(min-width:768px){
-          margin-left: 1rem;
+          margin-left: res(8, 16);
         }
       }
     }

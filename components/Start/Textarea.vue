@@ -2,13 +2,13 @@
   <section class="start__step textarea">
     <div class="container">
       <h2>{{ globalStore.startQuestions[globalStore.startQuestion].question }}</h2>
-      <h6>{{ globalStore.startQuestions[globalStore.startQuestion].description }}</h6>
+      <h6 v-if="globalStore.startQuestions[globalStore.startQuestion].description">{{ globalStore.startQuestions[globalStore.startQuestion].description }}</h6>
       <div class="start__form">
         <div class="start__field">
           <textarea
             id="field__text"
             v-model="model"
-            placeholder="FREE TEXT"></textarea>
+            placeholder="Enter here..."></textarea>
           <p class="start__error" v-if="error">{{ error }}</p>
         </div>
         <div class="start__group">

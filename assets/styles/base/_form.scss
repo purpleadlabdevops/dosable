@@ -52,10 +52,10 @@
     width: 100%;
     color: var(--dark-blue);
     text-align: left;
-    font-size: res(10, 12);
-    font-weight: 400;
+    font-size: res(12, 14);
+    font-weight: 600;
     line-height: 133.333%;
-    margin-bottom: res(4, 8);
+    margin-bottom: res(2, 4);
   }
   input, select{
     display: block;
@@ -86,7 +86,7 @@
     height: 56px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: res(32, 64);
+    margin-top: res(16, 32);
   }
   &__newsletter{
     max-width: 300px;

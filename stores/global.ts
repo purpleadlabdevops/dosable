@@ -22,7 +22,7 @@ interface IQuiz {
 
 interface IStartQuestions {[key: number]: {
   question: string
-  description: string
+  description?: string | null
   answers: string[]
   type: string
   condition?: any
@@ -105,7 +105,6 @@ export const useGlobalStore = defineStore({
     startQuestions: <IStartQuestions>{
       1: {
         question: 'What nail concerns are you experiencing?',
-        description: 'FIND WHAT’S RIGHT FOR YOU',
         answers: ['Thickening of the nail','Discoloration','Change in nail shape','Loosening/lifting of nail','Brittleness','Crumbling of nail edges','Other nail symptom','None of these'],
         type: 'checkbox',
         next: 2,
@@ -113,7 +112,6 @@ export const useGlobalStore = defineStore({
       },
       2: {
         question: 'What nail(s) are affected?',
-        description: 'FIND WHAT’S RIGHT FOR YOU',
         answers: ['One toenail','More than one toenail','All toenails','One fingernail','More than one fingernail','Fingernails and toenails are affected'],
         type: 'checkbox',
         next: 3,
@@ -121,9 +119,8 @@ export const useGlobalStore = defineStore({
       },
       3: {
         question: 'How long have you been experiencing these symptoms?',
-        description: 'FIND WHAT’S RIGHT FOR YOU',
         answers: ['<3 months','3-6 months','6-12 months','>12 months'],
-        type: 'checkbox',
+        type: 'radio',
         next: 4,
         value: ''
       },
@@ -145,7 +142,6 @@ export const useGlobalStore = defineStore({
       },
       6: {
         question: 'Have you been previously diagnosed with onychomycosis/ fungal infection of the nail(s) by a healthcare professional?',
-        description: 'FIND WHAT’S RIGHT FOR YOU',
         answers: ['Yes', 'No'],
         type: 'radio',
         next: 7,
@@ -178,7 +174,6 @@ export const useGlobalStore = defineStore({
       },
       10: {
         question: 'Are you currently pregnant, breastfeeding or planning to become pregnant in the next 3 to 6 months?',
-        description: 'FIND WHAT’S RIGHT FOR YOU',
         answers: ['Yes', 'No'],
         type: 'radio',
         next: 11,
@@ -194,7 +189,6 @@ export const useGlobalStore = defineStore({
       },
       12: {
         question: 'Do you have any allergies or intolerances to food, dyes, medications, antibiotics, or anything else.',
-        description: 'FIND WHAT’S RIGHT FOR YOU',
         answers: ['Yes', 'No'],
         type: 'radio',
         condition: 13,
@@ -213,7 +207,7 @@ export const useGlobalStore = defineStore({
         question: 'How long ago was your most recent check up with a physician?',
         description: 'Note: We do recommend that our patients have a primary healthcare provider that they see in person on regular basis. If you do not have a primary healthcare provider, you can visit Zocdoc or search federally qualified health centers to find one in your area.',
         answers: ['Within past year','Within 2 years','Within 3-5 years','Over 5 years ago'],
-        type: 'checkbox',
+        type: 'radio',
         next: 15,
         value: ''
       },
@@ -235,7 +229,6 @@ export const useGlobalStore = defineStore({
       },
       17: {
         question: 'Which one of the images below most closely resembles the appearance of your toe fungus?',
-        description: '',
         answers: ['a15-1', 'a15-2', 'a15-3', 'a15-4', 'a15-5'],
         type: 'images',
         next: 0,

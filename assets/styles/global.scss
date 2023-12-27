@@ -44,14 +44,22 @@ body::-webkit-scrollbar-thumb {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: res(140, 176);
-  padding-bottom: 50px;
+  padding-top: res(86, 130);
+  padding-bottom: res(30, 50);
   &__step{
     width: 100%;
     text-align: center;
-    padding: 50px 0 0;
+    padding: res(32, 50) 0 0;
     h2{
       margin-bottom: res(8, 32);
+      @media(max-width:575px){
+        font-size: 30px;
+      }
+    }
+    .btn{
+      @media(max-width:575px){
+        font-size: 14px;
+      }
     }
   }
   .container{
@@ -62,8 +70,11 @@ body::-webkit-scrollbar-thumb {
     color: var(--dark-blue);
   }
   h6, .h6{
-    margin-bottom: res(20, 50);
+    margin-bottom: res(16, 50);
     color: var(--dark-blue);
+    @media(max-width:767px){
+      font-size: 14px;
+    }
   }
   &__form{
     max-width: 600px;
@@ -134,7 +145,7 @@ body::-webkit-scrollbar-thumb {
       width: 100%;
       border: none;
       height: 150px;
-      padding: 16px 30px;
+      padding: res(8, 16) res(10, 30);
       resize: none;
       border-radius: .5rem;
       background: var(--light-gray);
@@ -167,7 +178,7 @@ body::-webkit-scrollbar-thumb {
     color: var(--dark);
   }
   &__group{
-    margin-top: 50px;
+    margin-top: res(24, 40);
     button{
       min-width: 300px;
       display: block;

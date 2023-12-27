@@ -27,8 +27,8 @@ const globalStore = useGlobalStore()
   z-index: 100;
   position: absolute;
   left: 0;
-  top: res(62, 97);
-  padding: 1.5rem 0;
+  top: res(50.2, 78.2);
+  padding: res(4, 16) 0;
   width: 100%;
   .container{
     display: flex;
@@ -58,7 +58,7 @@ const globalStore = useGlobalStore()
         border-radius: 10px;
       }
       span{
-        background: var(--light-blue);
+        background: var(--red);
         height: 8px;
         border-radius: 10px;
         position: absolute;

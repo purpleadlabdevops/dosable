@@ -1,8 +1,10 @@
+const config = useRuntimeConfig();
+
 const getUrl = (object, endpoint) => {
   let urlParams = '';
-  object.ipAddress = process.env.K_IPAD
-  object.loginId = process.env.K_USER
-  object.password = process.env.K_PASS
+  object.ipAddress = config.K_IPAD
+  object.loginId = config.K_USER
+  object.password = config.K_PASS
   for(let item in object){
     urlParams += `${item}=${encodeURIComponent(object[item])}&`;
   }

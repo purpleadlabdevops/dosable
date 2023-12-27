@@ -641,19 +641,19 @@ const inputCardDate = (e: any): void => {
       background-size: res(20, 30);
       background-repeat: no-repeat;
       background-position: res(4, 8) center;
-      background-image: url('@/assets/card.svg');
+      background-image: url('@/assets/img/card.svg');
       @media(max-width:767px){
         width: 100%;
         margin-bottom: 4px;
       }
       &-mastercard{
-        background-image: url('@/assets/mastercard.svg');
+        background-image: url('@/assets/img/mastercard.svg');
       }
       &-visa{
-        background-image: url('@/assets/visa.svg');
+        background-image: url('@/assets/img/visa.svg');
       }
       &-jcb{
-        background-image: url('@/assets/jcb.svg');
+        background-image: url('@/assets/img/jcb.svg');
       }
     }
     &__date{

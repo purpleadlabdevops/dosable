@@ -16,8 +16,6 @@ jobs:
       env:
         host: ${{ secrets.HOST }}
       run: |
-        ${ host }
-        ${{ env.host }}
         echo KEY: '${ host }'
 
   # deploy:

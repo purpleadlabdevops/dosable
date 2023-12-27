@@ -16,7 +16,7 @@ jobs:
       env:
         host: ${{ secrets.HOST }}
       run: |
-        echo KEY: '${ host }'
+        ${ host }
 
   # deploy:
   #   runs-on: ubuntu-latest

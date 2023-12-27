@@ -7,7 +7,10 @@ export default defineNuxtConfig({
         lang: 'en'
       },
       link: [
-        { rel: 'icon', type: 'image/png', href: "/favicon.png" }
+        { rel:"apple-touch-icon", sizes:"180x180", href:"/img/apple-touch-icon.png" },
+        { rel:"icon", type:"image/png", sizes:"32x32", href:"/img/favicon-32x32.png" },
+        { rel:"icon", type:"image/png", sizes:"16x16", href:"/img/favicon-16x16.png" },
+        { rel:"manifest", href:"/img/site.webmanifest"}
       ],
       charset: 'utf-8',
       viewport: 'width=device-width, user-scalable=no, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0 user-scalable=0',
@@ -19,7 +22,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  plugins: ['~/plugins/maska', '~/plugins/windowWidth', ],
+  plugins: ['~/plugins/maska'],
   modules: ['@pinia/nuxt', 'nuxt3-meta-pixel'],
   facebook: {
     track: 'PageView',

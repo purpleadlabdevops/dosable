@@ -15,12 +15,12 @@ jobs:
       - name: Deploying
         uses: appleboy/ssh-action@master
         with:
-          host: 52.47.136.75
-          username: root
-          password: 1oko*g4aYD8O6jyR
+          host: ${{ env.HOST }}
+          username: ${{ env.USERNAME }}
+          password: ${{ env.PASSWORD }}
           script: |
-            cd /var/www/www-root/data/www/dosable.com
+            cd ${{ env.PATH }}
             git pull
             npm run build
             pm2 restart dosable.com
-            chown -R www-root:www-root /var/www/www-root/data/www/dosable.com/
+            chown -R ${{ env.USERNAME_MODE }}:${{ env.USERNAME_MODE }} ${{ env.PATH }}

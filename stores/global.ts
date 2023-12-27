@@ -20,10 +20,6 @@ interface IQuiz {
   }
 }
 
-interface IStart {
-  [key: string]: string
-}
-
 interface IStartQuestions {[key: number]: {
   question: string
   description: string
@@ -37,6 +33,12 @@ interface IStartQuestions {[key: number]: {
 export const useGlobalStore = defineStore({
   id: 'global',
   state: () => ({
+    width: <number>1200,
+    url: null,
+    campaignId: <number>21,
+    campaign: null,
+    sessionId: null,
+    orderId: null,
     products: <IProduct>{
       product_1: {
         name: 'Antifungal Power Pack (Extra Strength)',
@@ -96,10 +98,7 @@ export const useGlobalStore = defineStore({
     billingSame: true,
     progress: 0,
     quizData: <IQuiz>{},
-    startData: <IStart>{
-      birthday: '',
-      sex: '',
-    },
+    startData: <IQuiz>{},
     intake: <number>0,
     onboarding: <number>0,
     startQuestion: <number>1,
@@ -245,6 +244,32 @@ export const useGlobalStore = defineStore({
     }
   }),
   actions: {
+    setCampaign(obj: any){
+      this.campaign = obj
+      obj.products.forEach(product => {
+        if( this.products[product.clientProductId] ){
+          this.products[product.clientProductId].price = product.price
+          this.products[product.clientProductId].ID = product.campaignProductId
+        }
+        if( this.supplements[product.clientProductId] ){
+          this.supplements[product.clientProductId].price = product.price
+          this.supplements[product.clientProductId].ID = product.campaignProductId
+        }
+      })
+      console.dir(this.products)
+    },
+    setUrl(val: string){
+      this.url = val
+    },
+    setWidth(val: number){
+      this.width = val
+    },
+    setSessionId(val: string){
+      this.sessionId = val
+    },
+    setOrderId(val: string){
+      this.orderId = val
+    },
     changeProductsShip(val: string){
       this.productsShip = val
     },
@@ -276,8 +301,8 @@ export const useGlobalStore = defineStore({
     setQuizData(obj: IQuiz){
       this.quizData = obj
     },
-    setStartData(key: any, value: any){
-      this.startData[key] = value
+    setStartData(obj: IQuiz){
+      this.startData = obj
     },
     setIntake(val: number){
       this.intake = val

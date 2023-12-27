@@ -153,6 +153,7 @@
             class="btn btn-light_gray"
             type="button"
             v-for="(item, index) in triedItems"
+            :class="tried.includes(item) ? 'btn-light' : 'btn-light_gray'"
             :key="`step_7_${index}`"
             @click.prevent="chooseTried(item)">
             {{ item }}

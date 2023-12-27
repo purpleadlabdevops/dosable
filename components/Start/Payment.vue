@@ -4,7 +4,7 @@
       <div class="payment__head">
         <h2>Your doctor is waiting</h2>
         <div class="h7">Add a payment method to be used if treatment is prescribed (you will not be charged now).</div>
-        <div class="h9"><button class="payment__link" @click.prevent="openBilling" type="button">Why do you need my credit card information?</button></div>
+        <div class="h9"><button class="payment__link" @click.prevent="emit('step', 'billing')" type="button">Why do you need my credit card information?</button></div>
       </div>
       <div class="payment__cart">
         <div class="h8">Your Treatment if Prescribed</div>
@@ -41,13 +41,13 @@
         <div class="form__field">
           <div class="payment__card">
             <div class="payment__card__head">
-              <button class="payment__choose" @click.prevent="choosePayment('cc')">
-                <svg v-if="paymentType === 'cc'" xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.24323L7.03917 12L0 6.36759L1.32815 4.83746L6.74034 9.16686L14.3813 0L16 1.24323Z" fill="white"/></svg>
+              <button class="payment__choose">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.24323L7.03917 12L0 6.36759L1.32815 4.83746L6.74034 9.16686L14.3813 0L16 1.24323Z" fill="white"/></svg>
               </button>
               Credit or Debit Card
               <Image format="webp" name="cc" class="payment__banks" />
             </div>
-            <div class="payment__card__body" v-if="paymentType === 'cc'">
+            <div class="payment__card__body">
               <input
                 class="payment__card__number"
                 :class="detectedCard ? `payment__card__number-${detectedCard}` : false"
@@ -158,8 +158,11 @@
           </button>
         </div>
         <Transition name="slide">
-          <div class="form__field form__feedback" :class="'form__feedback-'+billingFormFeedback" v-if="billingFormFeedback">
-            {{ billingTextFeedback[billingFormFeedback] }}
+          <div
+            v-if="billingFormFeedback || konnektiveError"
+            class="form__field form__feedback"
+            :class="'form__feedback-'+billingFormFeedback"
+            v-html="konnektiveError ? konnektiveError : billingTextFeedback[billingFormFeedback]">
           </div>
         </Transition>
       </form>
@@ -227,6 +230,31 @@ const setFeedback = (type: string, status: any) => {
   }, 4000)
 }
 
+let startItem = {}
+Object.keys(globalStore.startQuestions).forEach(item => {
+  startItem[item] = {
+    value: globalStore.startQuestions[item].value,
+    question: globalStore.startQuestions[item].question
+  }
+  globalStore.setStartData(startItem)
+})
+console.log('quizData')
+console.dir(globalStore.quizData)
+console.log('startData')
+console.dir(globalStore.startData)
+
+const konnektiveError = ref<string | null>(null),
+      setKonnektiveError = (message) => {
+        let errorMessage = ''
+        Object.keys(message).forEach(item => {
+          errorMessage += ` ${item}: ${message[item]}`
+        })
+        konnektiveError.value = errorMessage
+        setTimeout(() => {
+          konnektiveError.value = null
+        }, 3000)
+      }
+
 const submitForm = async () => {
   billingLoading.value = true
   billingFormFeedback.value = null
@@ -284,7 +312,7 @@ const submitForm = async () => {
       city: billingCity.value,
       state: billingState.value,
       zip: billingZip.value,
-      phone: billingPhone.value
+      phone: Number(billingPhone.value.replace(/[^\dA-Z]/g, ''))
     })
   }
 
@@ -293,7 +321,7 @@ const submitForm = async () => {
   globalStore.changePayment({
     cardNumber: cardNumber.value.trim().replace(/[\s]/g, ''),
     cardMonth: cardDate.value.slice(0,2),
-    cardYear: cardDate.value.slice(-2),
+    cardYear: 2000+Number(cardDate.value.slice(-2)),
     cardSecurityCode: cardCode.value,
   })
 
@@ -310,34 +338,152 @@ const submitForm = async () => {
     }
   })
 
-  const { data } = await useFetch('/api/stripe', {
+  // const { data } = await useFetch('/api/stripe', {
+  //   method: 'post',
+  //   body: JSON.stringify({
+  //     productsShip: globalStore.productsShip,
+  //     shipping: globalStore.shipping,
+  //     billing: globalStore.billing,
+  //     payment: globalStore.payment,
+  //     products: productsArr,
+  //     amount: amount,
+  //   }),
+  //   onResponse({ request, response, options }) {
+  //     console.dir(response);
+  //     setFeedback('success', true)
+  //     globalStore.changeProgress(100)
+  //     nuxtApp.$fb.track('Purchase', {value: amount, currency: 'USD'})
+  //     console.log('GTM Purchase - '+ dataLayer.push({'event': 'Purchase'}) )
+  //     setTimeout(() => {
+  //       router.push({ path: "/thanks" })
+  //     }, 1000);
+  //   },
+  //   onResponseError({ request, response, options }) {
+  //     console.dir(response);
+  //     setFeedback('error', true)
+  //   }
+  // })
+
+  landersClicksImportKonnektive()
+
+}
+
+const landersClicksImportKonnektive = async () => {
+  console.log('Landers START')
+  const lander = await useFetch('/api/konnektive', {
     method: 'post',
     body: JSON.stringify({
-      productsShip: globalStore.productsShip,
-      shipping: globalStore.shipping,
-      billing: globalStore.billing,
-      payment: globalStore.payment,
-      products: productsArr,
-      amount: amount,
+      endpoint: '/landers/clicks/import',
+      params: {
+        campaignId: globalStore.campaignId,
+        pageType: "checkoutPage",
+        requestUri: window.location.href,
+        httpReferer: globalStore.url ? globalStore.url : window.location.href
+      }
     }),
-    onResponse({ request, response, options }) {
-      console.dir(response);
-      setFeedback('success', true)
-      globalStore.changeProgress(100)
-      nuxtApp.$fb.track('Purchase', {value: amount, currency: 'USD'})
-      console.log('GTM Purchase - '+ dataLayer.push({'event': 'Purchase'}) )
-      setTimeout(() => {
-        router.push({ path: "/thanks" })
-      }, 1000);
-    },
     onResponseError({ request, response, options }) {
       console.dir(response);
       setFeedback('error', true)
     }
   })
+
+  console.dir(lander)
+
+  if(lander.data.value.result !== 'SUCCESS'){
+    setKonnektiveError(lander.data.value.message)
+    return
+  }
+
+  globalStore.setSessionId(lander.data.value.message.sessionId)
+
+  leadsImportKonnektive()
 }
 
-const openBilling = () => emit('step', 'billing')
+const leadsImportKonnektive = async () => {
+  console.log('Leads START')
+  const lead = await useFetch('/api/konnektive', {
+    method: 'post',
+    body: JSON.stringify({
+      endpoint: '/leads/import',
+      params: {
+        campaignId: globalStore.campaignId,
+        pageType: 'leadPage',
+        sessionId: globalStore.sessionId,
+        emailAddress: 'max@geekex.com',
+        phoneNumber: globalStore.billing.phone,
+        billShipSame: globalStore.billingSame || true,
+        firstName: globalStore.billing.firstName,
+        lastName: globalStore.billing.lastName,
+        phoneNumber: globalStore.billing.phone,
+        address1: globalStore.billing.address,
+        address2: globalStore.billing.apartment,
+        city: globalStore.billing.city,
+        country: 'US',
+        postalCode: globalStore.billing.zip,
+        state: globalStore.billing.state,
+        shipFirstName: globalStore.shipping.firstName,
+        shipLastName: globalStore.shipping.lastName,
+        shipAddress1: globalStore.shipping.address,
+        shipAddress2: globalStore.shipping.apartment,
+        shipCity: globalStore.shipping.city,
+        shipCountry: 'US',
+        shipPostalCode: globalStore.shipping.zip,
+        shipState: globalStore.shipping.state,
+      }
+    }),
+    onResponseError({ request, response, options }) {
+      console.dir(response);
+      setFeedback('error', true)
+    }
+  })
+
+  console.dir(lead)
+  if(lead.data.value.result !== 'SUCCESS'){
+    setKonnektiveError(lead.data.value.message)
+    return
+  }
+
+  globalStore.setOrderId(lead.data.value.message.orderId)
+
+  orderImportKonnektive()
+}
+
+const orderImportKonnektive = async () => {
+  console.log('Order START')
+  const payment = await useFetch('/api/konnektive', {
+    method: 'post',
+    body: JSON.stringify({
+      endpoint: '/order/import',
+      params: {
+        orderId: globalStore.orderId,
+        sessionId: globalStore.sessionId,
+        campaignId: globalStore.campaignId,
+        httpReferer: globalStore.url ? globalStore.url : window.location.href,
+        paySource: 'CREDITCARD',
+        cardNumber: globalStore.payment.cardNumber,
+        cardMonth: globalStore.payment.cardMonth,
+        cardYear: globalStore.payment.cardYear,
+        cardSecurityCode: globalStore.payment.cardSecurityCode,
+        product1_id: 94, // ??????????????????????????????????????????????????????
+        product1_qty: 1, // ??????????????????????????????????????????????????????
+        couponCode: 'MGTEST100', // ??????????????????????????????????????????????
+      }
+    }),
+    onResponseError({ request, response, options }) {
+      console.dir(response);
+      setFeedback('error', true)
+    }
+  })
+
+
+  console.dir(payment)
+  if(payment.data.value.result !== 'SUCCESS'){
+    setKonnektiveError(payment.data.value.message)
+    return
+  }
+
+  console.dir(payment.data.value.message)
+}
 
 const changeBillingSame = () => globalStore.changeBillingSame(billingSame.value)
 
@@ -377,12 +523,6 @@ const inputCardDate = (e: any): void => {
   if(cardDate.value.length === 5){
     document.querySelector('.payment__card__code').focus()
   }
-}
-
-const paymentType = ref('cc')
-
-const choosePayment = type => {
-  paymentType.value = type
 }
 </script>
 

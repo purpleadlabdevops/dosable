@@ -44,6 +44,9 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     stripe_sk: process.env.STRIPE_SECRET_KEY_TEST,
+    K_IPAD: process.env.K_IPAD,
+    K_USER: process.env.K_USER,
+    K_PASS: process.env.K_PASS,
     public: {
       stripe_pk: process.env.STRIPE_PUBLIC_KEY_TEST,
     },

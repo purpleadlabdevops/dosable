@@ -58,6 +58,7 @@
                 v-maska
                 data-maska="#### #### #### ####"
                 placeholder="0000 0000 0000 0000"
+                inputmode="numeric"
                 pattern="[0-9]{10}" />
               <input
                 class="payment__card__date"
@@ -68,6 +69,7 @@
                 v-maska
                 data-maska="##/##"
                 placeholder="DD/MM"
+                inputmode="numeric"
                 pattern="[0-9]{10}" />
               <input
                 class="payment__card__code"
@@ -77,6 +79,7 @@
                 v-maska
                 :data-maska="['####', '###']"
                 placeholder="CVV"
+                inputmode="numeric"
                 pattern="[0-9]{10}" />
             </div>
           </div>
@@ -406,7 +409,7 @@ const leadsImportKonnektive = async () => {
         campaignId: globalStore.campaignId,
         pageType: 'leadPage',
         sessionId: globalStore.sessionId,
-        emailAddress: 'max@geekex.com',
+        emailAddress: globalStore.shipping.email,
         phoneNumber: globalStore.billing.phone,
         billShipSame: globalStore.billingSame || true,
         firstName: globalStore.billing.firstName,
@@ -446,24 +449,45 @@ const leadsImportKonnektive = async () => {
 
 const orderImportKonnektive = async () => {
   console.log('Order START')
+  let amount = 0
+
+  const orderParams = {
+    orderId: globalStore.orderId,
+    sessionId: globalStore.sessionId,
+    campaignId: globalStore.campaignId,
+    httpReferer: globalStore.url ? globalStore.url : window.location.href,
+    paySource: 'CREDITCARD',
+    cardNumber: globalStore.payment.cardNumber,
+    cardMonth: globalStore.payment.cardMonth,
+    cardYear: globalStore.payment.cardYear,
+    cardSecurityCode: globalStore.payment.cardSecurityCode
+  }
+
+  Object.keys(globalStore.products).forEach(productKey => {
+    if(globalStore.products[productKey].model){
+      orderParams.product1_id = globalStore.products[productKey].ID
+      amount = Number(globalStore.products[productKey].price)
+    }
+  })
+
+  Object.keys(globalStore.supplements).forEach(supplementKey => {
+    if(globalStore.supplements[supplementKey].model){
+      orderParams.product2_id = globalStore.supplements[supplementKey].ID
+      amount = amount + Number(globalStore.supplements[supplementKey].ID)
+    }
+  })
+
+  if(globalStore.shipping.email === 'max@geekex.com'){
+    orderParams.couponCode = 'MGTEST100'
+  }
+
+  console.dir(orderParams)
+
   const payment = await useFetch('/api/konnektive', {
     method: 'post',
     body: JSON.stringify({
       endpoint: '/order/import',
-      params: {
-        orderId: globalStore.orderId,
-        sessionId: globalStore.sessionId,
-        campaignId: globalStore.campaignId,
-        httpReferer: globalStore.url ? globalStore.url : window.location.href,
-        paySource: 'CREDITCARD',
-        cardNumber: globalStore.payment.cardNumber,
-        cardMonth: globalStore.payment.cardMonth,
-        cardYear: globalStore.payment.cardYear,
-        cardSecurityCode: globalStore.payment.cardSecurityCode,
-        product1_id: 94, // ??????????????????????????????????????????????????????
-        product1_qty: 1, // ??????????????????????????????????????????????????????
-        couponCode: 'MGTEST100', // ??????????????????????????????????????????????
-      }
+      params: orderParams
     }),
     onResponseError({ request, response, options }) {
       console.dir(response);
@@ -471,14 +495,20 @@ const orderImportKonnektive = async () => {
     }
   })
 
-
-  console.dir(payment)
   if(payment.data.value.result !== 'SUCCESS'){
     setKonnektiveError(payment.data.value.message)
     return
   }
 
   console.dir(payment.data.value.message)
+
+  setFeedback('success', true)
+  globalStore.changeProgress(100)
+  nuxtApp.$fb.track('Purchase', {value: amount, currency: 'USD'})
+  console.log('GTM Purchase - '+ dataLayer.push({'event': 'Purchase'}) )
+  setTimeout(() => {
+    router.push({ path: "/thanks" })
+  }, 1000);
 }
 
 const changeBillingSame = () => globalStore.changeBillingSame(billingSame.value)

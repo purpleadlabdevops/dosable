@@ -18,6 +18,12 @@
           autocomplete="family-name"
           class="form__field-6"
           :required="true" />
+        <FieldEmail
+          v-model="email"
+          label="Email*"
+          placeholder="Email"
+          autocomplete="email"
+          :required="true" />
         <FieldText
           v-model="address"
           label="Street Address*"
@@ -27,19 +33,21 @@
           :required="true" />
         <FieldText
           v-model="apartment"
-          label="Apartment/Suite"
-          placeholder="Apartment/Suite"
+          label="Apartment"
+          placeholder="Apartment"
           class="form__field-4"
           autocomplete="address-line2" />
         <FieldText
           v-model="city"
           label="City*"
           placeholder="City"
+          class="form__field-6"
           autocomplete="address-level2"
           :required="true" />
         <FieldStates
           v-model="state"
           label="State*"
+          class="form__field-6"
           autocomplete="address-level1"
           :required="true" />
         <FieldPhone
@@ -89,7 +97,8 @@ const isLoading = ref<boolean>(false),
       city      = ref<string>(''),
       state     = ref<string>(''),
       zip       = ref<string>(''),
-      phone     = ref<string>('')
+      phone     = ref<string>(''),
+      email     = ref<string>('')
 
 const formFeedback = ref<string | null>(''),
       textFeedback: { [key: string]: string; } = {
@@ -97,6 +106,7 @@ const formFeedback = ref<string | null>(''),
         success: 'Shipping information was saved.',
         incomplete: 'Please complete all required fields.',
         phone: 'Please enter a valid phone number.',
+        email: 'Please enter a valid email.',
       }
 
 const setFeedback = (type: string, status: any) => {
@@ -118,6 +128,7 @@ const submitForm = () => {
     || !state.value.trim()
     || !zip.value.trim()
     || !phone.value.trim()
+    || !email.value.trim()
     || !firstName.value.trim()
     || !lastName.value.trim()
   ){
@@ -140,6 +151,7 @@ const submitForm = () => {
     city: city.value,
     state: state.value,
     zip: zip.value,
+    email: email.value,
     phone: Number(phone.value.replace(/[^\dA-Z]/g, ''))
   })
   console.log('GTM Shipping - '+ dataLayer.push({'event': 'Shipping'}) )

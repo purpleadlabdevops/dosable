@@ -30,7 +30,7 @@ export default defineNuxtConfig({
     pixelId: '877878587355320',
     autoPageView: true,
     disabled: false,
-    debug: true
+    debug: false
   },
   css: ["~/assets/styles/global.scss"],
   vite: {

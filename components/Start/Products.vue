@@ -32,13 +32,32 @@ import { useGlobalStore } from '~/stores/global';
 const globalStore = useGlobalStore(),
       emit = defineEmits(['step'])
 
-const nextIdentify = (): void => {
-  let valid: boolean = true
-  const products = Object.values(globalStore.products).find(item => item.model === true)
-  if(!products){
-    alert(' Please select at least one product. Because of your medical history, it would not be safe to take Estrogen without Progesterone.')
-    return
+const getCampaign = async () => {
+  const { data } = await useFetch('/api/konnektive', {
+    method: 'post',
+    body: JSON.stringify({
+      endpoint: '/campaign/query',
+      params: {
+        campaignId: 21
+      }
+    }),
+    onResponseError({ request, response, options }) {
+      console.log('onResponseError')
+      console.dir(response)
+    }
+  })
+  console.dir(data.value)
+  if(data.value && data.value.result === 'SUCCESS'){
+    console.dir(data.value.message.data[21])
+    globalStore.setCampaign(data.value.message.data[21])
+  } else {
+    console.log('onResponseError')
+    console.dir(response)
   }
+}
+getCampaign()
+
+const nextIdentify = (): void => {
   console.log('GTM ProductSelection - '+ dataLayer.push({'event': 'ProductSelection'}) )
   emit('step', 'iinfo')
   globalStore.setOnboarding(20)

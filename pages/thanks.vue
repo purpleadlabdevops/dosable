@@ -7,6 +7,12 @@
   </section>
 </template>
 
+<script lang="ts" setup>
+definePageMeta({
+  layout: 'thanks'
+})
+</script>
+
 <style lang="scss" scoped>
 .thanks{
   display: flex;

@@ -44,9 +44,10 @@
         <h2>{{ averageH2 }}</h2>
         <div class="quiz__buttons">
           <button
-            class="btn btn-light_gray"
+            class="btn"
             type="button"
             v-for="(item, index) in averageItems"
+            :class="average.includes(item) ? 'btn-red' : 'btn-light_gray'"
             :key="`step_2_${index}`"
             @click.prevent="chooseAverage(item)">
             {{ item }}
@@ -60,9 +61,10 @@
         <h2 v-html="moodH2"></h2>
         <div class="quiz__buttons">
           <button
-            class="btn btn-light_gray"
+            class="btn"
             type="button"
             v-for="(item, index) in moodItems"
+            :class="mood.includes(item) ? 'btn-red' : 'btn-light_gray'"
             :key="`step_3_${index}`"
             @click.prevent="chooseMood(item)">
             {{ item }}
@@ -85,7 +87,7 @@
             class="btn"
             type="button"
             v-for="(item, index) in symptomsItems"
-            :class="symptoms.includes(item) ? 'btn-light' : 'btn-light_gray'"
+            :class="symptoms.includes(item) ? 'btn-red' : 'btn-light_gray'"
             :key="`step_4_${index}`"
             @click.prevent="chooseSymptoms(item)">
             {{ item }}
@@ -112,9 +114,10 @@
         <h2>{{ therapyH2 }}</h2>
         <div class="quiz__buttons">
           <button
-            class="btn btn-light_gray"
+            class="btn"
             type="button"
             v-for="(item, index) in therapyItems"
+            :class="therapy.includes(item) ? 'btn-red' : 'btn-light_gray'"
             :key="`step_6_${index}`"
             @click.prevent="chooseTherapy(item)">
             {{ item }}
@@ -134,23 +137,16 @@
         <h2>{{ triedH2 }}</h2>
         <div class="quiz__buttons">
           <button
-            class="btn btn-light_gray"
+            class="btn"
             type="button"
             v-for="(item, index) in triedItems"
-            :class="tried.includes(item) ? 'btn-light' : 'btn-light_gray'"
+            :class="tried.includes(item) ? 'btn-red' : 'btn-light_gray'"
             :key="`step_7_${index}`"
             @click.prevent="chooseTried(item)">
             {{ item }}
           </button>
         </div>
         <div class="quiz__buttons">
-          <button
-            type="button"
-            class="btn btn-red"
-            :disabled="tried.length === 0"
-            @click.prevent="nextStep(8)">
-            NEXT
-          </button>
           <button
             type="button"
             class="btn btn-light btn-red_text"
@@ -164,9 +160,10 @@
         <h2>{{ serumsH2 }}</h2>
         <div class="quiz__buttons">
           <button
-            class="btn btn-light_gray"
+            class="btn"
             type="button"
             v-for="(item, index) in serumsItems"
+            :class="serums.includes(item) ? 'btn-red' : 'btn-light_gray'"
             :key="`step_8_${index}`"
             @click.prevent="chooseSerums(item)">
             {{ item }}
@@ -183,8 +180,12 @@
       </div>
 
       <div class="quiz__step quiz__step-9" v-if="step === 9">
-        <h2>Thank You !</h2>
-        <h6>Great News! We think DOSABLE can help treat your toenail fungus. Based on your answers, you're eligible for a consultation with a doctor who can walk you through the next steps. You’ve taken the first step to clear, healthy nails with our transformative prescription nail serum!</h6>
+        <h2>Based on your answers you qualify for a free televisit</h2>
+        <h4>This is your first step for a fungus free life</h4>
+        <h5>Here are the next steps</h5>
+        <div class="h8">1. Answer some patient intake questions for your no cost doctor appointment.</div>
+        <div class="h8">2. Review and choose different medicine options</div>
+        <div class="h8">3. Get your prescriptions safely and discreetly mailed to your home</div>
         <nuxt-link
           class="btn btn-red"
           to="/start">
@@ -214,15 +215,14 @@ const nextStep = (index: number): void => {
   if(step.value === 2){
     console.log('GTM QuizStart - '+ dataLayer.push({'event': 'QuizStart'}) )
   }
-
+console.log([0, 9].includes(step.value))
+console.dir(layoutQuiz)
   if([0, 9].includes(step.value)){
-    headerDescription.style.display = 'none'
     headerQuiz.style.background = 'var(--light-blue2)'
-    console.log('includes - '+step.value)
+    layoutQuiz.style.background = 'var(--light-blue2)'
   } else {
-    headerDescription.style.display = 'block'
     headerQuiz.style.background = 'var(--white)'
-    console.log('includes - '+step.value)
+    layoutQuiz.style.background = 'var(--white)'
   }
 
   if(layoutQuiz !== null){
@@ -253,7 +253,9 @@ const average: Ref<string[]> = ref([]),
           return
         }
         average.value.push(val)
-        nextStep(3)
+        setTimeout(() => {
+          nextStep(3)
+        }, 500)
       }
 
 const mood = ref(''),
@@ -261,7 +263,9 @@ const mood = ref(''),
       moodItems = ['Yes', 'No'],
       chooseMood = (val: string): void => {
         mood.value = val;
-        nextStep(4)
+        setTimeout(() => {
+          nextStep(4)
+        }, 500)
       }
 
 const symptoms = ref<Array<string>>([]),
@@ -281,7 +285,9 @@ const therapy = ref(''),
       therapyItems = ['Yes', 'No'],
       chooseTherapy = (val: string) => {
         therapy.value = val;
-        nextStep(7)
+        setTimeout(() => {
+          nextStep(7)
+        }, 500)
       }
 
 const tried = ref(''),
@@ -289,6 +295,9 @@ const tried = ref(''),
       triedItems = ['Never','A little','Yes'],
       chooseTried = (val: string) => {
         tried.value = val;
+        setTimeout(() => {
+          nextStep(8)
+        }, 500)
       }
 
 const serums = ref(''),
@@ -296,11 +305,9 @@ const serums = ref(''),
       serumsItems = ['Yes', 'No'],
       chooseSerums = (val: string) => {
         serums.value = val;
-        nextStep(9)
-        const layoutQuiz = document.querySelector('.layout__quiz')
-        if(layoutQuiz !== null){
-          layoutQuiz.classList.add('layout__quiz-bg')
-        }
+        setTimeout(() => {
+          nextStep(9)
+        }, 500)
 
         const quizData = {
           // age: {
@@ -330,6 +337,16 @@ const serums = ref(''),
         }
         globalStore.setQuizData(quizData)
       }
+
+onMounted(() => {
+  // setTimeout(() => {
+    if(window.innerWidth < 768){
+      const pageQuiz = document.querySelector<HTMLElement>('.page__quiz')
+      pageQuiz.style.height = window.innerHeight+'px'
+      console.log(window.innerHeight)
+    }
+  // }, 0)
+})
 </script>
 
 <style lang="scss" scoped>
@@ -340,18 +357,30 @@ const serums = ref(''),
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(res(62.2, 78.2) + 100px) 0 100px;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  padding-top: res(60, 80);
   &__step{
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
     &-9{
-      h6{
-        max-width: 630px;
+      h2{
+        max-width: 700px;
         margin-left: auto;
         margin-right: auto;
+      }
+      h5{
+        margin: res(16, 32) 0 8px;
+      }
+      .h8{
+        text-align: left;
+        max-width: 570px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .btn{
+        margin-top: res(16, 32);
       }
     }
   }
@@ -365,13 +394,18 @@ const serums = ref(''),
         margin-top: res(8, 16);
       }
     }
+    & + .quiz__buttons{
+      .btn-red{
+        margin-top: res(16, 32);
+      }
+    }
   }
   &__group{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     max-width: 1000px;
-    margin-top: 3rem;
+    margin-top: res(24, 48);
     margin-left: auto;
     margin-right: auto;
     .btn{

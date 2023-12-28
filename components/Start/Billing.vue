@@ -59,14 +59,14 @@ onBeforeUnmount(() => {
   left: 0;
   top: 0;
   width: 100%;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   background: rgba(var(--light-blue-rgb), 0.5);
   z-index: 102;
   overflow: hidden;
   &__inner{
     width: calc(100% - 30px);
     margin-left: 100%;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     background: #fff;
     padding: 32px res(15, 32);
     transition: .5s ease;

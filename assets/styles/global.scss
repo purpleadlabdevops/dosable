@@ -1,31 +1,33 @@
 @import 'base/all';
 
-html, body {
-  padding: 0;
-  margin: 0;
-  overflow-x: hidden;
-  width: 100vw;
-  height: 100vh;
-  @media not all and (hover:hover) {
-    height: var(--app-height);
+// html, body {
+//   padding: 0;
+//   margin: 0;
+//   overflow-x: hidden;
+//   width: 100vw;
+//   height: 100vh;
+//   @media not all and (hover:hover) {
+//     height: var(--app-height);
+//   }
+// }
+
+// body{
+//   overflow-y: auto;
+// }
+
+@media(min-width:1200px){
+  body::-webkit-scrollbar {
+    width: 6px;
   }
-}
 
-body{
-  overflow-y: auto;
-}
+  body::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-body::-webkit-scrollbar {
-  width: 6px;
-}
-
-body::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: var(--dark-blue);    /* цвет бегунка */
-  border-radius: 3px;
+  body::-webkit-scrollbar-thumb {
+    background-color: var(--dark-blue);    /* цвет бегунка */
+    border-radius: 3px;
+  }
 }
 
 .container {
@@ -38,7 +40,7 @@ body::-webkit-scrollbar-thumb {
 
 .start{
   position: relative;
-  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
   overflow-y: auto;
   display: flex;
   flex-direction: column;

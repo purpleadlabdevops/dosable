@@ -358,7 +358,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   padding-top: res(60, 80);
   &__step{
     text-align: center;

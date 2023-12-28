@@ -48,7 +48,7 @@
             :required="true" /> -->
 
           <div class="form__field">
-            <button class="btn" type="submit" @click.prevent="submitForm">
+            <button class="btn btn-red" type="submit" @click.prevent="submitForm">
               {{ isLoading ? 'Loading...' : 'CONTINUE' }}
             </button>
           </div>
@@ -61,9 +61,6 @@
         <div class="h9 start__secure">
           <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_305_1633)"><path d="M4.42447 8.15582V8.27347H4.54212H10.3991H10.5167V8.15582V5.97297C10.5167 5.13824 10.2182 4.42252 9.62414 3.83236C9.03014 3.24223 8.31009 2.94593 7.47059 2.94593C6.63109 2.94593 5.91104 3.24223 5.31704 3.83236C4.723 4.42252 4.42447 5.13824 4.42447 5.97297V8.15582ZM2.34659 8.27347H2.46424V8.15582V5.97297C2.46424 4.61062 2.95417 3.44378 3.93969 2.46629C4.92369 1.4887 6.1003 1 7.47059 1C8.84096 1 10.0174 1.48706 11.0013 2.46616C11.9869 3.44534 12.477 4.61228 12.477 5.97297V8.15419V8.27184H12.5946H12.961C13.2359 8.27184 13.4639 8.36582 13.6552 8.55575C13.8469 8.74764 13.9412 8.97409 13.9412 9.24644V15.7917C13.9412 16.0642 13.8468 16.2904 13.6554 16.4806C13.4642 16.6706 13.2344 16.7647 12.961 16.7647H1.98012C1.70519 16.7647 1.47709 16.6707 1.28573 16.4806C1.09446 16.2905 1 16.0627 1 15.7917V9.24644C1 8.974 1.09439 8.74774 1.28573 8.55765C1.47702 8.3676 1.70674 8.27347 1.98012 8.27347H2.34659Z" fill="#083952" stroke="#083952" stroke-width="0.235294"/></g><defs><clipPath id="clip0_305_1633"><rect width="14" height="17" fill="white"/></clipPath></defs></svg>
           Any information you submit is encrypted within our secure platform.
-        </div>
-        <div class="h9 start__desclaimer">
-          By checking the above box, you agree to receive automated promotional messages. This agreement is not a condition of purchase. Message frequency varies. Reply STOP to opt-out or HELP for help. Message & data rates apply. For questions, please <nuxt-link target="_blank" to="/privacy">contact us. Privacy Policy</nuxt-link>.
         </div>
       </div>
     </div>
@@ -82,7 +79,7 @@ const isLoading = ref<boolean>(false),
       firstName = ref<string>(''),
       lastName  = ref<string>(''),
       birthday  = ref<string>(''),
-      gender    = ref<string>('FEMALE')
+      gender    = ref<string>('')
       // state     = ref<string>('AZ')
       // phone     = ref<string>('')
 
@@ -167,19 +164,11 @@ const submitForm = () => {
     justify-content: center;
     align-items: center;
     margin-top: res(16, 32);
-    svg{
-      margin-right: 1rem;
+    @media(max-width:767px){
+      font-size: 11px;
     }
-  }
-  &__desclaimer{
-    color: var(--dark-grey);
-    margin-top: 10px;
-    a{
-      text-decoration: underline;
-      color: var(--light-blue);
-      &:hover{
-        text-decoration: none;
-      }
+    svg{
+      margin-right: res(8, 16);
     }
   }
 }

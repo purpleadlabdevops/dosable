@@ -9,7 +9,7 @@
             type="button"
             v-for="item in globalStore.startQuestions[globalStore.startQuestion].answers"
             class="btn"
-            :class="model.includes(item) ? 'btn-red' : 'btn-light_gray'"
+            :class="model.includes(item) ? 'btn-gray_red' : 'btn-light_gray'"
             @click="setModel(item)"
             v-html="item"></button>
         </div>

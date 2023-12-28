@@ -47,9 +47,18 @@ export default defineNuxtConfig({
     K_IPAD: process.env.K_IPAD,
     K_USER: process.env.K_USER,
     K_PASS: process.env.K_PASS,
+    mysql: {
+      host: process.env.DB_HOST,
+      name: process.env.DB_NAME,
+      user: process.env.DB_USER,
+      pass: process.env.DB_PASS,
+      prefix: process.env.DB_PREFIX,
+    },
     public: {
       stripe_pk: process.env.STRIPE_PUBLIC_KEY_TEST,
     },
+  },
+  privateRuntimeConfig: {
   },
   nitro: {
     compressPublicAssets: true,

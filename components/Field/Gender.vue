@@ -3,6 +3,7 @@
     <label v-if="label" for="field_gender">{{ label }}</label>
     <div class="form__field">
       <select :value="props.modelValue" @change="emit('update:modelValue', $event.target.value)" id="field_gender">
+        <option selected default disabled>Choose Gender</option>
         <option value="MALE">MALE</option>
         <option value="FEMALE">FEMALE</option>
         <option value="Not Specified">Not Specified</option>

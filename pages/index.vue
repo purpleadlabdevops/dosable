@@ -35,9 +35,7 @@ const getCampaign = async () => {
       console.dir(response)
     }
   })
-  console.dir(data)
   if(data.value && data.value.result === 'SUCCESS'){
-    console.dir(data.value.message.data[21])
     globalStore.setCampaign(data.value.message.data[21])
   }
 }

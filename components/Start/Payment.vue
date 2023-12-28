@@ -230,6 +230,46 @@ const setFeedback = (type: string, status: any) => {
   }, 4000)
 }
 
+const changeBillingSame = () => globalStore.changeBillingSame(billingSame.value)
+
+const detectCardType = (number: any) => {
+  const re: { [key: string]: RegExp; } = {
+      electron: /^(4026|417500|4405|4508|4844|4913|4917)\d+$/,
+      maestro: /^(5018|5020|5038|5612|5893|6304|6759|6761|6762|6763|0604|6390)\d+$/,
+      dankort: /^(5019)\d+$/,
+      interpayment: /^(636)\d+$/,
+      unionpay: /^(62|88)\d+$/,
+      visa: /^4[0-9]{12}(?:[0-9]{3})?$/,
+      mastercard: /^5[1-5][0-9]{14}$/,
+      amex: /^3[47][0-9]{13}$/,
+      diners: /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/,
+      discover: /^6(?:011|5[0-9]{2})[0-9]{12}$/,
+      jcb: /^(?:2131|1800|35\d{3})\d{11}$/
+  }
+
+  for(let key in re) {
+    if(re[key].test(number)) {
+      return key
+    }
+  }
+}
+
+const detectedCard = ref<any>(false)
+
+const inputCardNumber = (e: any): void => {
+  const cleanNumber = cardNumber.value.trim().replace(/[\s]/g, '')
+  detectedCard.value = detectCardType(cleanNumber)
+  if(cardNumber.value.length === 19){
+    document.querySelector('.payment__card__date').focus()
+  }
+}
+
+const inputCardDate = (e: any): void => {
+  if(cardDate.value.length === 5){
+    document.querySelector('.payment__card__code').focus()
+  }
+}
+
 let startItem = {}
 Object.keys(globalStore.startQuestions).forEach(item => {
   startItem[item] = {
@@ -238,17 +278,17 @@ Object.keys(globalStore.startQuestions).forEach(item => {
   }
   globalStore.setStartData(startItem)
 })
-console.log('quizData')
-console.dir(globalStore.quizData)
-console.log('startData')
-console.dir(globalStore.startData)
 
 const konnektiveError = ref<string | null>(null),
       setKonnektiveError = (message) => {
         let errorMessage = ''
-        Object.keys(message).forEach(item => {
-          errorMessage += ` ${item}: ${message[item]}`
-        })
+        if(typeof message === 'string'){
+          errorMessage = message
+        } else {
+          Object.keys(message).forEach(item => {
+            errorMessage += ` ${item}: ${message[item]}`
+          })
+        }
         konnektiveError.value = errorMessage
         setTimeout(() => {
           konnektiveError.value = null
@@ -490,17 +530,22 @@ const orderImportKonnektive = async () => {
       params: orderParams
     }),
     onResponseError({ request, response, options }) {
+      console.log('onResponseError')
       console.dir(response);
       setFeedback('error', true)
     }
   })
 
   if(payment.data.value.result !== 'SUCCESS'){
+    console.log('!== SUCCESS')
+    console.dir(payment.data.value.message)
     setKonnektiveError(payment.data.value.message)
     return
   }
 
   console.dir(payment.data.value.message)
+
+  saveData() // save data to DB
 
   setFeedback('success', true)
   globalStore.changeProgress(100)
@@ -511,44 +556,29 @@ const orderImportKonnektive = async () => {
   }, 1000);
 }
 
-const changeBillingSame = () => globalStore.changeBillingSame(billingSame.value)
-
-const detectCardType = (number: any) => {
-  const re: { [key: string]: RegExp; } = {
-      electron: /^(4026|417500|4405|4508|4844|4913|4917)\d+$/,
-      maestro: /^(5018|5020|5038|5612|5893|6304|6759|6761|6762|6763|0604|6390)\d+$/,
-      dankort: /^(5019)\d+$/,
-      interpayment: /^(636)\d+$/,
-      unionpay: /^(62|88)\d+$/,
-      visa: /^4[0-9]{12}(?:[0-9]{3})?$/,
-      mastercard: /^5[1-5][0-9]{14}$/,
-      amex: /^3[47][0-9]{13}$/,
-      diners: /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/,
-      discover: /^6(?:011|5[0-9]{2})[0-9]{12}$/,
-      jcb: /^(?:2131|1800|35\d{3})\d{11}$/
-  }
-
-  for(let key in re) {
-    if(re[key].test(number)) {
-      return key
+const saveData = async () => {
+  console.log('--------------------DB START')
+  const { data } = await useFetch('/api/order', {
+    method: 'post',
+    body: JSON.stringify({
+      orderId: globalStore.orderId,
+      sessionId: globalStore.sessionId,
+      campaignId: globalStore.campaignId,
+      quizData: globalStore.quizData,
+      startData: globalStore.startData,
+      paymentData: globalStore.payment,
+      shipping: globalStore.payment,
+      billing: globalStore.payment
+    }),
+    onResponseError({ request, response, options }) {
+      console.log('DB onResponseError')
+      console.dir(response);
+      setFeedback('error', true)
     }
-  }
-}
+  })
 
-const detectedCard = ref<any>(false)
-
-const inputCardNumber = (e: any): void => {
-  const cleanNumber = cardNumber.value.trim().replace(/[\s]/g, '')
-  detectedCard.value = detectCardType(cleanNumber)
-  if(cardNumber.value.length === 19){
-    document.querySelector('.payment__card__date').focus()
-  }
-}
-
-const inputCardDate = (e: any): void => {
-  if(cardDate.value.length === 5){
-    document.querySelector('.payment__card__code').focus()
-  }
+  console.dir(data)
+  console.log('--------------------DB END')
 }
 </script>
 

@@ -5,10 +5,9 @@
         <h1>Enjoy Clear, Healthy, <span>Fungus-Free</span> Toenails</h1>
         <h4>Doctor-formulated topicals, with clinically proven ingredients, will have your nails growing clear again without painful surgery.</h4>
         <div class="banner__btn">
-          <nuxt-link class="btn btn-red" to="/start">Check Eligibility</nuxt-link>
-          <!-- <nuxt-link class="btn btn-red-border btn-white" to="/quiz">TAKE THE QUIZ</nuxt-link> -->
+          <nuxt-link class="btn btn-red" to="/quiz">Check Eligibility</nuxt-link>
         </div>
-        <ul class="banner__list" v-if="globalStore.width > 767">
+        <ul class="banner__list">
           <li
             v-for="item in bannerItems"
             v-html="item.icon + item.text">
@@ -21,9 +20,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useGlobalStore } from '~/stores/global';
-const globalStore = useGlobalStore()
-
 interface bannerItemType {
   icon: string
   text: string
@@ -90,7 +86,7 @@ const bannerItems: Array<bannerItemType> = [
   }
   &__btn{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     .btn{
       width: 100%;
@@ -113,9 +109,9 @@ const bannerItems: Array<bannerItemType> = [
     max-width: 650px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    @media(max-width:767px){
-      display: none;
+    justify-content: flex-start;
+    @media(min-width:768px){
+      justify-content: center;
     }
     li{
       width: 50%;
@@ -130,7 +126,6 @@ const bannerItems: Array<bannerItemType> = [
       text-transform: uppercase;
       @media(max-width:768px){
         width: 100%;
-        justify-content: center;
       }
       svg{
         margin-right: 8px;

@@ -69,7 +69,7 @@ export const useGlobalStore = defineStore({
         `,
         price: 0,
         img: 'product_2',
-        model: false
+        model: true
       },
       product_3: {
         name: 'Standard DOSABLE',

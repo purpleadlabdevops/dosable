@@ -44,7 +44,7 @@ const bannerItems: Array<bannerItemType> = [
 <style lang="scss" scoped>
 .banner{
   padding-top: res(100, 150);
-  padding-bottom: res(50, 150);
+  padding-bottom: res(50, 100);
   position: relative;
   overflow: hidden;
   .container{
@@ -73,7 +73,7 @@ const bannerItems: Array<bannerItemType> = [
     position: absolute;
     height: 100%;
     width: auto;
-    left: 30%;
+    left: 35%;
     top: 0;
     bottom: 0;
     max-width: none;

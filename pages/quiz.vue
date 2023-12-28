@@ -1,43 +1,6 @@
 <template>
   <div class="page page__quiz quiz">
     <div class="quiz__list">
-<!--       <div
-        class="quiz__step quiz__step-0"
-        v-if="step === 0">
-        <h2>Discover your best self, today.</h2>
-        <h6>FIND OUT IF Dosable IS RIGHT FOR YOU</h6>
-        <button
-          type="button"
-          class="btn btn-red"
-          @click="nextStep(2)">
-          Start quiz
-        </button>
-      </div> -->
-
-<!--       <div
-        class="quiz__step quiz__step-1"
-        v-if="step === 1">
-        <h2>{{ ageH2 }}</h2>
-        <h6>{{ ageH6 }}</h6>
-        <input
-          type="number"
-          v-model="age"
-          placeholder="Age"
-          min="18" max="99"
-          inputmode="numeric"
-          pattern="[0-9]*"
-          minlength="2"
-          maxlength="2"
-        />
-        <button
-          type="button"
-          class="btn btn-red"
-          :disabled="!age || age < 18"
-          @click.prevent="nextStep(2)">
-          continue
-        </button>
-      </div> -->
-
       <div
         class="quiz__step quiz__step-2"
         v-if="step === 2">
@@ -213,10 +176,14 @@ const nextStep = (index: number): void => {
   step.value = index
 
   if(step.value === 2){
-    console.log('GTM QuizStart - '+ dataLayer.push({'event': 'QuizStart'}) )
+    useGtm().trackEvent({
+      event: 'QuizStart',
+      label: 'QuizStart',
+      category: 'category',
+      action: 'click',
+    })
   }
-console.log([0, 9].includes(step.value))
-console.dir(layoutQuiz)
+
   if([0, 9].includes(step.value)){
     headerQuiz.style.background = 'var(--light-blue2)'
     layoutQuiz.style.background = 'var(--light-blue2)'
@@ -238,10 +205,6 @@ console.dir(layoutQuiz)
     behavior: "smooth",
   })
 }
-
-// const age = ref(),
-//       ageH2 = 'How old are you?',
-//       ageH6 = 'This helps us understand where you are in your journey.'
 
 const average: Ref<string[]> = ref([]),
       averageH2 = 'How do your toes feel on a day-to-day basis?',
@@ -310,10 +273,6 @@ const serums = ref(''),
         }, 500)
 
         const quizData = {
-          // age: {
-          //   value: age.value,
-          //   question: ageH2
-          // },
           average: {
             value: average.value,
             question: averageH2
@@ -337,16 +296,6 @@ const serums = ref(''),
         }
         globalStore.setQuizData(quizData)
       }
-
-onMounted(() => {
-  // setTimeout(() => {
-    if(window.innerWidth < 768){
-      const pageQuiz = document.querySelector<HTMLElement>('.page__quiz')
-      pageQuiz.style.height = window.innerHeight+'px'
-      console.log(window.innerHeight)
-    }
-  // }, 0)
-})
 </script>
 
 <style lang="scss" scoped>

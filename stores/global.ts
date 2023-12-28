@@ -2,14 +2,10 @@ import { defineStore } from 'pinia'
 
 interface IProduct { [key: string]: {
   name: string
-  title: string
-  list: string[]
   short: string
   long: string
   price: number
   img: string
-  save: number
-  best: boolean
   model: boolean
 }}
 
@@ -40,54 +36,70 @@ export const useGlobalStore = defineStore({
     sessionId: null,
     orderId: null,
     products: <IProduct>{
-      product_1: {
-        name: 'Antifungal Power Pack (Extra Strength)',
-        title: `For complete protection for your toes, the Antifungal Power Pack comes with`,
-        list: ['Extra strength DOSABLE,','Disposable nail files ','Anti-fungal supplement.'],
-        short: `This 30-day supply of Extra Strength DOSABLE is formulated to start killing your toenail fungus the moment it's applied. It's made of Itraconazole (1%), Fluconazole (5%), Ibuprofen (2%), Terbinafine (5%), and Tea Tree Oil (10%), and comes in a pen or dropper.`,
-        long: `This 30-day supply of Extra Strength DOSABLE is formulated to start killing your toenail fungus the moment it's applied. It's made of Itraconazole (1%), Fluconazole (5%), Ibuprofen (2%), Terbinafine (5%), and Tea Tree Oil (10%), and comes in a pen or dropper.<br><br>The disposable nail files keep your nails fresh without fear of re-infection. While the anti-fungal supplement is designed to support the growth of the nail matrix to produce stronger, and faster growing toenails.`,
-        price: 0,
-        img: 'product_1',
-        save: 25,
-        best: true,
-        model: true
-      },
       product_2: {
-        name: 'Extra Strength DOSABLE',
-        title: `Whether your toenail fungus is annoyingly stubborn, or you just want your issue dealt with quickly, this is the strongest formula available.`,
-        list: [],
-        short: `Far more effective than any OTC option, it uses 5 powerful ingredients to kill toenail fungus. It's made of Itraconazole (1%), Fluconazole (5%), Ibuprofen (2%), Terbinafine (5%), and Tea Tree Oil (10%), and comes in a pen or dropper.`,
-        long: ``,
+        name: 'Extra Strength Fungaid + FREE Supplement',
+        short: `
+          <div class="h8">Whether your toenail fungus is annoyingly stubborn, or you just want the issue dealt with quickly, this is our strongest formula available.</div>
+          <div class="h8">
+            Extra Strength Fungaid Provides:
+            <ul>
+              <li>Superior Nail Penetration</li>
+              <li>Reduced Discoloration</li>
+              <li>Reduced Nail Thickness</li>
+              <li>Fungal Wall Destruction</li>
+              <li>Protection Against Recurrence</li>
+            </ul>
+          </div>
+          <div class="h8">Far more effective than any OTC...</div>
+        `,
+        long: `
+          <div class="h8">Whether your toenail fungus is annoyingly stubborn, or you just want the issue dealt with quickly, this is our strongest formula available.</div>
+          <div class="h8">
+            Extra Strength Fungaid Provides:
+            <ul>
+              <li>Superior Nail Penetration</li>
+              <li>Reduced Discoloration</li>
+              <li>Reduced Nail Thickness</li>
+              <li>Fungal Wall Destruction</li>
+              <li>Protection Against Recurrence</li>
+            </ul>
+          </div>
+          <div class="h8">Far more effective than any OTC option, it uses 5 powerful ingredients to kill toenail fungus. A custom Rx compounded solution consisting of Itraconazole (1%), Fluconazole (5%), Ibuprofen (2%), Terbinafine (5%), and Tea Tree Oil (10%). Packaged in a convenient pen delivery system for maximum coverage and results.</div>
+          <div class="h8">Plus get a FREE 30-day supply of our oral Anti-Fungal supplement that supports your nail matrix cells to help fight off toenail fungus. It contains a combination of Vitamin B12, Biotin and MSM/Collagen to not only support nail health from the inside out but also help support the growth of the nail matrix to produce stronger, and faster growing toenails.</div>
+        `,
         price: 0,
         img: 'product_2',
-        save: 0,
-        best: false,
         model: false
       },
       product_3: {
         name: 'Standard DOSABLE',
-        title: `If you have a more mild form of toenail fungus, or if you want to try a lower dosage before you bring out the “big guns'' then the Standard DOSABLE may be the solution for you.`,
-        list: [],
-        short: `Designed with a mixture of Itraconazole (1%) and TeaTree Oil (10%), this formula will fight your toenail fungus to keep your toes looking their best.`,
-        long: ``,
+        short: `
+          <div class="h8">If you have a milder form of toenail fungus, or if you want a maintenance dose to try then the Standard FUNGAID may be the solution for you.</div>
+          <div class="h8">
+            Standard Fungaid Provides:
+            <ul>
+              <li>Great for year round maintenance</li>
+              <li>Extreme Nail Penetration</li>
+              <li>Reduces Discoloration</li>
+              <li>Reduces Nail Thickness</li>
+            </ul>
+          </div>
+        `,
+        long: `
+          <div class="h8">If you have a milder form of toenail fungus, or if you want a maintenance dose to try then the Standard FUNGAID may be the solution for you.</div>
+          <div class="h8">
+            Standard Fungaid Provides:
+            <ul>
+              <li>Great for year round maintenance</li>
+              <li>Extreme Nail Penetration</li>
+              <li>Reduces Discoloration</li>
+              <li>Reduces Nail Thickness</li>
+            </ul>
+          </div>
+          <div class="h8">Designed with a mixture of Itraconazole (1%) and TeaTree Oil (10%), this formula will fight your toenail fungus to keep your toes looking their best.</div>
+        `,
         price: 0,
         img: 'product_3',
-        save: 0,
-        best: false,
-        model: false
-      }
-    },
-    supplements: <IProduct>{
-      product_4: {
-        name: 'Anti-Fungal Supplement',
-        title: `The Anti-Fungal supplement supports nail health from the inside out, giving the nail matrix the needed help when fighting toenail fungus.`,
-        list: ['Extra strength DOSABLE,','Disposable nail files ','Anti-fungal supplement.'],
-        short: `This mix of Vitamin B12, Biotin and MSM/Collagen not only helps strengthen your nails but also helps promote new growth.`,
-        long: ``,
-        price: 0,
-        img: 'product_4',
-        save: 0,
-        best: false,
         model: false
       }
     },
@@ -244,12 +256,7 @@ export const useGlobalStore = defineStore({
           this.products[product.clientProductId].price = product.price
           this.products[product.clientProductId].ID = product.campaignProductId
         }
-        if( this.supplements[product.clientProductId] ){
-          this.supplements[product.clientProductId].price = product.price
-          this.supplements[product.clientProductId].ID = product.campaignProductId
-        }
       })
-      console.dir(this.products)
     },
     setUrl(val: string){
       this.url = val
@@ -285,11 +292,7 @@ export const useGlobalStore = defineStore({
       Object.keys(this.products).forEach(item => {
         this.products[item].model = false
       })
-      this.supplements['product_4'].model = ['product_2', 'product_3'].includes(key)
       this.products[key].model = true
-    },
-    changeSupplementsModel(key: any){
-      this.supplements[key].model = this.supplements[key].model ? false : true
     },
     setQuizData(obj: IQuiz){
       this.quizData = obj

@@ -4,13 +4,7 @@ const config = useRuntimeConfig();
 
 export default defineEventHandler(async event => {
   const body = await readBody(event);
-
-  // query(`SELECT * FROM ${config.mysql.prefix}orders`)
-  const checkExisting = await query(`SELECT EXISTS(SELECT * FROM ${config.mysql.prefix}orders WHERE orderId = '${body.orderId}')`)
-  console.log('-------------------- checkExisting')
-  console.dir( checkExisting )
-
-  return {
-    msg: 'Hello World!'
-  }
+  const date = new Date()
+  const insertOrder = await query(`INSERT INTO ${config.mysql.prefix}orders (created, orderId, sessionId, campaignId, quizData, startData, paymentData, shipping, billing) VALUES ('${date.getTime()}', '${ body.orderId }','${ body.sessionId }','${ body.campaignId }','${ body.quizData }','${ body.startData }','${ body.paymentData }','${ body.shipping }','${ body.billing }')`)
+  return insertOrder
 })

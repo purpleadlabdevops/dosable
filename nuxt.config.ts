@@ -18,19 +18,29 @@ export default defineNuxtConfig({
         { name: 'description', content: 'My amazing Dosable site.' }
       ],
       script: [
-        { src: '/js/gtm.js', async: true },
         { src: '/js/height.js', defer: true }
       ],
     },
   },
   plugins: ['~/plugins/maska'],
-  modules: ['@pinia/nuxt', 'nuxt3-meta-pixel'],
+  modules: ['@pinia/nuxt', 'nuxt3-meta-pixel', '@zadigetvoltaire/nuxt-gtm'],
   facebook: {
     track: 'PageView',
     pixelId: '877878587355320',
     autoPageView: true,
     disabled: false,
     debug: false
+  },
+  gtm: {
+    id: 'GTM-PBM4GRJX',
+    defer: false,
+    compatibility: false,
+    enabled: true,
+    debug: false,
+    loadScript: true,
+    enableRouterSync: true,
+    trackOnNextTick: false,
+    devtools: false
   },
   css: ["~/assets/styles/global.scss"],
   vite: {
@@ -57,8 +67,6 @@ export default defineNuxtConfig({
     public: {
       stripe_pk: process.env.STRIPE_PUBLIC_KEY_TEST,
     },
-  },
-  privateRuntimeConfig: {
   },
   nitro: {
     compressPublicAssets: true,

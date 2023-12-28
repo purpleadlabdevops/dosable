@@ -154,7 +154,14 @@ const submitForm = () => {
     email: email.value,
     phone: Number(phone.value.replace(/[^\dA-Z]/g, ''))
   })
-  console.log('GTM Shipping - '+ dataLayer.push({'event': 'Shipping'}) )
+
+  useGtm().trackEvent({
+    event: 'Shipping',
+    label: 'Shipping',
+    category: 'category',
+    action: 'click',
+  })
+
   emit('step', 'payment')
   globalStore.setOnboarding(80)
 }

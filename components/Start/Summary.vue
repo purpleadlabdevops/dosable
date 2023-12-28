@@ -10,7 +10,6 @@
       <Client-Only>
         <div class="products__list">
           <ProductRadio v-for="(product, index) in globalStore.products" :data="product" :ID="index" :key="index" />
-          <ProductCheckbox :data="globalStore.supplements.product_4" ID="product_4" />
         </div>
       </Client-Only>
       <div class="h8">You won't be charged for or shipped this prescription product unless a doctor prescribes it to you.</div>

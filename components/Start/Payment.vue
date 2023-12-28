@@ -18,16 +18,6 @@
           </div>
         </div>
 
-        <div class="payment__cart__item" v-for="product in globalStore.supplements" :class="`payment__cart__item-`+product.model">
-          <div class="payment__cart__info">
-            <div class="h7">{{ product.name }}</div>
-            <div class="h9">Ship every 3 months</div>
-          </div>
-          <div class="payment__cart__price">
-            <div class="h7">${{ getProductShip(product) }}.00/month</div>
-          </div>
-        </div>
-
         <div class="payment__cart__item payment__cart__item-last">
           <div class="payment__cart__info">
             <span>Online doctor visit & shipping</span>
@@ -510,13 +500,6 @@ const orderImportKonnektive = async () => {
     }
   })
 
-  Object.keys(globalStore.supplements).forEach(supplementKey => {
-    if(globalStore.supplements[supplementKey].model){
-      orderParams.product2_id = globalStore.supplements[supplementKey].ID
-      amount = amount + Number(globalStore.supplements[supplementKey].ID)
-    }
-  })
-
   if(globalStore.shipping.email === 'max@geekex.com'){
     orderParams.couponCode = 'MGTEST100'
   }
@@ -550,7 +533,12 @@ const orderImportKonnektive = async () => {
   setFeedback('success', true)
   globalStore.changeProgress(100)
   nuxtApp.$fb.track('Purchase', {value: amount, currency: 'USD'})
-  console.log('GTM Purchase - '+ dataLayer.push({'event': 'Purchase'}) )
+  useGtm().trackEvent({
+    event: 'Purchase',
+    label: 'Purchase',
+    category: 'category',
+    action: 'click',
+  })
   setTimeout(() => {
     router.push({ path: "/thanks" })
   }, 1000);
@@ -564,11 +552,11 @@ const saveData = async () => {
       orderId: globalStore.orderId,
       sessionId: globalStore.sessionId,
       campaignId: globalStore.campaignId,
-      quizData: globalStore.quizData,
-      startData: globalStore.startData,
-      paymentData: globalStore.payment,
-      shipping: globalStore.payment,
-      billing: globalStore.payment
+      quizData: JSON.stringify(globalStore.quizData),
+      startData: JSON.stringify(globalStore.startData),
+      paymentData: JSON.stringify(globalStore.payment),
+      shipping: JSON.stringify(globalStore.payment),
+      billing: JSON.stringify(globalStore.payment)
     }),
     onResponseError({ request, response, options }) {
       console.log('DB onResponseError')

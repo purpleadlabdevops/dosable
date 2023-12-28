@@ -141,7 +141,12 @@ const submitForm = () => {
 
   globalStore.setIntake(10)
 
-  console.log('GTM IntakeStart - '+ dataLayer.push({'event': 'IntakeStart'}) )
+  useGtm().trackEvent({
+    event: 'IntakeStart',
+    label: 'IntakeStart',
+    category: 'category',
+    action: 'click',
+  })
 
   emit('step', 'question')
 }

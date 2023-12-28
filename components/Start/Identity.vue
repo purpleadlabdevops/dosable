@@ -50,7 +50,12 @@ const changeFile = (event: Event): void => {
 }
 
 const next = (): void => {
-  console.log('GTM ID Upload - '+ dataLayer.push({'event': 'ID Upload'}) )
+  useGtm().trackEvent({
+    event: 'ID Upload',
+    label: 'ID Upload',
+    category: 'category',
+    action: 'click',
+  })
   emit('step', 'summary')
   globalStore.setOnboarding(40)
 }

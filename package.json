@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@zadigetvoltaire/nuxt-gtm": "^0.0.13",
     "nuxt": "^3.8.0",
     "sass": "^1.69.5",
     "typescript": "^5.3.3",

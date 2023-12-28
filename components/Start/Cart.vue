@@ -14,7 +14,6 @@
       <div class="h7">Preferred Treatment Type</div>
       <div class="products__list">
         <ProductRadio v-for="(product, index) in globalStore.products" :data="product" :ID="index" :key="index" />
-        <ProductCheckbox :data="globalStore.supplements.product_4" ID="product_4" />
       </div>
       <div class="cart__buttons">
         <button

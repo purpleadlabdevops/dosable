@@ -6,7 +6,6 @@
       <div class="h8">Choose a plan. Don't worry - you can tweak this later, and your doctor will review if this treatment is right for you.</div>
       <div class="products__list">
         <ProductRadio v-for="(product, index) in globalStore.products" :data="product" :ID="index" :key="index" />
-        <ProductCheckbox :data="globalStore.supplements.product_4" ID="product_4" />
       </div>
       <div class="start__group">
         <button
@@ -56,7 +55,12 @@ const getCampaign = async () => {
 getCampaign()
 
 const nextIdentify = (): void => {
-  console.log('GTM ProductSelection - '+ dataLayer.push({'event': 'ProductSelection'}) )
+  useGtm().trackEvent({
+    event: 'ProductSelection',
+    label: 'ProductSelection',
+    category: 'category',
+    action: 'click',
+  })
   emit('step', 'iinfo')
   globalStore.setOnboarding(20)
 }
@@ -66,6 +70,11 @@ const back = (): void => {
 }
 
 onMounted(() => {
-  console.log('GTM IntakeComplete - '+ dataLayer.push({'event': 'IntakeComplete'}) )
+  useGtm().trackEvent({
+    event: 'IntakeComplete',
+    label: 'IntakeComplete',
+    category: 'category',
+    action: 'click',
+  })
 })
 </script>

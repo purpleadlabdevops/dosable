@@ -49,7 +49,12 @@ if(process.client){
 
 onMounted(() => {
   setTimeout(() => {
-    dataLayer.push({'event': 'PageView'});
+    useGtm().trackEvent({
+      event: 'PageView',
+      label: 'PageView',
+      category: 'category',
+      action: 'click',
+    })
   }, 2000)
   globalStore.setUrl(window.location.href)
   getCampaign()

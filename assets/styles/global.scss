@@ -1,7 +1,7 @@
 @import 'base/all';
 
-section{
-  overflow: auto;
+.page > section{
+  overflow: hidden;
 }
 
 @media(min-width:1200px){

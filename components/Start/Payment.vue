@@ -368,34 +368,7 @@ const submitForm = async () => {
     }
   })
 
-  // const { data } = await useFetch('/api/stripe', {
-  //   method: 'post',
-  //   body: JSON.stringify({
-  //     productsShip: globalStore.productsShip,
-  //     shipping: globalStore.shipping,
-  //     billing: globalStore.billing,
-  //     payment: globalStore.payment,
-  //     products: productsArr,
-  //     amount: amount,
-  //   }),
-  //   onResponse({ request, response, options }) {
-  //     console.dir(response);
-  //     setFeedback('success', true)
-  //     globalStore.changeProgress(100)
-  //     nuxtApp.$fb.track('Purchase', {value: amount, currency: 'USD'})
-  //     console.log('GTM Purchase - '+ dataLayer.push({'event': 'Purchase'}) )
-  //     setTimeout(() => {
-  //       router.push({ path: "/thanks" })
-  //     }, 1000);
-  //   },
-  //   onResponseError({ request, response, options }) {
-  //     console.dir(response);
-  //     setFeedback('error', true)
-  //   }
-  // })
-
   landersClicksImportKonnektive()
-
 }
 
 const landersClicksImportKonnektive = async () => {
@@ -539,9 +512,9 @@ const orderImportKonnektive = async () => {
     category: 'category',
     action: 'click',
   })
-  setTimeout(() => {
-    router.push({ path: "/thanks" })
-  }, 1000);
+  // setTimeout(() => {
+  //   router.push({ path: "/thanks" })
+  // }, 1000);
 }
 
 const saveData = async () => {

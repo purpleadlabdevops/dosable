@@ -23,5 +23,6 @@ jobs:
             cd ${{ secrets.PATH }}
             git pull
             npm run build
-            pm2 restart dosable.com
             chown -R ${{ secrets.USERNAME_MODE }}:${{ secrets.USERNAME_MODE }} ${{ secrets.PATH }}
+            pm2 restart dosable.com
+            pm2 update

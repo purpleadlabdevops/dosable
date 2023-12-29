@@ -1,6 +1,6 @@
 import query from './query'
 
-// const config = useRuntimeConfig();
+const config = useRuntimeConfig();
 
 export default defineEventHandler(async event => {
   // const params = await getQuery(event);
@@ -9,6 +9,7 @@ export default defineEventHandler(async event => {
 
   return {
     status: 'success 1111111111',
+    prefix: config.mysql.prefix
     // msg: JSON.stringify(orderTable)
   }
 })

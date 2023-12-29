@@ -50,4 +50,8 @@ const changeContent = (): void => {
 const changeCheckbox = (id: string, model: boolean): void => {
   globalStore.changeProductModel(id, model)
 }
+
+if(globalStore.products['product_2'].price === 0 || globalStore.products['product_3'].price === 0){
+  getCampaign()
+}
 </script>

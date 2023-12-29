@@ -27,7 +27,7 @@ if(process.client){
   })
 }
 
-if(globalStore.products['product_2'].price === 0){
+if(globalStore.products['product_2'].price === 0 || globalStore.products['product_3'].price === 0){
   getCampaign()
 }
 

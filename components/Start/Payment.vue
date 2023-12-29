@@ -378,7 +378,7 @@ const landersClicksImportKonnektive = async () => {
     body: JSON.stringify({
       endpoint: '/landers/clicks/import',
       params: {
-        campaignId: globalStore.campaignId,
+        campaignId: useState('campaignId').value, //globalStore.campaignId,
         pageType: "checkoutPage",
         requestUri: window.location.href,
         httpReferer: globalStore.url ? globalStore.url : window.location.href
@@ -397,7 +397,9 @@ const landersClicksImportKonnektive = async () => {
     return
   }
 
-  globalStore.setSessionId(lander.data.value.message.sessionId)
+  // globalStore.setSessionId(lander.data.value.message.sessionId)
+  useState('sessionId', () => lander.data.value.message.sessionId)
+  console.log('sessionId --------- ' + useState('sessionId').value )
 
   leadsImportKonnektive()
 }
@@ -409,9 +411,9 @@ const leadsImportKonnektive = async () => {
     body: JSON.stringify({
       endpoint: '/leads/import',
       params: {
-        campaignId: globalStore.campaignId,
+        campaignId: useState('campaignId').value, // globalStore.campaignId,
         pageType: 'leadPage',
-        sessionId: globalStore.sessionId,
+        sessionId: useState('sessionId').value, // globalStore.sessionId,
         emailAddress: globalStore.shipping.email,
         phoneNumber: globalStore.billing.phone,
         billShipSame: globalStore.billingSame || true,
@@ -445,7 +447,8 @@ const leadsImportKonnektive = async () => {
     return
   }
 
-  globalStore.setOrderId(lead.data.value.message.orderId)
+  // globalStore.setOrderId(lead.data.value.message.orderId)
+  useState('orderId', () => lead.data.value.message.orderId)
 
   orderImportKonnektive()
 }
@@ -455,9 +458,9 @@ const orderImportKonnektive = async () => {
   let amount = 0
 
   const orderParams = {
-    orderId: globalStore.orderId,
-    sessionId: globalStore.sessionId,
-    campaignId: globalStore.campaignId,
+    orderId: useState('orderId').value, //globalStore.orderId,
+    sessionId: useState('sessionId').value, //globalStore.sessionId,
+    campaignId: useState('campaignId').value, //globalStore.campaignId,
     httpReferer: globalStore.url ? globalStore.url : window.location.href,
     paySource: 'CREDITCARD',
     cardNumber: globalStore.payment.cardNumber,
@@ -501,7 +504,8 @@ const orderImportKonnektive = async () => {
 
   console.dir(payment.data.value.message)
 
-  saveData() // save data to DB
+  saveOrder()
+  saveUser()
 
   setFeedback('success', true)
   globalStore.changeProgress(100)
@@ -512,34 +516,9 @@ const orderImportKonnektive = async () => {
     category: 'category',
     action: 'click',
   })
-  // setTimeout(() => {
-  //   router.push({ path: "/thanks" })
-  // }, 1000);
-}
-
-const saveData = async () => {
-  console.log('--------------------DB START')
-  const { data } = await useFetch('/api/order', {
-    method: 'post',
-    body: JSON.stringify({
-      orderId: globalStore.orderId,
-      sessionId: globalStore.sessionId,
-      campaignId: globalStore.campaignId,
-      quizData: JSON.stringify(globalStore.quizData),
-      startData: JSON.stringify(globalStore.startData),
-      paymentData: JSON.stringify(globalStore.payment),
-      shipping: JSON.stringify(globalStore.payment),
-      billing: JSON.stringify(globalStore.payment)
-    }),
-    onResponseError({ request, response, options }) {
-      console.log('DB onResponseError')
-      console.dir(response);
-      setFeedback('error', true)
-    }
-  })
-
-  console.dir(data)
-  console.log('--------------------DB END')
+  setTimeout(() => {
+    router.push({ path: "/thanks" })
+  }, 1000);
 }
 </script>
 
@@ -553,8 +532,8 @@ const saveData = async () => {
     }
   }
   &__choose{
-    width: 24px;
-    height: 24px;
+    width: res(18, 24);
+    height: res(18, 24);
     background: var(--dark-blue);
     padding: 0;
     border: none;
@@ -563,6 +542,9 @@ const saveData = async () => {
     justify-content: center;
     align-items: center;
     margin-right: .75rem;
+    svg{
+      width: res(12, 16);
+    }
   }
   .form{
     margin-top: 40px;

@@ -5,7 +5,11 @@
       <div class="h7">Based on your symptoms and preference, Dosable Physician suggests...</div>
       <div class="h8">Choose a plan. Don't worry - you can tweak this later, and your doctor will review if this treatment is right for you.</div>
       <div class="products__list">
-        <ProductRadio v-for="(product, index) in globalStore.products" :data="product" :ID="index" :key="index" />
+        <ProductRadio
+          v-for="(product, index) in globalStore.products"
+          :data="product"
+          :ID="index"
+          :key="index" />
       </div>
       <div class="start__group">
         <button
@@ -30,29 +34,6 @@ import { useGlobalStore } from '~/stores/global';
 
 const globalStore = useGlobalStore(),
       emit = defineEmits(['step'])
-
-const getCampaign = async () => {
-  const { data } = await useFetch('/api/konnektive', {
-    method: 'post',
-    body: JSON.stringify({
-      endpoint: '/campaign/query',
-      params: {
-        campaignId: 21
-      }
-    }),
-    onResponseError({ request, response, options }) {
-      console.log('onResponseError')
-      console.dir(response)
-      return
-    }
-  })
-  console.dir(data)
-  if(data.value && data.value.result === 'SUCCESS'){
-    console.dir(data.value.message.data[21])
-    globalStore.setCampaign(data.value.message.data[21])
-  }
-}
-getCampaign()
 
 const nextIdentify = (): void => {
   useGtm().trackEvent({

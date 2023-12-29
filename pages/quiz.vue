@@ -175,8 +175,9 @@ const nextStep = (index: number): void => {
 
   step.value = index
 
+  const gtm: any = useGtm()
   if(step.value === 2){
-    useGtm().trackEvent({
+    gtm.trackEvent({
       event: 'QuizStart',
       label: 'QuizStart',
       category: 'category',
@@ -184,12 +185,14 @@ const nextStep = (index: number): void => {
     })
   }
 
-  if([0, 9].includes(step.value)){
-    headerQuiz.style.background = 'var(--light-blue2)'
-    layoutQuiz.style.background = 'var(--light-blue2)'
-  } else {
-    headerQuiz.style.background = 'var(--white)'
-    layoutQuiz.style.background = 'var(--white)'
+  if(headerQuiz !== null && layoutQuiz !== null){
+    if( [0, 9].includes(step.value)){
+      headerQuiz.style.background = 'var(--light-blue2)'
+      layoutQuiz.style.background = 'var(--light-blue2)'
+    } else {
+      headerQuiz.style.background = 'var(--white)'
+      layoutQuiz.style.background = 'var(--white)'
+    }
   }
 
   if(layoutQuiz !== null){

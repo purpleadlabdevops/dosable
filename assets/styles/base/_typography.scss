@@ -60,12 +60,15 @@ h6, .h6{
   font-style: normal;
   font-weight: 400;
   line-height: 1.2;
+  li{
+    font-size: 16px;
+  }
 }
 .h9{
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 133.333%;
+  line-height: 1.2;
 }
 
 p, .p{
@@ -76,7 +79,7 @@ p, .p{
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%;
+    line-height: 1.2;
     letter-spacing: 2.4px;
     text-transform: uppercase;
   }

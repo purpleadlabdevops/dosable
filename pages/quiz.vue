@@ -10,7 +10,7 @@
             class="btn"
             type="button"
             v-for="(item, index) in averageItems"
-            :class="average.includes(item) ? 'btn-red' : 'btn-light_gray'"
+            :class="average.includes(item) ? 'btn-gray_red' : 'btn-light_gray'"
             :key="`step_2_${index}`"
             @click.prevent="chooseAverage(item)">
             {{ item }}
@@ -27,7 +27,7 @@
             class="btn"
             type="button"
             v-for="(item, index) in moodItems"
-            :class="mood.includes(item) ? 'btn-red' : 'btn-light_gray'"
+            :class="mood.includes(item) ? 'btn-gray_red' : 'btn-light_gray'"
             :key="`step_3_${index}`"
             @click.prevent="chooseMood(item)">
             {{ item }}
@@ -50,7 +50,7 @@
             class="btn"
             type="button"
             v-for="(item, index) in symptomsItems"
-            :class="symptoms.includes(item) ? 'btn-red' : 'btn-light_gray'"
+            :class="symptoms.includes(item) ? 'btn-gray_red' : 'btn-light_gray'"
             :key="`step_4_${index}`"
             @click.prevent="chooseSymptoms(item)">
             {{ item }}
@@ -80,7 +80,7 @@
             class="btn"
             type="button"
             v-for="(item, index) in therapyItems"
-            :class="therapy.includes(item) ? 'btn-red' : 'btn-light_gray'"
+            :class="therapy.includes(item) ? 'btn-gray_red' : 'btn-light_gray'"
             :key="`step_6_${index}`"
             @click.prevent="chooseTherapy(item)">
             {{ item }}
@@ -103,7 +103,7 @@
             class="btn"
             type="button"
             v-for="(item, index) in triedItems"
-            :class="tried.includes(item) ? 'btn-red' : 'btn-light_gray'"
+            :class="tried.includes(item) ? 'btn-gray_red' : 'btn-light_gray'"
             :key="`step_7_${index}`"
             @click.prevent="chooseTried(item)">
             {{ item }}
@@ -126,7 +126,7 @@
             class="btn"
             type="button"
             v-for="(item, index) in serumsItems"
-            :class="serums.includes(item) ? 'btn-red' : 'btn-light_gray'"
+            :class="serums.includes(item) ? 'btn-gray_red' : 'btn-light_gray'"
             :key="`step_8_${index}`"
             @click.prevent="chooseSerums(item)">
             {{ item }}

@@ -8,7 +8,7 @@ export default defineEventHandler(async event => {
   // const orderTable = await query(`SELECT * FROM ${config.mysql.prefix}orders`)
 
   return {
-    status: 'success',
+    status: 'success 1111111111',
     // msg: JSON.stringify(orderTable)
   }
 })

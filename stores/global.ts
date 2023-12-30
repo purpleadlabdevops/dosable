@@ -31,10 +31,7 @@ export const useGlobalStore = defineStore({
   state: () => ({
     width: <number>1200,
     url: null,
-    campaignId: <number>21,
     campaign: null,
-    sessionId: null,
-    orderId: null,
     products: <IProduct>{
       product_2: {
         name: 'Extra Strength Fungaid + FREE Supplement',
@@ -263,12 +260,6 @@ export const useGlobalStore = defineStore({
     },
     setWidth(val: number){
       this.width = val
-    },
-    setSessionId(val: string){
-      this.sessionId = val
-    },
-    setOrderId(val: string){
-      this.orderId = val
     },
     changeProductsShip(val: string){
       this.productsShip = val

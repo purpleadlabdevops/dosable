@@ -1,35 +1,44 @@
 .layout__admin{
-  padding-left: calc(160px + 1rem);
+  padding-left: 3rem;
   padding-top: calc(48px + 1rem);
   padding-right: 1rem;
   padding-bottom: 1rem;
+  transition: .25s ease;
+  @media(min-width:768px){
+    padding-left: calc(160px + 1rem);
+  }
+  &-collapsed{
+    padding-left: 3rem;
+  }
   h1{
-    font-size: 40px;
+    font-size: res(32, 40);
     margin-bottom: 2rem;
   }
   h2{
-    font-size: 32px;
+    font-size: res(28, 32);
   }
   h3{
-    font-size: 28px;
+    font-size: res(24, 28);
   }
   h4{
-    font-size: 24px;
+    font-size: res(20, 24);
   }
   h5{
-    font-size: 20px;
+    font-size: res(18, 20);
   }
   h6{
-    font-size: 18px;
+    font-size: res(16, 18);
   }
   p{
-    font-size: 16px;
+    font-size: res(14, 16);
   }
+  &-modile{}
 }
 
 .admin{
   &__list{
     border: 1px solid var(--dark-blue);
+    border-radius: 4px;
     &-users{
       .admin__item-name{
         text-align: left;
@@ -42,13 +51,27 @@
     padding-right: 8px;
     display: flex;
     flex-wrap: wrap;
+    transition: background .2s ease;
     &:not(:first-child){
       border-top: 1px solid var(--dark-blue);
     }
     &:nth-child(odd){
-      background: #e9eef1;
+      background: rgba(var(--dark-blue-rgb), .05);
+    }
+    &:hover{
+      background: rgba(var(--light-blue-rgb), .5) !important;
+      cursor: pointer;
+      a{
+        color: var(--dark-blue);
+      }
     }
     &-head{
+      background: var(--dark-blue) !important;
+      color: var(--white);
+      &:hover{
+        background: var(--dark-blue) !important;
+        cursor: default;
+      }
       & > * {
         font-weight: 700;
         text-transform: uppercase;

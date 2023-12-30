@@ -146,7 +146,7 @@
           class="form__field-4"
           :required="true" />
         <div class="form__field payment__submit">
-          <button class="btn btn-red" type="submit" @click.prevent="submitForm">
+          <button class="btn btn-red" type="submit" :disabled="billingLoading" @click.prevent="submitForm">
             {{ billingLoading ? 'Loading...' : 'SUBMIT' }}
           </button>
         </div>

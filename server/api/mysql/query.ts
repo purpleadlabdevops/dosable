@@ -30,4 +30,4 @@ const query = sqlQuery => {
 export default query;
 
 // CREATE TABLE mg_orders (ID INT AUTO_INCREMENT, created VARCHAR(255), orderId VARCHAR(255), sessionId VARCHAR(255), campaignId VARCHAR(255), quizData TEXT, startData TEXT, paymentData TEXT, shipping TEXT, billing TEXT, PRIMARY KEY(ID))
-// CREATE TABLE mg_users (ID INT AUTO_INCREMENT, created VARCHAR(255), user_orders TEXT, user_email VARCHAR(255), user_phone VARCHAR(255), user_password VARCHAR(255), user_name VARCHAR(255), user_role INT(11), PRIMARY KEY(ID))
+// CREATE TABLE mg_users (ID INT AUTO_INCREMENT, created VARCHAR(255), user_orders TEXT, user_email VARCHAR(255) NOT NULL UNIQUE, user_phone VARCHAR(255), user_password VARCHAR(255), user_name VARCHAR(255), user_role INT(11), PRIMARY KEY(ID))

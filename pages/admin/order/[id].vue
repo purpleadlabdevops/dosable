@@ -105,9 +105,7 @@
         <div>Coming soon...</div>
       </div>
     </div>
-<!--     <div class="admin__row">
-      {{ order[0].paymentData }}
-    </div> -->
+<!--     <div class="admin__row">{{ order[0].paymentData }}</div> -->
   </div>
 </template>
 

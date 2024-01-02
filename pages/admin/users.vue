@@ -9,7 +9,7 @@
         <div class="admin__item-email">email</div>
         <div class="admin__item-phone">phone</div>
       </div>
-      <div class="admin__item" v-for="user in users">
+      <div class="admin__item" v-for="user in users" @click.prevent="router.push(`/admin/user/${user.ID}`)">
         <div class="admin__item-id">{{ user.ID }}</div>
         <div class="admin__item-name">{{ user.user_name }}</div>
         <div class="admin__item-order">
@@ -27,7 +27,13 @@ definePageMeta({
   layout: 'admin'
 })
 
+useHead({
+  title: 'Users'
+})
+
 const { data: users, refresh } = await useFetch(`/api/users`)
+
+const router = useRouter()
 </script>
 
 <style lang="scss" scoped></style>

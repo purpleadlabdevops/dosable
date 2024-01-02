@@ -114,4 +114,24 @@
       text-align: center;
     }
   }
+  &__row{
+    display: block;
+    &:not(:last-child){
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--dark-blue);
+    }
+    &-flex{
+      display: flex;
+      justify-content: space-between;
+      & > div{
+        width: calc(50% - 1rem);
+      }
+    }
+    &-item, p{
+      &:not(:last-child){
+        margin-bottom: .5rem;
+      }
+    }
+  }
 }

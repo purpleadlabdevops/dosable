@@ -8,6 +8,10 @@
 definePageMeta({
   layout: 'admin'
 })
+
+useHead({
+  title: 'Dashboard'
+})
 </script>
 
 <style lang="scss" scoped></style>

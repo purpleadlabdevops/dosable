@@ -22,7 +22,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  plugins: ['~/plugins/maska'],
+  plugins: ['~/plugins/maska', '~/plugins/chartjs'],
   modules: ['@pinia/nuxt', 'nuxt3-meta-pixel', '@zadigetvoltaire/nuxt-gtm'],
   facebook: {
     track: 'PageView',

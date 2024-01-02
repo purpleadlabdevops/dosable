@@ -9,14 +9,72 @@
       <h4>Quiz data:</h4>
       <div class="admin__row-item" v-for="item in JSON.parse(order[0].quizData)">
         {{ item.question }} <br>
-        <b>{{ item.value }}</b>
+        <b v-if="typeof item.value === 'string'">- {{ item.value }}</b>
+        <div v-else-if="typeof item.value === 'object'">
+          <b v-for="ans in item.value">- {{ ans }} <br></b>
+        </div>
+      </div>
+    </div>
+    <div class="admin__row">
+      <h4>Quiz data:</h4>
+      <table class="admin__table" v-if="winWidth > 992">
+        <thead>
+          <tr>
+            <th>question</th>
+            <th>answer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in JSON.parse(order[0].quizData)">
+            <td>{{ item.question }}</td>
+            <td>
+              <b v-if="typeof item.value === 'string'">- {{ item.value }}</b>
+              <span v-else-if="typeof item.value === 'object'">
+                <b v-for="ans in item.value">- {{ ans }} <br></b>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div v-else>
+        <div class="admin__row-item" v-for="item in JSON.parse(order[0].quizData)">
+          {{ item.question }} <br>
+          <b v-if="typeof item.value === 'string'">- {{ item.value }}</b>
+          <div v-else-if="typeof item.value === 'object'">
+            <b v-for="ans in item.value">- {{ ans }} <br></b>
+          </div>
+        </div>
       </div>
     </div>
     <div class="admin__row">
       <h4>Start quiz data:</h4>
-      <div class="admin__row-item" v-for="item in JSON.parse(order[0].startData)">
-        {{ item.question }} <br>
-        <b>{{ item.value }}</b>
+      <table class="admin__table" v-if="winWidth > 992">
+        <thead>
+          <tr>
+            <th>question</th>
+            <th>answer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in JSON.parse(order[0].startData)">
+            <td>{{ item.question }}</td>
+            <td>
+              <b v-if="typeof item.value === 'string'">- {{ item.value }}</b>
+              <span v-else-if="typeof item.value === 'object'">
+                <b v-for="ans in item.value">- {{ ans }} <br></b>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div v-else>
+        <div class="admin__row-item" v-for="item in JSON.parse(order[0].startData)">
+          {{ item.question }} <br>
+          <b v-if="typeof item.value === 'string'">- {{ item.value }}</b>
+          <div v-else-if="typeof item.value === 'object'">
+            <b v-for="ans in item.value">- {{ ans }} <br></b>
+          </div>
+        </div>
       </div>
     </div>
     <div class="admin__row admin__row-flex">
@@ -41,6 +99,12 @@
         </div>
       </div>
     </div>
+    <div class="admin__row admin__row-flex">
+      <div class="admin__row-item">
+        <h4>Cart and Total:</h4>
+        <div>Coming soon...</div>
+      </div>
+    </div>
 <!--     <div class="admin__row">
       {{ order[0].paymentData }}
     </div> -->
@@ -57,6 +121,15 @@ const { data: order, refresh } = await useFetch(`/api/order/?orderId=${route.par
 
 const filterDate = time => new Date(Number(time)).toLocaleString('en', {month: '2-digit', day: '2-digit', year: 'numeric'})
 const filterFormat = rangep => `$${rangep}`.replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1,')
+
+const winWidth = ref(1200)
+
+onMounted(() => {
+  winWidth.value = window.innerWidth
+  window.addEventListener('resize', () => {
+    winWidth.value = window.innerWidth
+  })
+})
 </script>
 
 <style lang="scss" scoped>

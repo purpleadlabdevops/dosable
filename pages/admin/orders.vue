@@ -1,7 +1,7 @@
 <template>
   <div class="page page__orders">
     <h1>Orders</h1>
-    <div class="admin__list">
+    <div class="admin__list admin__list-orders">
       <div class="admin__item admin__item-head">
         <div class="admin__item-id">id</div>
         <div class="admin__item-order">order</div>

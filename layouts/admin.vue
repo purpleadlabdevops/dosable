@@ -2,7 +2,9 @@
   <div class="layout layout__admin" :class="layoutClass">
     <AdminHeader />
     <AdminSidebar />
-    <slot />
+    <div class="layout__page">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -31,4 +33,7 @@ if(process.client){
 
 <style lang="scss">
 @import url("~/assets/styles/admin.scss");
+.layout__page{
+  max-width: 1200px;
+}
 </style>

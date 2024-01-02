@@ -39,7 +39,11 @@
   &__list{
     border: 1px solid var(--dark-blue);
     border-radius: 4px;
+    &-orders{
+      min-width: 650px;
+    }
     &-users{
+      min-width: 700px;
       .admin__item-name{
         text-align: left;
         margin-left: 0;
@@ -131,6 +135,58 @@
     &-item, p{
       &:not(:last-child){
         margin-bottom: .5rem;
+      }
+    }
+  }
+  &__table{
+    border: 1px solid var(--dark-blue);
+    width: 100%;
+    th, td {
+      border: 1px solid var(--dark-blue);
+      padding: 0.5rem;
+      &:first-child{
+        width: 60%;
+      }
+      &:last-child{
+        width: 40%;
+      }
+    }
+    th {
+      text-transform: uppercase;
+      background: var(--dark-blue);
+      color: var(--white);
+      &:first-child{
+        border-right-color: var(--white);
+      }
+    }
+  }
+  &__board{
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    h4{
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    &-item{
+      width: calc(50% - .5rem);
+      padding: res(4, 8);
+      background: var(--white);
+      box-shadow: res(1, 2) res(1, 2) res(2, 4) var(--dark-blue);
+      border-radius: res(4, 8);
+      text-align: center;
+      font-size: res(12, 16);
+      margin-bottom: 16px;
+      @media(min-width:768px){
+        margin-bottom: 0;
+        width: calc(25% - 1rem);
+      }
+      b{
+        text-align: center;
+        display: block;
+        font-size: res(24, 40);
+        font-weight: 400;
       }
     }
   }

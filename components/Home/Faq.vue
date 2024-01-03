@@ -11,7 +11,7 @@
           <div class="faq__answer p" v-html="item.a" v-if="itemIndex === index"></div>
         </Transition>
       </div>
-      <div class="faq__btn"><nuxt-link class="btn btn-red" to="/start">START MY FREE TELE-VISIT</nuxt-link></div>
+      <div class="faq__btn"><nuxt-link class="btn btn-red" to="/quiz">START MY FREE TELE-VISIT</nuxt-link></div>
     </div>
   </section>
 </template>

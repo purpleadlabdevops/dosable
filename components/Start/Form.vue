@@ -102,6 +102,10 @@ const setFeedback = (type: string, status: any) => {
   }, 4000)
 }
 
+onMounted(() => {
+  globalStore.setIntake(0)
+})
+
 const submitForm = () => {
   isLoading.value = true
   formFeedback.value = null

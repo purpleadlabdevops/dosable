@@ -64,6 +64,10 @@ export default defineNuxtConfig({
       pass: process.env.DB_PASS,
       prefix: process.env.DB_PREFIX,
     },
+    crypto: {
+      algorithm: process.env.crypto_algorithm,
+      secretKey: process.env.crypto_secretKey,
+    },
     public: {
       stripe_pk: process.env.STRIPE_PUBLIC_KEY_TEST,
     },

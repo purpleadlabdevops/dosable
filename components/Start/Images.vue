@@ -72,7 +72,7 @@ const submit = (): void => {
     return
   }
 
-  globalStore.setStartQuestionAnswer(globalStore.startQuestion, model.value)
+  globalStore.setStartQuestionAnswer(globalStore.startQuestion, model.value, 'next')
 
   model.value = ''
 
@@ -85,18 +85,18 @@ const submit = (): void => {
 }
 
 const back = (): void => {
-  if(globalStore.startQuestion === 1){
-    emit('step', 'form')
-    return
-  }
-  globalStore.setStartQuestion(globalStore.startQuestion - 1)
+  globalStore.setStartQuestionAnswer(globalStore.startQuestion, '', 'prev')
 }
+
+onMounted(() => {
+  globalStore.setIntake(95)
+})
 </script>
 
 <style lang="scss" scoped>
 .start{
   &__form {
-    max-width: 720px;
+    max-width: 600px;
   }
   &__images{
     display: flex;

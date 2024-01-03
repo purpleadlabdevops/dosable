@@ -144,11 +144,12 @@
 
       <div class="quiz__step quiz__step-9" v-if="step === 9">
         <h2>Based on your answers you qualify for a free televisit</h2>
-        <h4>This is your first step for a fungus free life</h4>
         <h5>Here are the next steps</h5>
-        <div class="h8">1. Answer some patient intake questions for your no cost doctor appointment.</div>
-        <div class="h8">2. Review and choose different medicine options</div>
-        <div class="h8">3. Get your prescriptions safely and discreetly mailed to your home</div>
+        <ul class="quiz__list">
+          <li>1. Answer some patient intake questions for your no cost doctor appointment.</li>
+          <li>2. Review and choose different medicine options</li>
+          <li>3. Get your prescriptions safely and discreetly mailed to your home</li>
+        </ul>
         <nuxt-link
           class="btn btn-red"
           to="/start">
@@ -321,15 +322,11 @@ const serums = ref(''),
         max-width: 700px;
         margin-left: auto;
         margin-right: auto;
+        font-size: res(26, 30);
       }
       h5{
         margin: res(16, 32) 0 8px;
-      }
-      .h8{
-        text-align: left;
-        max-width: 570px;
-        margin-left: auto;
-        margin-right: auto;
+        font-size: res(20, 25);
       }
       .btn{
         margin-top: res(16, 32);
@@ -365,6 +362,19 @@ const serums = ref(''),
       margin-bottom: res(8, 16);
       &:not(:first-child){
         margin-left: res(8, 16);
+      }
+    }
+  }
+  &__list{
+    text-align: left;
+    max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    li{
+      font-size: res(16, 22);
+      &:not(:first-child){
+        margin-top: 1rem;
       }
     }
   }

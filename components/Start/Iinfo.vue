@@ -33,16 +33,23 @@ const emit = defineEmits(['step'])
 
 <style lang="scss" scoped>
 .identity{
+  h2{
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
   .h7{
     max-width: 750px;
     margin-left: auto;
     margin-right: auto;
+    text-align: left;
   }
   .h8{
     color: var(--red);
-    margin-top: 5rem;
+    margin-top: 1rem;
     text-align: left;
-    max-width: 800px;
+    max-width: 750px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2rem;
@@ -55,11 +62,12 @@ const emit = defineEmits(['step'])
   }
   ul{
     margin-top: 1rem;
+    padding-left: 0;
     li{
       list-style: none;
       display: flex;
       align-items: center;
-      margin-bottom: 28px;
+      margin-bottom: 16px;
       span{
         width: 2rem;
         height: 2rem;

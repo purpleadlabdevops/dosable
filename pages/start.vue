@@ -8,8 +8,7 @@
     <StartImages   @step="setStep" v-if="step === 'question' && globalStore.startQuestions[globalStore.startQuestion].type === 'images'" />
     <StartProducts @step="setStep" v-if="step === 'products'" />
     <StartIinfo    @step="setStep" v-if="step === 'iinfo'" />
-    <StartIdentity @step="setStep" v-if="['identity', 'ideModal'].includes(step)" />
-    <StartIdeModal @step="setStep" v-if="step === 'ideModal'" />
+    <StartIdentity @step="setStep" v-if="step === 'identity'" />
     <StartSummary  @step="setStep" v-if="['summary', 'safety', 'cart'].includes(step)" />
     <StartCart     @step="setStep" v-if="step === 'cart'" />
     <StartSafety   @step="setStep" v-if="step === 'safety'" />

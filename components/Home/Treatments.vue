@@ -7,8 +7,8 @@
         <div class="treatments__info">
           <div class="treatments__title h5">{{ item.title }}</div>
           <div class="treatments__text p" v-html="item.text"></div>
-          <nuxt-link class="treatments__link h6" to="/start">
-            START TELE-VISIT
+          <nuxt-link class="treatments__link h6" to="/quiz">
+            START MY FREE TELE-VISIT
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><path d="M1.548 5.718c-.417.022-.82.175-1.12.51-.603.668-.568 1.706.101 2.309l11.954 10.765L24.471 8.537c.67-.603.704-1.64.102-2.31-.602-.669-1.64-.704-2.31-.102l-9.746 8.796-9.78-8.796a1.646 1.646 0 0 0-1.19-.407Z" stroke="0" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
           </nuxt-link>
         </div>
@@ -70,10 +70,10 @@ const items: Array<ItemType> = [
   &__link{
     position: absolute;
     left: 0; bottom: 0; right: 0;
-    color: var(--dark-blue);
     padding: 16px 16px 16px 104px;
-    background: var(--light-blue);
-    transition: 0.25s;
+    transition: .25s;
+    background-color: var(--red);
+    color: var(--white);
     svg{
       position: absolute;
       right: 30px;
@@ -81,16 +81,13 @@ const items: Array<ItemType> = [
       transform: translateY(-50%) rotate(-90deg);
       width: res(15, 25);
       height: auto;
+      path{
+        fill: var(--white);
+      }
     }
     &:hover{
-      background-color: var(--red);
-      color: var(--white);
+      background: var(--light-blue);
       text-decoration: none;
-      svg{
-        path{
-          fill: var(--white);
-        }
-      }
     }
   }
 }

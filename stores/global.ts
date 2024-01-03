@@ -69,7 +69,7 @@ export const useGlobalStore = defineStore({
         model: true
       },
       product_3: {
-        name: 'Standard DOSABLE',
+        name: 'Regular Strength Fungaid',
         short: `
           <div class="h8">If you have a milder form of toenail fungus, or if you want a maintenance dose to try then the Standard FUNGAID may be the solution for you.</div>
           <div class="h8">
@@ -117,6 +117,7 @@ export const useGlobalStore = defineStore({
         answers: ['Thickening of the nail','Discoloration','Change in nail shape','Loosening/lifting of nail','Brittleness','Crumbling of nail edges','Other nail symptom','None of these'],
         type: 'checkbox',
         next: 2,
+        prev: 1,
         value: ''
       },
       2: {
@@ -124,6 +125,7 @@ export const useGlobalStore = defineStore({
         answers: ['One toenail','More than one toenail','All toenails','One fingernail','More than one fingernail','Fingernails and toenails are affected'],
         type: 'checkbox',
         next: 3,
+        prev: 1,
         value: ''
       },
       3: {
@@ -131,6 +133,7 @@ export const useGlobalStore = defineStore({
         answers: ['<3 months','3-6 months','6-12 months','>12 months'],
         type: 'radio',
         next: 4,
+        prev: 2,
         value: ''
       },
       4: {
@@ -139,6 +142,7 @@ export const useGlobalStore = defineStore({
         answers: ['Redness/swelling <br>around the nail(s)', 'Pain of the affected <br>nail/toe(s)', 'Bleeding of the <br>affected nail', 'Pus or drainage <br>from the nail(s)', 'Dark black color of <br>the nail bed or surrounding skin', 'Rash on the skin <br>surrounding the affected nail', 'New bump/nodule/growth <br>under the nail or on toe', 'None of the above'],
         type: 'checkbox',
         next: 5,
+        prev: 3,
         value: ''
       },
       5: {
@@ -147,6 +151,7 @@ export const useGlobalStore = defineStore({
         answers: [],
         type: 'textarea',
         next: 6,
+        prev: 4,
         value: ''
       },
       6: {
@@ -154,6 +159,7 @@ export const useGlobalStore = defineStore({
         answers: ['Yes', 'No'],
         type: 'radio',
         next: 7,
+        prev: 5,
         value: ''
       },
       7: {
@@ -163,6 +169,7 @@ export const useGlobalStore = defineStore({
         type: 'textarea',
         condition: 8,
         next: 9,
+        prev: 6,
         value: ''
       },
       8: {
@@ -171,6 +178,7 @@ export const useGlobalStore = defineStore({
         answers: [],
         type: 'textarea',
         next: 9,
+        prev: 7,
         value: ''
       },
       9: {
@@ -179,6 +187,7 @@ export const useGlobalStore = defineStore({
         answers: [],
         type: 'textarea',
         next: 10,
+        prev: 8,
         value: ''
       },
       10: {
@@ -186,6 +195,7 @@ export const useGlobalStore = defineStore({
         answers: ['Yes', 'No'],
         type: 'radio',
         next: 11,
+        prev: 9,
         value: ''
       },
       11: {
@@ -194,6 +204,7 @@ export const useGlobalStore = defineStore({
         answers: [],
         type: 'textarea',
         next: 12,
+        prev: 10,
         value: ''
       },
       12: {
@@ -202,6 +213,7 @@ export const useGlobalStore = defineStore({
         type: 'radio',
         condition: 13,
         next: 14,
+        prev: 11,
         value: ''
       },
       13: {
@@ -210,6 +222,7 @@ export const useGlobalStore = defineStore({
         answers: [],
         type: 'textarea',
         next: 14,
+        prev: 12,
         value: ''
       },
       14: {
@@ -218,6 +231,7 @@ export const useGlobalStore = defineStore({
         answers: ['Within past year','Within 2 years','Within 3-5 years','Over 5 years ago'],
         type: 'radio',
         next: 15,
+        prev: 13,
         value: ''
       },
       15: {
@@ -226,21 +240,15 @@ export const useGlobalStore = defineStore({
         answers: [],
         type: 'textarea',
         next: 16,
+        prev: 14,
         value: ''
       },
       16: {
-        question: 'Here’s your first message to your doctor.',
-        description: 'Please introduce yourself and feel free to ask any questions you have about any medical problem you have which were not discussed above or include anything else you would like the doctor to know.',
-        answers: [],
-        type: 'textarea',
-        next: 17,
-        value: ''
-      },
-      17: {
         question: 'Which one of the images below most closely resembles the appearance of your toe fungus?',
         answers: ['a15-1', 'a15-2', 'a15-3', 'a15-4', 'a15-5'],
         type: 'images',
         next: 0,
+        prev: 15,
         value: ''
       }
     }
@@ -300,20 +308,30 @@ export const useGlobalStore = defineStore({
     setStartQuestion(value: any){
       this.startQuestion = value
     },
-    setStartQuestionAnswer(key: number, value: any){
-      this.startQuestions[key].value = value
-
+    setStartQuestionAnswer(key: number, value: any, type: string){
       const questionsCount = Object.keys(this.startQuestions).length
+
+      if(type === 'prev'){
+        this.setStartQuestion(this.startQuestions[key].prev)
+        this.startQuestions[this.startQuestions[key].prev].value = ''
+        this.setIntake((90 / questionsCount * this.startQuestions[key].prev) + 10)
+        return
+      }
+
       this.setIntake((90 / questionsCount * this.startQuestion) + 10)
+
+      this.startQuestions[key].value = value
 
       if(key === 12 && value === 'Yes'){
         this.setStartQuestion(this.startQuestions[key].condition)
         return
       }
+
       if( key === 7 && ['NONE', 'none', 'N/A', 'n/a', 'NA', 'na'].includes(value) ){
         this.setStartQuestion(this.startQuestions[key].condition)
         return
       }
+
       this.setStartQuestion(this.startQuestions[key].next)
     },
   }

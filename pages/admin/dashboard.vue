@@ -53,6 +53,9 @@ const chartOptions = ref({
   responsive: true,
   maintainAspectRatio: false,
 })
+
+console.log( encrypt( JSON.stringify({name: 'Max Globa', age: 33}) ) )
+console.log( decrypt( {iv: '0cf61a466767bc1796c76a8724785d81', content: '8ffaac4a14d5f23e8cae157c0e3a01c4d5fb0db40d2abf82ccd1dea1ce'} ) )
 </script>
 
 <style lang="scss" scoped>

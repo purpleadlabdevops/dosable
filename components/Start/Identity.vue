@@ -2,7 +2,7 @@
   <section class="start__step identity">
     <div class="container">
       <h2>Upload a photo of your ID</h2>
-      <div class="h7">n order to legally prescribe medications, we need a valid government-issued ID that matches your name and date of birth. <button class="identity__link" @click="emit('step', 'ideModal')">Why do you need this?</button></div>
+      <div class="h7">In order to legally prescribe medications, we need a valid government-issued ID that matches your name and date of birth.</div>
       <p>Acceptable Forms of ID</p>
       <ul>
         <li>Driver License</li>
@@ -69,14 +69,17 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .identity{
-  .h7{
-    max-width: 1045px;
+  .h7, h2, p{
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;
+    text-align: left;
+    margin-bottom: 1rem;
   }
   p{
-    margin-bottom: res(8, 32);
+    margin-bottom: res(8, 16);
+    text-align: left;
   }
   ul{
     max-width: 460px;
@@ -87,11 +90,12 @@ onMounted(() => {
       flex-wrap: wrap;
     }
     li{
-      list-style: none;
+      list-style: disc;
       text-align: left;
       @media(min-width:768px){
         width: 50%;
       }
+      margin-bottom: 0.5rem;
     }
   }
   &__security{
@@ -99,7 +103,7 @@ onMounted(() => {
     margin-top: 45px;
   }
   &__image{
-    max-width: 600px;
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -114,7 +118,7 @@ onMounted(() => {
     }
   }
   &__buttons{
-    max-width: 600px;
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
     @media(min-width:768px){

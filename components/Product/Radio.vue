@@ -16,6 +16,7 @@
       <div class="product__checkbox">
         <input
           @change="changeCheckbox(ID, data.model)"
+          @click="data.model ? submitEmit() : ''"
           type="radio"
           :value="data.model"
           name="products"
@@ -53,5 +54,9 @@ const changeCheckbox = (id: string, model: boolean): void => {
 
 if(globalStore.products['product_2'].price === 0 || globalStore.products['product_3'].price === 0){
   getCampaign()
+}
+
+const submitEmit = () => {
+  document.querySelector('.start__group button.btn-red').click()
 }
 </script>

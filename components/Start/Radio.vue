@@ -42,7 +42,7 @@ const setModel = (val: string): void => {
 }
 
 const submit = () => {
-  globalStore.setStartQuestionAnswer(globalStore.startQuestion, model.value)
+  globalStore.setStartQuestionAnswer(globalStore.startQuestion, model.value, 'next')
 
   setTimeout(() => {
     window.scrollTo({
@@ -59,7 +59,8 @@ const back = (): void => {
     emit('step', 'form')
     return
   }
-  globalStore.setStartQuestion(globalStore.startQuestion - 1)
+  // globalStore.setStartQuestion(globalStore.startQuestion - 1)
+  globalStore.setStartQuestionAnswer(globalStore.startQuestion, '', 'prev')
 }
 </script>
 

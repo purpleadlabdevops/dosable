@@ -165,6 +165,17 @@ const submitForm = () => {
   emit('step', 'payment')
   globalStore.setOnboarding(80)
 }
+
+onMounted(() => {
+  email.value = globalStore.startData.email
+  phone.value = globalStore.startData.phone
+  setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  }, 0)
+})
 </script>
 
 <style lang="scss">

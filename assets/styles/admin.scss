@@ -42,6 +42,9 @@
     border-radius: 4px;
     &-orders{
       min-width: 650px;
+      .admin__item-order {
+        width: 125px;
+      }
     }
     &-users{
       min-width: 700px;

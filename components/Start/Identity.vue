@@ -64,13 +64,19 @@ onMounted(() => {
   setTimeout(()=>{
     globalStore.changeProgress(10)
   }, 500)
+  setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  }, 0)
 })
 </script>
 
 <style lang="scss" scoped>
 .identity{
   .h7, h2, p{
-    max-width: 500px;
+    max-width: 530px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;
@@ -103,7 +109,7 @@ onMounted(() => {
     margin-top: 45px;
   }
   &__image{
-    max-width: 500px;
+    max-width: 530px;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -118,7 +124,7 @@ onMounted(() => {
     }
   }
   &__buttons{
-    max-width: 500px;
+    max-width: 530px;
     margin-left: auto;
     margin-right: auto;
     @media(min-width:768px){

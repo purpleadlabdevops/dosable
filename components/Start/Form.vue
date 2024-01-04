@@ -32,26 +32,35 @@
             class="form__field-6"
             :required="true" />
 
-<!--           <FieldStates
-            v-model="state"
-            label="State*"
-            autocomplete="address-level1"
+          <FieldEmail
+            v-model="email"
+            label="Email*"
+            placeholder="example@gmail.com"
+            autocomplete="email"
             class="form__field-6"
-            :required="true" /> -->
+            :required="true" />
 
-<!--           <FieldPhone
+          <FieldPhone
             v-model="phone"
             label="Phone*"
             placeholder="Phone Number"
             autocomplete="phone"
             class="form__field-6"
-            :required="true" /> -->
+            :required="true" />
+
+          <div class="form__field form__checkbox">
+            <input
+              id="agree"
+              type="checkbox"
+              v-model="agree" />
+            <label for="agree">I have read and agree to these <nuxt-link to="/terms" target="_blank">Terms & Conditions</nuxt-link> and <nuxt-link to="/privacy" target="_blank">Privacy Policy</nuxt-link></label>
+          </div>
 
           <div class="form__field">
             <button
               class="btn btn-red"
               type="submit"
-              :disabled="isLoading">
+              :disabled="isLoading || !agree">
               {{ isLoading ? 'Loading...' : 'CONTINUE' }}
             </button>
           </div>
@@ -82,9 +91,10 @@ const isLoading = ref<boolean>(false),
       firstName = ref<string>(''),
       lastName  = ref<string>(''),
       birthday  = ref<string>(''),
-      gender    = ref<string>('')
-      // state     = ref<string>('AZ')
-      // phone     = ref<string>('')
+      gender    = ref<string>(''),
+      email     = ref<string>(''),
+      phone     = ref<string>(''),
+      agree     = ref<boolean>(false)
 
 const formFeedback = ref<string | null>(''),
       textFeedback: { [key: string]: string; } = {
@@ -93,7 +103,7 @@ const formFeedback = ref<string | null>(''),
         incomplete: 'Please complete all required fields.',
         over: 'You must be over 21 years old.',
         older: `You mustn't be older than 80 years old.`,
-        // phone: 'Please enter a valid phone number.',
+        phone: 'Please enter a valid phone number.',
       }
 
 const setFeedback = (type: string, status: any) => {
@@ -133,18 +143,20 @@ const submitForm = () => {
     }
   }
 
-  // if (phone.value && phone.value.length < 15) {
-  //   setFeedback('phone', false)
-  //   return
-  // }
+  if (phone.value && phone.value.length < 15) {
+    setFeedback('phone', false)
+    return
+  }
 
   setFeedback('success', true)
 
-  globalStore.setStartData('firstName', firstName.value)
-  globalStore.setStartData('lastName', lastName.value)
-  // globalStore.setStartData('state', state.value)
-  globalStore.setStartData('birthday', birthday.value)
-  // globalStore.setStartData('phone', phone.value)
+  globalStore.setStartData({
+    firstName: firstName.value,
+    lastName: lastName.value,
+    email: email.value,
+    birthday: birthday.value,
+    phone: phone.value
+  })
 
   globalStore.setIntake(10)
 
@@ -182,6 +194,20 @@ const submitForm = () => {
     svg{
       margin-right: res(8, 16);
     }
+  }
+  .form__checkbox{
+    display: flex;
+    align-items: center;
+    label{
+      font-size: res(14, 16);
+      font-weight: 400;
+      color: var(--dark-blue);
+      margin: 0 0 0 8px;
+      a{
+        color: var(--red);
+      }
+    }
+    input[type="checkbox"]{}
   }
 }
 </style>

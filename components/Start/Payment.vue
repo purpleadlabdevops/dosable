@@ -520,6 +520,15 @@ const orderImportKonnektive = async () => {
     router.push({ path: "/thanks" })
   }, 1000);
 }
+
+onMounted(() => {
+  setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  }, 0)
+})
 </script>
 
 <style lang="scss" scoped>

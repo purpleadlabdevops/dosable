@@ -137,7 +137,8 @@ export const useGlobalStore = defineStore({
         value: ''
       },
       4: {
-        question: 'Some signs/symptoms can indicate that something other than fungus may be causing your nail symptoms. Have you experienced any of the following?',
+        // question: 'Some signs/symptoms can indicate that something other than fungus may be causing your nail symptoms. Have you experienced any of the following?',
+        question: 'Have you experienced any of the following?',
         description: 'select all that apply',
         answers: ['Redness/swelling <br>around the nail(s)', 'Pain of the affected <br>nail/toe(s)', 'Bleeding of the <br>affected nail', 'Pus or drainage <br>from the nail(s)', 'Dark black color of <br>the nail bed or surrounding skin', 'Rash on the skin <br>surrounding the affected nail', 'New bump/nodule/growth <br>under the nail or on toe', 'None of the above'],
         type: 'checkbox',

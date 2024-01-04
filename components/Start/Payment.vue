@@ -476,7 +476,7 @@ const orderImportKonnektive = async () => {
     }
   })
 
-  if(globalStore.shipping.email === 'max@geekex.com'){
+  if(['max@geekex.com', 'daniel@java.blue', 'dmitry@purpleadlab.com'].includes(globalStore.shipping.email)){
     orderParams.couponCode = 'MGTEST100'
   }
 

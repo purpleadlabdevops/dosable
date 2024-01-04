@@ -18,6 +18,7 @@ export default defineNuxtConfig({
         { name: 'description', content: 'My amazing Dosable site.' }
       ],
       script: [
+        { src: '/js/promt.js' },
         { src: '/js/height.js', defer: true }
       ],
     },
@@ -57,6 +58,7 @@ export default defineNuxtConfig({
     K_IPAD: process.env.K_IPAD,
     K_USER: process.env.K_USER,
     K_PASS: process.env.K_PASS,
+    mdp: process.env.MD5_PREFIX,
     mysql: {
       host: process.env.DB_HOST,
       name: process.env.DB_NAME,

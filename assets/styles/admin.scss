@@ -1,38 +1,39 @@
-.layout__admin{
-  padding-left: 3rem;
-  padding-top: calc(48px + 1rem);
-  padding-right: 1rem;
-  padding-bottom: 1rem;
-  transition: .25s ease;
-  @media(min-width:768px){
-    padding-left: calc(160px + 1rem);
-  }
-  &-collapsed{
+.layout{
+  &__admin{
     padding-left: 3rem;
+    padding-top: calc(48px + 1rem);
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    transition: .25s ease;
+    @media(min-width:768px){
+      padding-left: calc(160px + 1rem);
+    }
+    &-collapsed{
+      padding-left: 3rem;
+    }
+    h1{
+      font-size: res(32, 40);
+      margin-bottom: 2rem;
+    }
+    h2{
+      font-size: res(28, 32);
+    }
+    h3{
+      font-size: res(24, 28);
+    }
+    h4{
+      font-size: res(20, 24);
+    }
+    h5{
+      font-size: res(18, 20);
+    }
+    h6{
+      font-size: res(16, 18);
+    }
+    p{
+      font-size: res(14, 16);
+    }
   }
-  h1{
-    font-size: res(32, 40);
-    margin-bottom: 2rem;
-  }
-  h2{
-    font-size: res(28, 32);
-  }
-  h3{
-    font-size: res(24, 28);
-  }
-  h4{
-    font-size: res(20, 24);
-  }
-  h5{
-    font-size: res(18, 20);
-  }
-  h6{
-    font-size: res(16, 18);
-  }
-  p{
-    font-size: res(14, 16);
-  }
-  &-modile{}
 }
 
 .admin{
@@ -103,8 +104,11 @@
     &-name{
       margin-left: 1rem;
       font-weight: 600;
-      width: 120px;
+      width: 150px;
       text-align: right;
+    }
+    &-order{
+      width: 240px;
     }
     &-phone{
       margin-left: 1rem;

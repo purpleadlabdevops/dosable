@@ -48,7 +48,10 @@
             :required="true" /> -->
 
           <div class="form__field">
-            <button class="btn btn-red" type="submit" @click.prevent="submitForm">
+            <button
+              class="btn btn-red"
+              type="submit"
+              :disabled="isLoading">
               {{ isLoading ? 'Loading...' : 'CONTINUE' }}
             </button>
           </div>

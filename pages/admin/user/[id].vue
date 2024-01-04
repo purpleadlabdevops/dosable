@@ -1,6 +1,6 @@
 <template>
   <div class="page page__user">
-    <h1>User</h1>
+    <h1>User - {{ route.params.id }} - {{ user[0].ID }}</h1>
     <div class="admin__row">
       <p>date: <b>{{ filterDate(user[0].created) }}</b></p>
       <p>
@@ -25,11 +25,13 @@
 definePageMeta({
   layout: 'admin'
 })
+
 const route = useRoute()
 
-const { data: user, refresh } = await useFetch(`/api/users/?id=${route.params.id}`)
+const { data: user, refresh } = await useFetch(`/api/user/?id=${route.params.id}`)
 
 const filterDate = time => new Date(Number(time)).toLocaleString('en', {month: '2-digit', day: '2-digit', year: 'numeric'})
+
 const filterFormat = rangep => `$${rangep}`.replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1,')
 </script>
 

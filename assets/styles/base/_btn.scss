@@ -72,6 +72,10 @@
     color: var(--dark-blue);
     text-decoration: underline;
   }
+  &-red_link{
+    background: none;
+    color: var(--red);
+  }
   &:hover{
     text-decoration: none;
     box-shadow: 0 0.25em 0.25em -0.2em var(--dark-blue);

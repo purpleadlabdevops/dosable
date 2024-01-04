@@ -15,6 +15,7 @@
     <StartShipping @step="setStep" v-if="step === 'shipping'" />
     <StartPayment  @step="setStep" v-if="['payment', 'billing'].includes(step)" />
     <StartBilling  @step="setStep" v-if="step === 'billing'" />
+    <StartThanks   @step="setStep" v-if="step === 'thanks'" />
   </div>
 </template>
 
@@ -29,7 +30,7 @@ useHead({
   title: 'Start Free Visit'
 })
 
-const step = ref<string>('form'),
+const step = ref<string>('thanks'),
       globalStore = useGlobalStore()
 
 const setStep = (val: string): void => {

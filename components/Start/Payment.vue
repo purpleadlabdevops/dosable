@@ -517,7 +517,8 @@ const orderImportKonnektive = async () => {
     action: 'click',
   })
   setTimeout(() => {
-    router.push({ path: "/thanks" })
+    // router.push({ path: "/thanks" })
+    emit('step', 'thanks')
   }, 1000);
 }
 

@@ -36,7 +36,12 @@ export default defineEventHandler(async event => {
   }
   return result
 })
+/*
+Daniel
+email: daniel@java.blue
+pass: daniel123
 
-console.log('MG - ' + md5(prefix + '9J8iak45@'))
-console.log('Daniel - ' + md5(prefix + 'daniel123'))
-console.log('Dmitry - ' + md5(prefix + 'dmitry123'))
+Dmitry:
+email: dmitry@purpleadlab.com
+pass: dmitry123
+*/

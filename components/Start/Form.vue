@@ -49,10 +49,7 @@
             :required="true" />
 
           <div class="form__field form__checkbox">
-            <input
-              id="agree"
-              type="checkbox"
-              v-model="agree" />
+            <input id="agree" type="checkbox" v-model="agree" />
             <label for="agree">I have read and agree to these <nuxt-link to="/terms" target="_blank">Terms & Conditions</nuxt-link> and <nuxt-link to="/privacy" target="_blank">Privacy Policy</nuxt-link></label>
           </div>
 
@@ -148,6 +145,8 @@ const submitForm = () => {
     return
   }
 
+  saveUser(`${firstName.value} ${lastName.value}`, birthday.value, gender.value, email.value, Number(phone.value.replace(/[^\dA-Z]/g, '')))
+
   setFeedback('success', true)
 
   globalStore.setStartData({
@@ -155,7 +154,7 @@ const submitForm = () => {
     lastName: lastName.value,
     email: email.value,
     birthday: birthday.value,
-    phone: phone.value
+    phone: Number(phone.value.replace(/[^\dA-Z]/g, ''))
   })
 
   globalStore.setIntake(10)

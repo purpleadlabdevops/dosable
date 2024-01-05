@@ -505,7 +505,6 @@ const orderImportKonnektive = async () => {
   console.dir(payment.data.value.message)
 
   saveOrder()
-  saveUser()
 
   setFeedback('success', true)
   globalStore.changeProgress(100)

@@ -1,3 +1,20 @@
+/**
+ * @type function
+ * @name getPassword
+ * @description Password generation for new user.
+ * @columns ID: AUTO_INCREMENT
+            created: Number
+            user_orders: Array
+            user_email: String
+            user_phone: Number
+            user_password: String
+            user_name: String
+            user_role: Number
+            user_sessionId: Number
+            user_birthday: String
+            user_gender: String
+ */
+
 import query from '../mysql/query'
 import md5 from 'md5'
 
@@ -15,33 +32,23 @@ const getPassword = () => {
 }
 
 export default defineEventHandler(async event => {
-  const body = await readBody(event);
-
-  const date = new Date()
-
-  const pass = getPassword(), // this part we can send to user by email or to frontend
+  const body = await readBody(event),
+        date = new Date(),
+        time = date.getTime(),
+        pass = getPassword(), // this variable we can be sent to user by email or to frontend
         passHesh = md5(prefix + pass)
 
-  const existUser = await query(`SELECT * FROM ${config.mysql.prefix}users WHERE user_email = '${ body.user_email }'`)
+  const existUser = await query(`SELECT * FROM ${config.mysql.prefix}users WHERE user_email = '${ body.email }'`)
 
   let result
 
   if(existUser.length === 0){
-    result = await query(`INSERT INTO ${config.mysql.prefix}users (created, user_orders, user_email, user_phone, user_password, user_name, user_role) VALUES ('${date.getTime()}', '${ body.user_orders }', '${ body.user_email }', '${ body.user_phone }', '${ passHesh }', '${ body.user_name }', '${ body.user_role }')`)
+    result = await query(`INSERT INTO ${config.mysql.prefix}users (created, user_orders, user_email, user_phone, user_password, user_name, user_role, user_sessionId, user_birthday, user_gender) VALUES ('${ time }', '${ JSON.stringify([]) }', '${ body.email }', '${ body.phone }', '${ passHesh }', '${ body.name }', '${ 1 }', '${ time }', '${ body.birthday }', '${ body.gender }')`)
   } else {
-    let userOrders = JSON.parse(existUser[0].user_orders)
-    let clientUserOrders = JSON.parse(body.user_orders)
-    userOrders.push(...clientUserOrders)
-    result = await query(`UPDATE ${config.mysql.prefix}users SET user_orders = '${ JSON.stringify(userOrders) }' WHERE user_email = '${ body.user_email }'`)
+    result = await query(`UPDATE ${config.mysql.prefix}users SET user_sessionId = '${ time }' WHERE user_email = '${ body.email }'`)
   }
+
+  result.sessionId = time
+
   return result
 })
-/*
-Daniel
-email: daniel@java.blue
-pass: daniel123
-
-Dmitry:
-email: dmitry@purpleadlab.com
-pass: dmitry123
-*/

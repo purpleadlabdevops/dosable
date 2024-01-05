@@ -18,7 +18,7 @@ export default defineNuxtConfig({
         { name: 'description', content: 'My amazing Dosable site.' }
       ],
       script: [
-        { src: '/js/promt.js' },
+        // { src: '/js/promt.js' },
         { src: '/js/height.js', defer: true }
       ],
     },

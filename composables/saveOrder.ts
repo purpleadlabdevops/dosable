@@ -1,3 +1,9 @@
+/**
+ * @type function
+ * @name saveOrder
+ * @description POST request to api route /api/order.
+ */
+
 import { useGlobalStore } from '~/stores/global'
 
 export const saveOrder = async () => {

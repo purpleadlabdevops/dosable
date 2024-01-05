@@ -1,3 +1,8 @@
+/**
+ * @type function
+ * @name getCampaign
+ * @description POST request to api route /api/konnektive.
+ */
 import { useGlobalStore } from '~/stores/global'
 
 export const getCampaign = async () => {

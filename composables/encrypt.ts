@@ -1,4 +1,4 @@
-export const encrypt = text => {
+export const encrypt = (text: object) => {
   const Crypto = require('crypto')
   const config = useRuntimeConfig()
 

@@ -1,3 +1,8 @@
+/**
+ * @type POST
+ * @name /api/konnektive
+ * @description Post request to CRM Konnektive to get ccampaign data.
+ */
 const config = useRuntimeConfig();
 
 const getUrl = (object, endpoint) => {

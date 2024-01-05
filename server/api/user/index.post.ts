@@ -1,7 +1,7 @@
 /**
- * @type function
- * @name getPassword
- * @description Password generation for new user.
+ * @type POST
+ * @name /api/user
+ * @description DB request for insert or update user.
  * @columns ID: AUTO_INCREMENT
             created: Number
             user_orders: Array

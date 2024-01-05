@@ -14,14 +14,13 @@
           256-BIT TLS SECURITY
         </div>
       </div>
-      <h4>BILLING INFORMATION </h4>
-      <h3>Why do you need my credit card information? </h3>
-      <p>Winona’s physicians are on hand to review your medical information quickly in order to provide you with safe, accessible care so you can feel better right away. </p>
-      <p>We ask that you share your credit card information so that if the medication is approved by one of our doctors we can get it to you right away and to ensure that our patients are serious about the desire to receive treatment. </p>
-      <p>Your card will never be charged until treatment is prescribed. </p>
-      <h3> Shouldn’t I talk to a Winona doctor before purchasing treatment? </h3>
-      <p>Your Winona physician will never prescribe a treatment without first reviewing your medical history, and addressing any questions or concerns either of you may have. </p>
-      <p>Once you enter your credit card information you will be directed to your secure patient portal where you can directly message your doctor. If you have any additional questions, you can ask them at this step. </p>
+      <h3>BILLING DETAILS WHY IS CREDIT CARD INFORMATION REQUIRED?</h3>
+      <p>Winona's medical professionals are readily available to swiftly review your medical details, ensuring prompt and secure care for your immediate well-being.</p>
+      <p>We request your credit card information to facilitate a speedy delivery of approved medication and to verify the earnestness of our patients' commitment to receiving treatment.</p>
+      <p>Rest assured, your card will only be charged once a treatment plan is prescribed.</p>
+      <h3>SHOULD I CONSULT WITH A WINONA DOCTOR BEFORE MAKING A PURCHASE?</h3>
+      <p>Your Winona physician will meticulously assess your medical history and address any inquiries or concerns before recommending a treatment.</p>
+      <p>Upon entering your credit card information, you'll be directed to your secure patient portal for direct communication with your doctor. Feel free to pose any additional questions during this step.</p>
       <button
         type="button"
         class="btn"

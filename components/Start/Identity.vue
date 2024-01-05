@@ -1,9 +1,9 @@
 <template>
   <section class="start__step identity">
     <div class="container">
-      <h2>Upload a photo of your ID</h2>
-      <div class="h7">In order to legally prescribe medications, we need a valid government-issued ID that matches your name and date of birth.</div>
-      <p>Acceptable Forms of ID</p>
+      <h3>Upload a photo of your ID</h3>
+      <div class="h8">In order to legally prescribe medications, we need a valid government-issued ID that matches your name and date of birth.</div>
+      <div class="h8">Acceptable Forms of ID</div>
       <ul>
         <li>Driver License</li>
         <li>Passport</li>
@@ -75,20 +75,13 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .identity{
-  .h7, p{
+  .h8, p, h3{
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;
     text-align: left;
     margin-bottom: 1rem;
-  }
-  h2{
-    max-width: 800px;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
   }
   p{
     margin-bottom: res(8, 16);
@@ -98,6 +91,7 @@ onMounted(() => {
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: -.5rem;
     @media(min-width:768px){
       display: flex;
       flex-wrap: wrap;
@@ -105,15 +99,16 @@ onMounted(() => {
     li{
       list-style: disc;
       text-align: left;
+      font-size: 16px;
       @media(min-width:768px){
         width: 50%;
       }
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
     }
   }
   &__security{
     text-align: center;
-    margin-top: 45px;
+    margin-top: res(16, 32);
   }
   &__image{
     max-width: 600px;
@@ -123,8 +118,8 @@ onMounted(() => {
     margin-bottom: 20px;
     background-color: #f2f2f2;
     position: relative;
-    padding: res(15, 50) res(15, 60);
-    margin-top: 30px;
+    padding: res(16, 32) res(16, 32);
+    margin-top: 1.5rem;
     img{
       display: block;
       width: 100%;

@@ -196,7 +196,6 @@ const submitForm = () => {
   }
   .form__checkbox{
     display: flex;
-    align-items: center;
     label{
       font-size: res(14, 16);
       font-weight: 400;

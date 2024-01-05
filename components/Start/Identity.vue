@@ -75,20 +75,27 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .identity{
-  .h7, h2, p{
-    max-width: 530px;
+  .h7, p{
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;
     text-align: left;
     margin-bottom: 1rem;
   }
+  h2{
+    max-width: 800px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
   p{
     margin-bottom: res(8, 16);
     text-align: left;
   }
   ul{
-    max-width: 460px;
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
     @media(min-width:768px){
@@ -109,7 +116,7 @@ onMounted(() => {
     margin-top: 45px;
   }
   &__image{
-    max-width: 530px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -124,7 +131,7 @@ onMounted(() => {
     }
   }
   &__buttons{
-    max-width: 530px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     @media(min-width:768px){

@@ -50,7 +50,7 @@
 
           <div class="form__field form__checkbox">
             <input id="agree" type="checkbox" v-model="agree" />
-            <label for="agree">I have read and agree to these <nuxt-link to="/terms" target="_blank">Terms & Conditions</nuxt-link> and <nuxt-link to="/privacy" target="_blank">Privacy Policy</nuxt-link></label>
+            <label for="agree">I have read and agree to these <nuxt-link to="/terms" target="_blank">Terms & Conditions</nuxt-link>, <nuxt-link to="/privacy" target="_blank">Privacy Policy</nuxt-link> and <nuxt-link to="/telehealth" target="_blank">Telehealth Consent</nuxt-link></label>
           </div>
 
           <div class="form__field">

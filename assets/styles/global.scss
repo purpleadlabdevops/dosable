@@ -415,6 +415,9 @@
   h1{
     margin-bottom: 2.5rem;
   }
+  h2{
+    margin-bottom: 2.5rem;
+  }
   p{
     & + p{
       margin-top: 2rem;
@@ -438,6 +441,10 @@
   li{
     list-style: disc;
     margin-bottom: 1rem;
+    li{
+      list-style: circle;
+      margin-bottom: .5rem;
+    }
   }
   ul{
     padding-left: 2rem;

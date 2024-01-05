@@ -167,6 +167,8 @@ const submitForm = () => {
 }
 
 onMounted(() => {
+  firstName.value = globalStore.startData.firstName
+  lastName.value = globalStore.startData.lastName
   email.value = globalStore.startData.email
   phone.value = globalStore.startData.phone
   setTimeout(() => {

@@ -85,7 +85,7 @@ const submit = () => {
 <style lang="scss" scoped>
 .page__login{
   text-align: center;
-  max-width: 400px;
+  max-width: 430px;
   margin-left: auto;
   margin-right: auto;
   h1{

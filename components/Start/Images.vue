@@ -152,7 +152,7 @@ onMounted(() => {
       display: none;
     }
     svg{
-      width: res(35, 80);
+      width: res(20, 50);
       opacity: .5;
       path{
         fill: var(--white);

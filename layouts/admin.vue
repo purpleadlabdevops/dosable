@@ -10,7 +10,8 @@
 
 <script lang="ts" setup>
 import { useGlobalStore } from '~/stores/global';
-const globalStore = useGlobalStore()
+const globalStore = useGlobalStore(),
+      router = useRouter()
 
 useHead({
   titleTemplate: (titleChunk) => {
@@ -29,6 +30,17 @@ if(process.client){
     layoutClass.value = globalStore.width < 768 ? 'layout__admin-collapsed':''
   }, 0)
 }
+
+onBeforeMount(() => {
+  const sessionId = JSON.parse(sessionStorage.getItem('sessionId')),
+        sessionRole = JSON.parse(sessionStorage.getItem('sessionRole'))
+
+  if(typeof sessionId !== 'number' && typeof sessionRole !== 'number'){
+    if(sessionRole !== 0){
+      router.push('/admin/login')
+    }
+  }
+})
 </script>
 
 <style lang="scss">

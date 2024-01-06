@@ -12,4 +12,17 @@ useHead({
     return titleChunk ? `${titleChunk} | Dosable` : 'Dosable';
   }
 })
+
+const router = useRouter()
+
+onBeforeMount(() => {
+  const sessionId = JSON.parse(sessionStorage.getItem('sessionId')),
+        sessionRole = JSON.parse(sessionStorage.getItem('sessionRole'))
+
+  if(typeof sessionId !== 'number' && typeof sessionRole !== 'number'){
+    if(sessionRole !== 0){
+      router.push('/admin/login')
+    }
+  }
+})
 </script>

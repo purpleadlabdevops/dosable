@@ -70,7 +70,7 @@ const items: Array<ItemType> = [
   &__link{
     position: absolute;
     left: 0; bottom: 0; right: 0;
-    padding: 16px 16px 16px 104px;
+    padding: 16px 16px 16px res(16, 104);
     transition: .25s;
     background-color: var(--red);
     color: var(--white);

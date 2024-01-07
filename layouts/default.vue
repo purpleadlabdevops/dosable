@@ -21,7 +21,7 @@ onBeforeMount(() => {
 
   if(typeof sessionId !== 'number' && typeof sessionRole !== 'number'){
     if(sessionRole !== 0){
-      router.push('/admin/login')
+      router.push('/login')
     }
   }
 })

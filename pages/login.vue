@@ -104,15 +104,13 @@ onBeforeMount(() => {
   }
   .form{
     background: var(--light-blue2);
+    box-shadow: 0 4px 8px rgba(var(--dark-blue-rgb), .6);
     padding: 2rem;
     border-radius: 4px;
     max-width: 430px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    label{
-      color: var(--white);
-    }
     &__feedback{
       position: absolute;
       top: calc(100% + 1rem);

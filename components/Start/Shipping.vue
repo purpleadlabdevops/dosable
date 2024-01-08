@@ -167,10 +167,10 @@ const submitForm = () => {
 }
 
 onMounted(() => {
-  firstName.value = globalStore.startData.firstName
-  lastName.value = globalStore.startData.lastName
-  email.value = globalStore.startData.email
-  phone.value = globalStore.startData.phone
+  firstName.value = globalStore.userData.firstName
+  lastName.value = globalStore.userData.lastName
+  email.value = globalStore.userData.email
+  phone.value = globalStore.userData.phone
   setTimeout(() => {
     window.scrollTo({
       top: 0,

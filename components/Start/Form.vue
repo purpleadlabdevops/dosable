@@ -145,17 +145,13 @@ const submitForm = () => {
     return
   }
 
-  saveUser(`${firstName.value} ${lastName.value}`, birthday.value, gender.value, email.value, Number(phone.value.replace(/[^\dA-Z]/g, '')))
+  const cleanPhone = Number(phone.value.replace(/[^\dA-Z]/g, ''))
+
+  saveUser(`${firstName.value} ${lastName.value}`, birthday.value, gender.value, email.value, cleanPhone)
 
   setFeedback('success', true)
 
-  globalStore.setStartData({
-    firstName: firstName.value,
-    lastName: lastName.value,
-    email: email.value,
-    birthday: birthday.value,
-    phone: Number(phone.value.replace(/[^\dA-Z]/g, ''))
-  })
+  globalStore.setUserData(firstName.value, lastName.value, email.value, birthday.value, cleanPhone)
 
   globalStore.setIntake(10)
 

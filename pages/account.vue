@@ -2,7 +2,7 @@
   <section class="page page__account account">
     <div class="container">
       <div class="account__left">
-        <h2>Hi Ellen, we're so glad you're here.</h2>
+        <h2>Hi {{ globalStore.userData.firstName }}, we're so glad you're here.</h2>
         <h3>Here's what to expect in the next few days. If have any questions, you can always starts a consultation with your provider.</h3>
       </div>
       <div class="account__right">
@@ -50,11 +50,16 @@
 </template>
 
 <script lang="ts" setup>
+import { useGlobalStore } from '~/stores/global'
+
 definePageMeta({
   layout: 'account'
 })
 
 const more = ref<boolean>(false)
+
+const globalStore = useGlobalStore()
+console.dir(globalStore.userData)
 </script>
 
 <style lang="scss" scoped>

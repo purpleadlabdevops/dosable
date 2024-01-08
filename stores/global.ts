@@ -16,6 +16,14 @@ interface IQuiz {
   }
 }
 
+interface IUser {
+  firstName: string
+  lastName: string
+  email: string
+  birthday: string
+  phone: number
+}
+
 interface IStartQuestions {[key: number]: {
   question: string
   description?: string | null
@@ -107,7 +115,8 @@ export const useGlobalStore = defineStore({
     billingSame: true,
     progress: 0,
     quizData: <IQuiz>{},
-    startData: <IQuiz>{},
+    userData: <IUser>{},
+    startData: null,
     intake: <number>0,
     onboarding: <number>0,
     startQuestion: <number>1,
@@ -297,8 +306,15 @@ export const useGlobalStore = defineStore({
     setQuizData(obj: IQuiz){
       this.quizData = obj
     },
-    setStartData(obj: IQuiz){
+    setStartData(obj: any){
       this.startData = obj
+    },
+    setUserData(firstName: string, lastName: string, email: string, birthday: string, phone: number){
+      this.userData.firstName = firstName
+      this.userData.lastName = lastName
+      this.userData.email = email
+      this.userData.birthday = birthday
+      this.userData.phone = phone
     },
     setIntake(val: number){
       this.intake = val

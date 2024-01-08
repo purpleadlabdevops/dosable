@@ -190,18 +190,5 @@ const submitForm = () => {
       margin-right: res(8, 16);
     }
   }
-  .form__checkbox{
-    display: flex;
-    label{
-      font-size: res(14, 16);
-      font-weight: 400;
-      color: var(--dark-blue);
-      margin: 0 0 0 8px;
-      a{
-        color: var(--red);
-      }
-    }
-    input[type="checkbox"]{}
-  }
 }
 </style>

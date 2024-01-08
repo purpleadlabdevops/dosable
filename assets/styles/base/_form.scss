@@ -114,6 +114,24 @@
   &__small{
     font-size: 13px;
   }
+  &__checkbox{
+    display: flex;
+    align-items: center;
+    label{
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--dark-blue);
+      margin: 0 0 0 8px;
+      a{
+        color: var(--red);
+      }
+    }
+    input[type="checkbox"]{
+      margin: 0;
+      width: 20px;
+      height: 20px;
+    }
+  }
 }
 
 // .page__login{

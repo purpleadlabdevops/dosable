@@ -10,6 +10,7 @@
     <StartProducts @step="setStep" v-if="step === 'products'" />
     <StartIinfo    @step="setStep" v-if="step === 'iinfo'" />
     <StartIdentity @step="setStep" v-if="step === 'identity'" />
+    <StartCompl    @step="setStep" v-if="step === 'compl'" />
     <StartSummary  @step="setStep" v-if="['summary', 'cart'].includes(step)" />
     <StartCart     @step="setStep" v-if="step === 'cart'" />
     <StartShipping @step="setStep" v-if="step === 'shipping'" />

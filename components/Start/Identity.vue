@@ -56,7 +56,7 @@ const next = (): void => {
     category: 'category',
     action: 'click',
   })
-  emit('step', 'summary')
+  emit('step', 'compl')
   globalStore.setOnboarding(40)
 }
 

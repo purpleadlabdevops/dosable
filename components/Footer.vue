@@ -7,7 +7,7 @@
       <div class="footer__menu">
         <nuxt-link to="/about">About Us</nuxt-link>
         <nuxt-link to="/privacy">Privacy Policy</nuxt-link>
-        <nuxt-link to="/terms">Terms Of Use</nuxt-link>
+        <nuxt-link to="/terms">Terms of Service</nuxt-link>
       </div>
     </div>
   </footer>

@@ -70,16 +70,21 @@ const back = (): void => {
 
 <style lang="scss" scoped>
 .products{
+  .h8{
+    margin-bottom: 0;
+  }
   &__benefits{
     max-width: 776px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 40px;
     .h7{
       text-align: left;
       max-width: 776px;
       margin-bottom: 0;
     }
     ul{
+      margin: 19px 0 0;
       li{
         position: relative;
         padding-left: 90px;
@@ -96,6 +101,7 @@ const back = (): void => {
           text-align: left;
         }
         .h8{
+          margin-top: 0;
           margin-bottom: 8px;
         }
         .h9{

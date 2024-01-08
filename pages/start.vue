@@ -9,9 +9,8 @@
     <StartProducts @step="setStep" v-if="step === 'products'" />
     <StartIinfo    @step="setStep" v-if="step === 'iinfo'" />
     <StartIdentity @step="setStep" v-if="step === 'identity'" />
-    <StartSummary  @step="setStep" v-if="['summary', 'safety', 'cart'].includes(step)" />
+    <StartSummary  @step="setStep" v-if="['summary', 'cart'].includes(step)" />
     <StartCart     @step="setStep" v-if="step === 'cart'" />
-    <StartSafety   @step="setStep" v-if="step === 'safety'" />
     <StartShipping @step="setStep" v-if="step === 'shipping'" />
     <StartPayment  @step="setStep" v-if="['payment', 'billing'].includes(step)" />
     <StartBilling  @step="setStep" v-if="step === 'billing'" />

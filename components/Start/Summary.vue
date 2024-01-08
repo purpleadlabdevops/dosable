@@ -30,7 +30,7 @@
       </div>
       <div class="products__agree">
         <input type="checkbox" id="agree" v-model="agree">
-        <label for="agree">I have read and understand the <button class="btn-link" @click.prevent="emit('step', 'safety')">Safety Information</button> associated with these treatments.</label>
+        <label for="agree">I have read and understand the <nuxt-link to="/safety" target="_blank" class="btn-link">Safety Information</nuxt-link> associated with these treatments.</label>
       </div>
       <div class="start__group">
         <button

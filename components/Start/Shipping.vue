@@ -97,7 +97,7 @@ const isLoading = ref<boolean>(false),
       city      = ref<string>(''),
       state     = ref<string>(''),
       zip       = ref<string>(''),
-      phone     = ref<string>(''),
+      phone     = ref<string | number>(''),
       email     = ref<string>('')
 
 const formFeedback = ref<string | null>(''),

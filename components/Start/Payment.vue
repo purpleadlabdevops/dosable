@@ -176,7 +176,7 @@ import { useNuxtApp } from '#app';
 
 const nuxtApp = useNuxtApp(),
       globalStore = useGlobalStore(),
-      emit = defineEmits(['billing']),
+      emit = defineEmits(['step']),
       router = useRouter(),
       productsShip = globalStore.productsShip
 

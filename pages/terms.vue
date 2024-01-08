@@ -97,3 +97,9 @@
     </div>
   </section>
 </template>
+
+<script lang="ts" setup>
+useHead({
+  title: 'Terms of Service'
+})
+</script>

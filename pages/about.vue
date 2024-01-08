@@ -18,6 +18,11 @@ definePageMeta({
   layout: 'about'
 })
 
+
+useHead({
+  title: 'About Us'
+})
+
 const states = [{
   name: 'Alabama',
   flag: `http://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Alabama.svg`

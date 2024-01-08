@@ -125,3 +125,9 @@
     </div>
   </section>
 </template>
+
+<script lang="ts" setup>
+useHead({
+  title: 'Privacy Policy'
+})
+</script>

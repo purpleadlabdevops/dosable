@@ -6,6 +6,7 @@
       </nuxt-link>
       <div class="footer__menu">
         <nuxt-link to="/about">About Us</nuxt-link>
+        <nuxt-link to="/safety">Safety Information</nuxt-link>
         <nuxt-link to="/privacy">Privacy Policy</nuxt-link>
         <nuxt-link to="/terms">Terms of Service</nuxt-link>
       </div>
@@ -45,7 +46,7 @@
         margin-top: 16px;
       }
       @media(min-width:768px){
-        margin-left: res(16, 64);
+        margin-left: res(8, 32);
       }
     }
   }

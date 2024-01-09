@@ -32,15 +32,18 @@ const emit = defineEmits(['step'])
     z-index: 2;
   }
   &__text{
-    margin-bottom: res(16, 32);
+    margin-bottom: 32px;
     color: var(--white, #FFF);
-    font-size: res(18, 26);
+    font-size: res(16, 24);
     font-weight: 400;
-    line-height: 120%;
-    letter-spacing: 3.9px;
+    line-height: 1.3;
+    letter-spacing: res(1.5, 3.9);
     text-transform: uppercase;
+    @media(min-width:1600px){
+      font-size: 26px;
+    }
     &:first-child{
-      margin-bottom: res(16, 64);
+      margin-bottom: res(32, 64);
     }
   }
   .btn{

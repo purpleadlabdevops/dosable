@@ -48,16 +48,11 @@
             class="form__field-6"
             :required="true" />
 
-          <div class="form__field form__checkbox">
-            <input id="agree" type="checkbox" v-model="agree" />
-            <label for="agree">I have read and agree to these <nuxt-link to="/terms" target="_blank">Terms & Conditions</nuxt-link>, <nuxt-link to="/privacy" target="_blank">Privacy Policy</nuxt-link> and <nuxt-link to="/telehealth" target="_blank">Telehealth Consent</nuxt-link></label>
-          </div>
-
           <div class="form__field">
             <button
               class="btn btn-red"
               type="submit"
-              :disabled="isLoading || !agree">
+              :disabled="isLoading">
               {{ isLoading ? 'Loading...' : 'CONTINUE' }}
             </button>
           </div>
@@ -90,8 +85,7 @@ const isLoading = ref<boolean>(false),
       birthday  = ref<string>(''),
       gender    = ref<string>(''),
       email     = ref<string>(''),
-      phone     = ref<string>(''),
-      agree     = ref<boolean>(false)
+      phone     = ref<string>('')
 
 const formFeedback = ref<string | null>(''),
       textFeedback: { [key: string]: string; } = {

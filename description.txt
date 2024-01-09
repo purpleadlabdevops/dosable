@@ -1,0 +1,45 @@
+Project flow:
+
+1. Home page ( https://dosable.com/ ):
+1.1 button click and go to Quiz page ( https://dosable.com/quiz )
+
+2. Quiz page ( https://dosable.com/quiz ):
+2.1 need to pass quiz
+2.2 save questions and answers to local store
+2.3 Then go to Start page ( https://dosable.com/start )
+
+3. Start page ( https://dosable.com/start ):
+3.1 State's availability
+3.2 Start Form save user to DB ( to the USER table ) if user exist update sessionId
+3.3 Save Intake quiz and data from Quiz page
+3.3.1 Save data and user ID to the ORDERS table
+3.4 Save image of toe fungus
+3.4.1 Save image to DB images table (base64)
+3.4.2 Update order with image ID
+3.5 Get campaign data da from Konnektive and set product prices
+3.6 Save ID photo
+3.6.1 Save image to DB images table  (base64)
+3.6.2 Update order with image ID
+3.7 Save Shipping to local store
+3.8 Send DATA to https://api.belugahealth.com/visit/createNoPayPhotos
+3.8.1 Import Order to Konnektive
+3.8.1.1 Update order with orderId from Konnektive
+3.8.2 Send ID photo to https://api.belugahealth.com/external/receivePhoto
+3.9 Create api route https://dosable.com/api/consult
+
+4. Admin panel
+
+ETA
+
+01/09/24
+3.4 - 1h
+3.6 - 1h
+rebuild order table - 2h
+
+01/10/24
+3.8 - 8h
+
+01/11/24
+3.8.1 - 1h
+3.8.2 - 4h
+3.9 - 3h
